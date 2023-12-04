@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    [SerializeField]
+    GameObject bullet;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(CreateBullet(3f));
     }
 
     // Update is called once per frame
@@ -43,6 +46,16 @@ public class PlayerCollision : MonoBehaviour
         if (collider.gameObject.tag == "Danger")
         {
             Destroy(collider.gameObject);
+            Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator CreateBullet(float interval)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(interval);
+            Instantiate(bullet, new Vector3(7, 0, 0), Quaternion.identity);
         }
     }
 }
