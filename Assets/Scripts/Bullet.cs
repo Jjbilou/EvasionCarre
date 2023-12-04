@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Bullet_movement : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [SerializeField]
     float speed;
+    [SerializeField]
 
     Vector3 movement;
 
@@ -16,7 +17,7 @@ public class Bullet_movement : MonoBehaviour
     {
         GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
         double angle = UnityEngine.Random.Range(-1f, 1f) * Math.PI;
-        movement = new Vector3((float) Math.Cos(angle), (float) Math.Sin(angle), 0);
+        movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0);
     }
 
     // Update is called once per frame
@@ -25,16 +26,16 @@ public class Bullet_movement : MonoBehaviour
         transform.position += movement * Time.deltaTime * speed;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D collider)
     {
-        if (col.gameObject.layer == 7)
+        if (collider.gameObject.layer == 7)
         {
-            movement = new Vector3(movement.x, movement.y * -1, movement.z);
+            movement = new Vector3(movement.x, movement.y * -1, 0);
         }
 
-        if (col.gameObject.layer == 8)
+        if (collider.gameObject.layer == 8)
         {
-            movement = new Vector3(movement.x * -1, movement.y, movement.z);
+            movement = new Vector3(movement.x * -1, movement.y, 0);
         }
     }
 }
