@@ -20,31 +20,29 @@ public class PlayerCollision : MonoBehaviour
     {
         Vector3 playerPosition = transform.position;
 
-        if (playerPosition.x > 8.2450f)
+        if (playerPosition.x > 8.2350f)
         {
-            transform.position = new Vector3(8.2450f, transform.position.y, 0f);
+            transform.position = new Vector3(8.2350f, transform.position.y, 0f);
         }
-        if (playerPosition.x < -8.2450f)
+        if (playerPosition.x < -8.2350f)
         {
-            transform.position = new Vector3(-8.2450f, transform.position.y, 0f);
+            transform.position = new Vector3(-8.2350f, transform.position.y, 0f);
         }
-        if (playerPosition.y > 3.7450f)
+        if (playerPosition.y > 3.7350f)
         {
-            transform.position = new Vector3(transform.position.x, 3.7450f, 0f);
+            transform.position = new Vector3(transform.position.x, 3.7350f, 0f);
         }
-        if (playerPosition.y < -3.7450f)
+        if (playerPosition.y < -3.7350f)
         {
-            transform.position = new Vector3(transform.position.x, -3.7450f, 0f);
+            transform.position = new Vector3(transform.position.x, -3.7350f, 0f);
         }
     }
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        GameObject collided_object = collider.gameObject;
-
-        if (collided_object.layer == 10)
+        if (collider.gameObject.tag == "Danger")
         {
-            Destroy(collided_object);
+            Destroy(collider.gameObject);
         }
     }
 }
