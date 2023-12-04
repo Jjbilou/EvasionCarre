@@ -8,7 +8,7 @@ public class PlayerMouseMovement : MonoBehaviour
 {
     [SerializeField]
     float speed;
-    Vector2 ratio;
+    private Vector2 ratio;
 
     // Start is called before the first frame update
     void Start()
