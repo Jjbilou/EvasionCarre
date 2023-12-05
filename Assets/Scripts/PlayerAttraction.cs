@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserMove : MonoBehaviour
+public class PlayerAttraction : MonoBehaviour
 {
-    public float speed;
+    public float force;
     public double angle;
 
     Vector3 movement;
@@ -20,6 +20,6 @@ public class LaserMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += movement * Time.deltaTime * speed;
+        transform.position += movement * Time.deltaTime * force;
     }
 }

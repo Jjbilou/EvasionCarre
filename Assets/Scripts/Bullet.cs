@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     SpriteRenderer bulletRenderer;
     Bullet script;
-    Collider2D collider2d;
+    Collider2D bulletCollider;
 
     Vector3 movement;
 
@@ -24,10 +24,10 @@ public class Bullet : MonoBehaviour
     {
         bulletRenderer = GetComponent<SpriteRenderer>();
         script = GetComponent<Bullet>();
-        collider2d = GetComponent<Collider2D>();
+        bulletCollider = GetComponent<Collider2D>();
 
         bulletRenderer.enabled = true;
-        collider2d.enabled = true;
+        bulletCollider.enabled = true;
 
         bounce0 = new Color(0f, 0f, 0f);
         bounce1 = new Color(0.36f, 0f, 0.62f);
@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour
         }
 
         double angle = UnityEngine.Random.Range(-1f, 1f) * Math.PI;
-        
+
         movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);
         transform.rotation = Quaternion.Euler(0f, 0f, (float)(angle * 180 / Math.PI));
     }
@@ -66,6 +66,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "HorizontalBorder")
         {
             BounceOrDestroy();
+
             movement = new Vector3(movement.x, movement.y * -1f, 0f);
             transform.rotation = Quaternion.Euler(0f, 0f, -transform.rotation.eulerAngles.z);
         }
@@ -73,6 +74,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "VerticalBorder")
         {
             BounceOrDestroy();
+
             movement = new Vector3(movement.x * -1f, movement.y, 0f);
             transform.rotation = Quaternion.Euler(0f, 0f, 180 - transform.rotation.eulerAngles.z);
         }
@@ -87,7 +89,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
             bulletRenderer.enabled = false;
-            collider2d.enabled = false;
+            bulletCollider.enabled = false;
             script.enabled = false;
         }
         else if (bulletRenderer.color == bounce1)

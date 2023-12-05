@@ -35,19 +35,19 @@ public class PlayerCollision : MonoBehaviour
 
         if (playerPosition.x > maxX)
         {
-            transform.position = new Vector3(maxX, transform.position.y, 0f);
+            transform.position = new Vector3(maxX, transform.position.y, 1f);
         }
         if (playerPosition.x < minX)
         {
-            transform.position = new Vector3(minX, transform.position.y, 0f);
+            transform.position = new Vector3(minX, transform.position.y, 1f);
         }
         if (playerPosition.y > maxY)
         {
-            transform.position = new Vector3(transform.position.x, maxY, 0f);
+            transform.position = new Vector3(transform.position.x, maxY, 1f);
         }
         if (playerPosition.y < minyY)
         {
-            transform.position = new Vector3(transform.position.x, minyY, 0f);
+            transform.position = new Vector3(transform.position.x, minyY, 1f);
         }
     }
 

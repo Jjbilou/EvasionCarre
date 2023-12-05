@@ -12,56 +12,57 @@ public class BorderScale : MonoBehaviour
     GameObject borderTop;
     [SerializeField]
     GameObject borderBottom;
-    [SerializeField]
-    float scaleSpeed;
+
+    public float scaleLeft;
+    public float scaleRight;
+    public float scaleTop;
+    public float scaleBottom;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("h"))
-        {
-            Vector3 shrinkValue = new Vector3(0f, scaleSpeed, 0f);
+        Vector3 shrinkValue;
 
-            borderTop.transform.position -= shrinkValue;
-            borderBottom.transform.position += shrinkValue;
-            borderLeft.transform.localScale -= 2f * shrinkValue;
-            borderRight.transform.localScale -= 2f * shrinkValue;
-        }
+        //left
+        shrinkValue = new Vector3(scaleLeft, 0f, 0f);
 
-        if (Input.GetKey("n"))
-        {
-            Vector3 shrinkValue = new Vector3(scaleSpeed, 0f, 0f);
+        borderLeft.transform.position += shrinkValue;
+        borderTop.transform.localScale -= shrinkValue;
+        borderTop.transform.position += shrinkValue / 2f;
+        borderBottom.transform.localScale -= shrinkValue;
+        borderBottom.transform.position += shrinkValue / 2f;
 
-            borderRight.transform.position -= shrinkValue;
-            borderLeft.transform.position += shrinkValue;
-            borderTop.transform.localScale -= 2f * shrinkValue;
-            borderBottom.transform.localScale -= 2f * shrinkValue;
-        }
+        //right
+        shrinkValue = new Vector3(scaleRight, 0f, 0f);
 
-        if (Input.GetKey("b"))
-        {
-            Vector3 shrinkValue = new Vector3(0f, -scaleSpeed, 0f);
+        borderRight.transform.position -= shrinkValue;
+        borderTop.transform.localScale -= shrinkValue;
+        borderTop.transform.position -= shrinkValue / 2f;
+        borderBottom.transform.localScale -= shrinkValue;
+        borderBottom.transform.position -= shrinkValue / 2f;
 
-            borderTop.transform.position -= shrinkValue;
-            borderBottom.transform.position += shrinkValue;
-            borderLeft.transform.localScale -= 2f * shrinkValue;
-            borderRight.transform.localScale -= 2f * shrinkValue;
-        }
+        //top
+        shrinkValue = new Vector3(0f, scaleTop, 0f);
 
-        if (Input.GetKey("v"))
-        {
-            Vector3 shrinkValue = new Vector3(-scaleSpeed, 0f, 0f);
+        borderTop.transform.position -= shrinkValue;
+        borderLeft.transform.localScale -= shrinkValue;
+        borderLeft.transform.position -= shrinkValue / 2f;
+        borderRight.transform.localScale -= shrinkValue;
+        borderRight.transform.position -= shrinkValue / 2f;
 
-            borderRight.transform.position -= shrinkValue;
-            borderLeft.transform.position += shrinkValue;
-            borderTop.transform.localScale -= 2f * shrinkValue;
-            borderBottom.transform.localScale -= 2f * shrinkValue;
-        }
+        //bottom
+        shrinkValue = new Vector3(scaleRight, 0f, 0f);
+
+        borderBottom.transform.position -= shrinkValue;
+        borderLeft.transform.localScale -= shrinkValue;
+        borderLeft.transform.position += shrinkValue / 2f;
+        borderRight.transform.localScale -= shrinkValue;
+        borderRight.transform.position += shrinkValue / 2f;
     }
 }
