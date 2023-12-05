@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    [SerializeField]
+    float rotationSpeed;
     Renderer laser;
     Collider2D collision;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DisplayLaser(1f));
+        //StartCoroutine(DisplayLaser(1f));
 
         laser = GetComponent<Renderer>();
         collision = GetComponent<BoxCollider2D>();
-
-        laser.enabled = false;
-        collision.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey("l"))
+        {
+            transform.Rotate(0f, 0f, rotationSpeed); 
+        }
     }
 
     IEnumerator DisplayLaser(float interval)
