@@ -12,13 +12,11 @@ public class PlayerCollision : MonoBehaviour
     GameObject borderTop;
     [SerializeField]
     GameObject borderBottom;
-    [SerializeField]
-    GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CreateBullet(2f));
+
     }
 
     // Update is called once per frame
@@ -55,19 +53,23 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Danger" || collision.gameObject.transform.parent.tag == "Danger")
+        if (collision.tag == "Danger")
         {
             Destroy(gameObject);
         }
-    }
-
-    private IEnumerator CreateBullet(float interval)
-    {
-        while (true)
+        if (collision.tag == "HorizontalBorder")
         {
-            yield return new WaitForSeconds(interval);
-            GameObject clone = Instantiate(bullet, new Vector3(7f, 0f, 0f), Quaternion.identity);
-            clone.GetComponent<Bullet>().enabled = true;
+            if (collision.transform.parent.tag == "Danger")
+            {
+                Destroy(gameObject);
+            }
+        }
+        if (collision.tag == "VerticalBorder")
+        {
+            if (collision.transform.parent.tag == "Danger")
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

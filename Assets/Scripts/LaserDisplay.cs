@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class LaserDisplay : MonoBehaviour
 {
     [SerializeField]
     float rotationSpeed;
     Renderer laser;
     Collider2D collision;
+
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(DisplayLaser(1f));
+        StartCoroutine(DisplayLaser(1f));
 
         laser = GetComponent<Renderer>();
         collision = GetComponent<BoxCollider2D>();
@@ -20,10 +21,7 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("l"))
-        {
-            transform.Rotate(0f, 0f, rotationSpeed); 
-        }
+        
     }
 
     IEnumerator DisplayLaser(float interval)

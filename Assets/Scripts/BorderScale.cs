@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BorderShrink : MonoBehaviour
+public class BorderScale : MonoBehaviour
 {
     [SerializeField]
     GameObject borderLeft;
@@ -13,7 +13,7 @@ public class BorderShrink : MonoBehaviour
     [SerializeField]
     GameObject borderBottom;
     [SerializeField]
-    float shrinkSpeed;
+    float scaleSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class BorderShrink : MonoBehaviour
     {
         if (Input.GetKey("h"))
         {
-            Vector3 shrinkValue = new Vector3(0f, shrinkSpeed, 0f);
+            Vector3 shrinkValue = new Vector3(0f, scaleSpeed, 0f);
 
             borderTop.transform.position -= shrinkValue;
             borderBottom.transform.position += shrinkValue;
@@ -36,7 +36,7 @@ public class BorderShrink : MonoBehaviour
 
         if (Input.GetKey("n"))
         {
-            Vector3 shrinkValue = new Vector3(shrinkSpeed, 0f, 0f);
+            Vector3 shrinkValue = new Vector3(scaleSpeed, 0f, 0f);
 
             borderRight.transform.position -= shrinkValue;
             borderLeft.transform.position += shrinkValue;
@@ -46,7 +46,7 @@ public class BorderShrink : MonoBehaviour
 
         if (Input.GetKey("b"))
         {
-            Vector3 shrinkValue = new Vector3(0f, -shrinkSpeed, 0f);
+            Vector3 shrinkValue = new Vector3(0f, -scaleSpeed, 0f);
 
             borderTop.transform.position -= shrinkValue;
             borderBottom.transform.position += shrinkValue;
@@ -56,7 +56,7 @@ public class BorderShrink : MonoBehaviour
 
         if (Input.GetKey("v"))
         {
-            Vector3 shrinkValue = new Vector3(-shrinkSpeed, 0f, 0f);
+            Vector3 shrinkValue = new Vector3(-scaleSpeed, 0f, 0f);
 
             borderRight.transform.position -= shrinkValue;
             borderLeft.transform.position += shrinkValue;
