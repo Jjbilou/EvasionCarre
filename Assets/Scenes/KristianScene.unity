@@ -995,7 +995,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 6.82}
+  m_Size: {x: 0.8, y: 6.5}
   m_EdgeRadius: 0
 --- !u!114 &1994031972
 MonoBehaviour:
@@ -1295,10 +1295,11 @@ GameObject:
   - component: {fileID: 2133967143}
   - component: {fileID: 2133967150}
   - component: {fileID: 2133967145}
+  - component: {fileID: 2133967149}
   - component: {fileID: 2133967147}
   - component: {fileID: 2133967148}
-  - component: {fileID: 2133967149}
   - component: {fileID: 2133967151}
+  - component: {fileID: 2133967152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1501,6 +1502,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleSpeed: 0.01
+--- !u!114 &2133967152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133967142}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd1a751164d9f14cba94e3f40837f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 8
+  angle: 90
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
