@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         transform.position += movement * Time.deltaTime * speed;
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnTriggerEnter2D(Collision2D collider)
     {
         if (collider.gameObject.tag == "HorizontalBorder")
         {
@@ -39,6 +39,11 @@ public class Bullet : MonoBehaviour
         if (collider.gameObject.tag == "VerticalBorder")
         {
             movement = new Vector3(movement.x * -1, movement.y, 0);
+        }
+
+        if (collider.gameObject.tag == "Danger")
+        {
+            
         }
     }
 }
