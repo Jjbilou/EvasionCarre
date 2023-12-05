@@ -55,9 +55,8 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Danger")
+        if (collision.tag == "Danger" || collision.gameObject.transform.parent.tag == "Danger")
         {
-            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
