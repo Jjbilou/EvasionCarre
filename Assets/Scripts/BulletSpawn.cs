@@ -18,7 +18,7 @@ public class BulletSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private IEnumerator CreateBullet(float interval)

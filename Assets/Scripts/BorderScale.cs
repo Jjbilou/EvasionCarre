@@ -12,7 +12,7 @@ public class BorderScale : MonoBehaviour
     GameObject borderTop;
     [SerializeField]
     GameObject borderBottom;
-    
+
     public float scaleLeft;
     public float scaleRight;
     public float scaleTop;
@@ -21,7 +21,7 @@ public class BorderScale : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class BorderScale : MonoBehaviour
 
         //right
         shrinkValue = new Vector3(scaleRight, 0f, 0f);
-        
+
         borderRight.transform.position -= shrinkValue;
         borderTop.transform.localScale -= shrinkValue;
         borderTop.transform.position -= shrinkValue / 2f;
@@ -58,7 +58,7 @@ public class BorderScale : MonoBehaviour
 
         //bottom
         shrinkValue = new Vector3(scaleRight, 0f, 0f);
-        
+
         borderBottom.transform.position -= shrinkValue;
         borderLeft.transform.localScale -= shrinkValue;
         borderLeft.transform.position += shrinkValue / 2f;

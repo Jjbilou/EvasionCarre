@@ -7,7 +7,7 @@ public class PlayerAttraction : MonoBehaviour
 {
     public float force;
     public double angle;
-    
+
     Vector3 movement;
 
     // Start is called before the first frame update
@@ -20,6 +20,6 @@ public class PlayerAttraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         transform.position += movement * Time.deltaTime * force;
+        transform.position += movement * Time.deltaTime * force;
     }
 }

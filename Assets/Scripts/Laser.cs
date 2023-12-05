@@ -5,7 +5,7 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     public float laserWidth;
-    public bool isDisplayed;
+    public float laserHeight;
 
     Renderer laserRenderer;
     Collider2D laserCollider;
@@ -15,13 +15,15 @@ public class Laser : MonoBehaviour
     {
         laserRenderer = GetComponent<Renderer>();
         laserCollider = GetComponent<BoxCollider2D>();
+
+        transform.localScale = new Vector3(laserWidth, laserHeight, 1f);
+        laserRenderer.enabled = true;
+        laserCollider.enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.localScale = new Vector3(laserWidth, 3f, 1f);
-        laserRenderer.enabled = isDisplayed;
-        laserCollider.enabled = isDisplayed;
+        
     }
 }
