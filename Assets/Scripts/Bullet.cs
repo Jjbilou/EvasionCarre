@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -49,7 +50,9 @@ public class Bullet : MonoBehaviour
         }
 
         double angle = UnityEngine.Random.Range(-1f, 1f) * Math.PI;
+        
         movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);
+        transform.rotation = Quaternion.Euler(0f, 0f, (float)(angle * 180 / Math.PI));
     }
 
     // Update is called once per frame
@@ -64,12 +67,14 @@ public class Bullet : MonoBehaviour
         {
             BounceOrDestroy();
             movement = new Vector3(movement.x, movement.y * -1f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 0f, -transform.rotation.eulerAngles.z);
         }
 
         if (collision.tag == "VerticalBorder")
         {
             BounceOrDestroy();
             movement = new Vector3(movement.x * -1f, movement.y, 0f);
+            transform.rotation = Quaternion.Euler(0f, 0f, 180 - transform.rotation.eulerAngles.z);
         }
     }
 
