@@ -5,13 +5,15 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     Renderer laser;
-    Collider collision;
+    Collider2D collision;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(DisplayLaser(1f));
+
         laser = GetComponent<Renderer>();
-        collision = GetComponent<BoxCollider>();
+        collision = GetComponent<BoxCollider2D>();
+
         laser.enabled = false;
         collision.enabled = false;
     }
