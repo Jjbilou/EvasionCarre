@@ -8,12 +8,17 @@ public class PlayerMouseMovement : MonoBehaviour
 {
     [SerializeField]
     float speed;
+    [SerializeField]
+    Camera gameCamera;
     private Vector2 ratio;
 
     // Start is called before the first frame update
     void Start()
     {
-        ratio = new Vector2(19.2f / Screen.width, 10f / Screen.height); //ratio between camera size and pixels number
+        float cameraHeight = 2f * gameCamera.orthographicSize;
+        float cameraWidth = cameraHeight * gameCamera.aspect;
+
+        ratio = new Vector2(cameraWidth / Screen.width, cameraHeight / Screen.height); //ratio between camera size and pixels number
     }
 
     // Update is called once per frame
