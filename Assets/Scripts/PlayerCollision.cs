@@ -10,7 +10,7 @@ public class PlayerCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CreateBullet(3f));
+        //StartCoroutine(CreateBullet(3f));
     }
 
     // Update is called once per frame
@@ -23,21 +23,21 @@ public class PlayerCollision : MonoBehaviour
     {
         Vector3 playerPosition = transform.position;
 
-        if (playerPosition.x > 8.2350f)
+        if (playerPosition.x > 8.235f)
         {
-            transform.position = new Vector3(8.2350f, transform.position.y, 0f);
+            transform.position = new Vector3(8.235f, transform.position.y, 0f);
         }
-        if (playerPosition.x < -8.2350f)
+        if (playerPosition.x < -8.235f)
         {
-            transform.position = new Vector3(-8.2350f, transform.position.y, 0f);
+            transform.position = new Vector3(-8.235f, transform.position.y, 0f);
         }
-        if (playerPosition.y > 3.7350f)
+        if (playerPosition.y > 8.235f)
         {
-            transform.position = new Vector3(transform.position.x, 3.7350f, 0f);
+            transform.position = new Vector3(transform.position.x, 8.235f, 0f);
         }
-        if (playerPosition.y < -3.7350f)
+        if (playerPosition.y < -8.235f)
         {
-            transform.position = new Vector3(transform.position.x, -3.7350f, 0f);
+            transform.position = new Vector3(transform.position.x, -8.235f, 0f);
         }
     }
 
