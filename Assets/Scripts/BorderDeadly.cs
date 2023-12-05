@@ -13,21 +13,32 @@ public class BorderDeadly : MonoBehaviour
     [SerializeField]
     GameObject borderBottom;
 
+    public bool isActive;
+
     // Start is called before the first frame update
     void Start()
     {
-        Color borderColor = new Color(1f, 0f, 0f);
-
-        gameObject.tag = "Danger";
-        borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
-        borderRight.GetComponent<SpriteRenderer>().color = borderColor;
-        borderTop.GetComponent<SpriteRenderer>().color = borderColor;
-        borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Color borderColor;
+
+        if (isActive)
+        {
+            borderColor = new Color(1f, 0f, 0f);
+            gameObject.tag = "Danger";
+        }
+        else
+        {
+            borderColor = new Color(1f, 1f, 1f);
+            gameObject.tag = "Untagged";
+        }
+        borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
+        borderRight.GetComponent<SpriteRenderer>().color = borderColor;
+        borderTop.GetComponent<SpriteRenderer>().color = borderColor;
+        borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
     }
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LaserRotation : MonoBehaviour
 {
-    [SerializeField]
-    float rotationSpeed;
+    public float rotationAngle;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +15,6 @@ public class LaserRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0f, 0f, rotationSpeed); 
+        transform.Rotate(0f, 0f, rotationAngle); 
     }
 }

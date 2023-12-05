@@ -26,7 +26,7 @@ public class BulletSpawn : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(interval);
-            GameObject clone = Instantiate(bullet, new Vector3(7f, 0f, 0f), Quaternion.identity);
+            GameObject clone = Instantiate(bullet, new Vector3(7f, 0f, 1f), Quaternion.identity);
             clone.GetComponent<Bullet>().enabled = true;
         }
     }

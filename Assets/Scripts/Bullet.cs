@@ -66,6 +66,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "HorizontalBorder")
         {
             BounceOrDestroy();
+
             movement = new Vector3(movement.x, movement.y * -1f, 0f);
             transform.rotation = Quaternion.Euler(0f, 0f, -transform.rotation.eulerAngles.z);
         }
@@ -73,6 +74,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "VerticalBorder")
         {
             BounceOrDestroy();
+            
             movement = new Vector3(movement.x * -1f, movement.y, 0f);
             transform.rotation = Quaternion.Euler(0f, 0f, 180 - transform.rotation.eulerAngles.z);
         }

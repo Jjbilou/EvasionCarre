@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class LaserMove : MonoBehaviour
 {
-    [SerializeField]
-    float speed;
-    [SerializeField]
-    double angle;
+    public float speed;
+    public double angle;
 
     Vector3 movement;
 

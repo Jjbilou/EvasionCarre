@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class PlayerAttraction : MonoBehaviour
 {
-    [SerializeField]
-    float force;
-    [SerializeField]
-    double angle;
+    public float force;
+    public double angle;
+    
     Vector3 movement;
 
     // Start is called before the first frame update
