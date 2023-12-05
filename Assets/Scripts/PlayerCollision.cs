@@ -18,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(CreateBullet(3f));
+        StartCoroutine(CreateBullet(3f));
     }
 
     // Update is called once per frame
