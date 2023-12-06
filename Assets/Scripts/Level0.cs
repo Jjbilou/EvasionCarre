@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using DG.Tweening;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,6 +26,9 @@ public class Level0 : MonoBehaviour
     [SerializeField]
     GameObject laser;
 
+    bool isAttracted = false;
+    Vector3 attractMovement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +37,13 @@ public class Level0 : MonoBehaviour
 
     IEnumerator Launch()
     {
-        PlayerAttraction(45f, 10f, 2f);
-        PlayerScale(1f, 1f);
-        
         yield return new WaitForSeconds(2f);
-        
+
+        PlayerAttraction(90f, 10f, 2f);
+        PlayerScale(1f, 1f);
+
+        yield return new WaitForSeconds(2f);
+
         PlayerScale(-1f, 1f);
 
         yield return new WaitForSeconds(1f);
@@ -78,7 +84,10 @@ public class Level0 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isAttracted)
+        {
+            player.transform.position += attractMovement * Time.deltaTime;
+        }
     }
 
     void EnableDeadlyBorders()
@@ -162,7 +171,16 @@ public class Level0 : MonoBehaviour
     void PlayerAttraction(float angle, float force, float duration)
     {
         angle = (float)Math.PI * angle / 180;
-        player.transform.DOMove(player.transform.position + force * new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f), duration);
+        attractMovement = force * new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 1f);
+        isAttracted = true;
+        StartCoroutine(WaitAttractEnd(duration));
+    }
+
+    IEnumerator WaitAttractEnd(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isAttracted = false;
+
     }
 
     void PlayerScale(float scaleValue, float animationTime)
