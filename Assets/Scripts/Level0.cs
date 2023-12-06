@@ -44,7 +44,7 @@ public class Level0 : MonoBehaviour
 
         Destroy(laserClone);
         DisableDeadlyBorders();
-        CreateBullet(7f, 0f, 1f, 90f, 15f, 2);
+        CreateBullet(7f, 0f, 1f, 135f, 15f, 3);
 
         yield return new WaitForSeconds(2f);
 

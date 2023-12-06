@@ -35,7 +35,6 @@ public class Bullet : MonoBehaviour
 
         angle = (float)Math.PI * angle / 180;
         movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);
-        transform.rotation = Quaternion.Euler(0f, 0f, (float)(angle * 180 / Math.PI));
 
         switch (level)
         {
@@ -67,7 +66,6 @@ public class Bullet : MonoBehaviour
             BounceOrDestroy();
 
             movement = new Vector3(movement.x, movement.y * -1f, 0f);
-            transform.rotation = Quaternion.Euler(0f, 0f, -transform.rotation.eulerAngles.z);
         }
 
         if (collision.tag == "VerticalBorder")
@@ -75,7 +73,6 @@ public class Bullet : MonoBehaviour
             BounceOrDestroy();
 
             movement = new Vector3(movement.x * -1f, movement.y, 0f);
-            transform.rotation = Quaternion.Euler(0f, 0f, 180 - transform.rotation.eulerAngles.z);
         }
     }
 
