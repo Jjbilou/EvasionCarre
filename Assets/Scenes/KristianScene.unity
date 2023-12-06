@@ -585,6 +585,7 @@ MonoBehaviour:
   borderRight: {fileID: 80905358}
   borderTop: {fileID: 2031814999}
   borderBottom: {fileID: 941275128}
+  player: {fileID: 2133967142}
   bullet: {fileID: 1807014129}
   laser: {fileID: 2126072562}
 --- !u!114 &837057326
@@ -1262,7 +1263,6 @@ GameObject:
   - component: {fileID: 2133967147}
   - component: {fileID: 2133967148}
   - component: {fileID: 2133967151}
-  - component: {fileID: 2133967152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133967142}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 164602ec760c91e43b60b9a00596b2fd, type: 3}
   m_Name: 
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133967142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8f916781237443428cdea3c20509d42, type: 3}
   m_Name: 
@@ -1465,20 +1465,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleSpeed: 0.05
---- !u!114 &2133967152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133967142}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd1a751164d9f14cba94e3f40837f04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 8
-  angle: 90
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
