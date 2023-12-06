@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Level0 : MonoBehaviour
@@ -28,29 +30,22 @@ public class Level0 : MonoBehaviour
 
     IEnumerator Launch()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2f);
 
         EnableDeadlyBorders();
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
 
-        GameObject laserClone = Instantiate(laser, new Vector3(borderLeft.transform.position.x, borderTop.transform.position.y, 1f), Quaternion.identity);
+        GameObject laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 6f, 0f);
+        RotateLaser(laserClone, -180f, 2f);
+        MoveLaser(laserClone, borderRight.transform.position.x, borderTop.transform.position.y, 2f);
 
-        Laser cloneScript = laserClone.GetComponent<Laser>();
-        cloneScript.enabled = true;
-        cloneScript.laserWidth = 3;
-        cloneScript.laserHeight = 7;
-
-        LaserRotation laserRotation = laserClone.GetComponent<LaserRotation>();
-        laserRotation.enabled = true;
-        laserRotation.rotationSpeed = 90;
-
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2f);
 
         Destroy(laserClone);
         DisableDeadlyBorders();
 
-
+        print("You won, gg");
         StopCoroutine(Launch());
     }
 
@@ -80,5 +75,27 @@ public class Level0 : MonoBehaviour
         borderRight.GetComponent<SpriteRenderer>().color = borderColor;
         borderTop.GetComponent<SpriteRenderer>().color = borderColor;
         borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
+    }
+
+    GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
+    {
+        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
+
+        Laser cloneScript = laserClone.GetComponent<Laser>();
+        cloneScript.enabled = true;
+        cloneScript.laserWidth = laserWidth;
+        cloneScript.laserHeight = laserHeight;
+
+        return laserClone;
+    }
+
+    void RotateLaser(GameObject laser, float angle, float time)
+    {
+        laser.transform.DORotate(new Vector3(0f, 0f, 90f - transform.rotation.z + angle), time);
+    }
+
+    void MoveLaser(GameObject laser, float posX, float posY, float time)
+    {
+        laser.transform.DOMove(new Vector3(posX, posY, 1f), time);
     }
 }
