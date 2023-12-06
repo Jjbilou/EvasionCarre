@@ -184,6 +184,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
+--- !u!1 &1492245532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2883960745609412118, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
+  m_PrefabInstance: {fileID: 1492245531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1492245533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 995002982123105721, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
+  m_PrefabInstance: {fileID: 1492245531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1492245534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2624979425666783688, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
+  m_PrefabInstance: {fileID: 1492245531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1492245535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5810344616900822219, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
+  m_PrefabInstance: {fileID: 1492245531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1652045852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244,6 +264,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3144333447370798053, guid: 2788a4b4a14de8e42a0269338422ad16, type: 3}
+      propertyPath: borderTop
+      value: 
+      objectReference: {fileID: 1492245533}
+    - target: {fileID: 3144333447370798053, guid: 2788a4b4a14de8e42a0269338422ad16, type: 3}
+      propertyPath: borderLeft
+      value: 
+      objectReference: {fileID: 1492245535}
+    - target: {fileID: 3144333447370798053, guid: 2788a4b4a14de8e42a0269338422ad16, type: 3}
+      propertyPath: borderRight
+      value: 
+      objectReference: {fileID: 1492245534}
+    - target: {fileID: 3144333447370798053, guid: 2788a4b4a14de8e42a0269338422ad16, type: 3}
+      propertyPath: borderBottom
+      value: 
+      objectReference: {fileID: 1492245532}
     - target: {fileID: 5907701967891069555, guid: 2788a4b4a14de8e42a0269338422ad16, type: 3}
       propertyPath: m_Enabled
       value: 1
