@@ -18,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CreateBullet(3f));
+        StartCoroutine(CreateBullet(2f));
     }
 
     // Update is called once per frame
@@ -55,9 +55,8 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Danger")
+        if (collision.tag == "Danger" || collision.gameObject.transform.parent.tag == "Danger")
         {
-            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
@@ -67,7 +66,8 @@ public class PlayerCollision : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(interval);
-            Instantiate(bullet, new Vector3(7, 0, 0), Quaternion.identity);
+            GameObject clone = Instantiate(bullet, new Vector3(7f, 0f, 0f), Quaternion.identity);
+            clone.GetComponent<Bullet>().enabled = true;
         }
     }
 }
