@@ -5,35 +5,22 @@ using DG.Tweening;
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField]
-    float rotationSpeed;
-    Renderer laser;
-    Collider2D collision;
+    public float laserWidth;
+    public float laserHeight;
+
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(DisplayLaser(1f));
+        GetComponent<Renderer>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<Animator>().enabled = true;
 
-        laser = GetComponent<Renderer>();
-        collision = GetComponent<BoxCollider2D>();
+        transform.localScale = new Vector3(laserWidth, laserHeight, 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("l"))
-        {
-            transform.Rotate(0f, 0f, rotationSpeed); 
-        }
-    }
-
-    IEnumerator DisplayLaser(float interval)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(interval);
-            laser.enabled = !laser.enabled;
-            collision.enabled = !collision.enabled;
-        }
+        
     }
 }

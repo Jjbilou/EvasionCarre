@@ -12,13 +12,11 @@ public class PlayerCollision : MonoBehaviour
     GameObject borderTop;
     [SerializeField]
     GameObject borderBottom;
-    [SerializeField]
-    GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CreateBullet(2f));
+
     }
 
     // Update is called once per frame
@@ -30,44 +28,49 @@ public class PlayerCollision : MonoBehaviour
     void LateUpdate()
     {
         Vector3 playerPosition = transform.position;
-        float maxX = borderRight.transform.position.x - borderRight.transform.localScale.x / 2f - transform.localScale.x / 2f;
-        float minX = borderLeft.transform.position.x + borderLeft.transform.localScale.x / 2f + transform.localScale.x / 2f;
-        float maxY = borderTop.transform.position.y - borderTop.transform.localScale.y / 2f - transform.localScale.y / 2f;
-        float minyY = borderBottom.transform.position.y + borderBottom.transform.localScale.y / 2f + transform.localScale.y / 2f;
+        float maxX = borderRight.transform.position.x - borderRight.transform.localScale.x / 2f - transform.localScale.x / 2f + 0.05f;
+        float minX = borderLeft.transform.position.x + borderLeft.transform.localScale.x / 2f + transform.localScale.x / 2f - 0.05f;
+        float maxY = borderTop.transform.position.y - borderTop.transform.localScale.y / 2f - transform.localScale.y / 2f + 0.05f;
+        float minyY = borderBottom.transform.position.y + borderBottom.transform.localScale.y / 2f + transform.localScale.y / 2f - 0.05f;
 
         if (playerPosition.x > maxX)
         {
-            transform.position = new Vector3(maxX, transform.position.y, 0f);
+            transform.position = new Vector3(maxX, transform.position.y, 1f);
         }
         if (playerPosition.x < minX)
         {
-            transform.position = new Vector3(minX, transform.position.y, 0f);
+            transform.position = new Vector3(minX, transform.position.y, 1f);
         }
         if (playerPosition.y > maxY)
         {
-            transform.position = new Vector3(transform.position.x, maxY, 0f);
+            transform.position = new Vector3(transform.position.x, maxY, 1f);
         }
         if (playerPosition.y < minyY)
         {
-            transform.position = new Vector3(transform.position.x, minyY, 0f);
+            transform.position = new Vector3(transform.position.x, minyY, 1f);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Danger" || collision.gameObject.transform.parent.tag == "Danger")
+        print("beute");
+        if (collision.tag == "Danger")
         {
             Destroy(gameObject);
         }
-    }
-
-    private IEnumerator CreateBullet(float interval)
-    {
-        while (true)
+        if (collision.tag == "HorizontalBorder")
         {
-            yield return new WaitForSeconds(interval);
-            GameObject clone = Instantiate(bullet, new Vector3(7f, 0f, 0f), Quaternion.identity);
-            clone.GetComponent<Bullet>().enabled = true;
+            if (collision.transform.parent.tag == "Danger")
+            {
+                Destroy(gameObject);
+            }
+        }
+        if (collision.tag == "VerticalBorder")
+        {
+            if (collision.transform.parent.tag == "Danger")
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
