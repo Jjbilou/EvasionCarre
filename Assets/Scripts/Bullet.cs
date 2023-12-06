@@ -6,53 +6,52 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    float speed;
+    public float size;
+    public float angle;
+    public float speed;
+    public int level;
+
 
     SpriteRenderer bulletRenderer;
-    Bullet script;
-    Collider2D bulletCollider;
 
     Vector3 movement;
 
-    Color bounce0;
-    Color bounce1;
-    Color bounce2;
+    Color level1Color;
+    Color level2Color;
+    Color level3Color;
 
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Collider2D>().enabled = true;
+        GetComponent<Animator>().enabled = true;
         bulletRenderer = GetComponent<SpriteRenderer>();
-        script = GetComponent<Bullet>();
-        bulletCollider = GetComponent<Collider2D>();
-
         bulletRenderer.enabled = true;
-        bulletCollider.enabled = true;
+        transform.localScale *= size;
 
-        bounce0 = new Color(0f, 0f, 0f);
-        bounce1 = new Color(0.36f, 0f, 0.62f);
-        bounce2 = new Color(1f, 0f, 0f);
+        level1Color = new Color(0f, 0f, 0f);
+        level2Color = new Color(0.36f, 0f, 0.62f);
+        level3Color = new Color(1f, 0f, 0f);
 
-        switch (UnityEngine.Random.Range(0, 4))
+        angle = (float)Math.PI * angle / 180;
+        movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);
+        transform.rotation = Quaternion.Euler(0f, 0f, (float)(angle * 180 / Math.PI));
+
+        switch (level)
         {
             case 0:
-                bulletRenderer.color = bounce0;
+                bulletRenderer.color = level1Color;
                 break;
             case 1:
-                bulletRenderer.color = bounce1;
+                bulletRenderer.color = level2Color;
                 break;
             case 2:
-                bulletRenderer.color = bounce2;
+                bulletRenderer.color = level3Color;
                 break;
             case 3:
                 bulletRenderer.color = new Color(1, 1, 1);
                 break;
         }
-
-        double angle = UnityEngine.Random.Range(-1f, 1f) * Math.PI;
-
-        movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);
-        transform.rotation = Quaternion.Euler(0f, 0f, (float)(angle * 180 / Math.PI));
     }
 
     // Update is called once per frame
@@ -82,23 +81,17 @@ public class Bullet : MonoBehaviour
 
     void BounceOrDestroy()
     {
-        if (bulletRenderer.color == bounce0)
+        if (bulletRenderer.color == level1Color)
         {
-            if (gameObject.name == "Bullet(Clone)")
-            {
-                Destroy(gameObject);
-            }
-            bulletRenderer.enabled = false;
-            bulletCollider.enabled = false;
-            script.enabled = false;
+            Destroy(gameObject);
         }
-        else if (bulletRenderer.color == bounce1)
+        else if (bulletRenderer.color == level2Color)
         {
-            bulletRenderer.color = bounce0;
+            bulletRenderer.color = level1Color;
         }
-        else if (bulletRenderer.color == bounce2)
+        else if (bulletRenderer.color == level3Color)
         {
-            bulletRenderer.color = bounce1;
+            bulletRenderer.color = level2Color;
         }
     }
 }
