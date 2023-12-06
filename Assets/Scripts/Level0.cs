@@ -30,13 +30,15 @@ public class Level0 : MonoBehaviour
 
     IEnumerator Launch()
     {
+        GameObject laserClone;
+
         yield return new WaitForSeconds(2f);
 
         EnableDeadlyBorders();
 
         yield return new WaitForSeconds(1f);
 
-        GameObject laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 6f, 0f);
+        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 6f, 0f);
         RotateLaser(laserClone, -180f, 2f);
         MoveLaser(laserClone, borderRight.transform.position.x, borderTop.transform.position.y, 2f);
 
@@ -45,8 +47,17 @@ public class Level0 : MonoBehaviour
         Destroy(laserClone);
         DisableDeadlyBorders();
         CreateBullet(7f, 0f, 1f, 135f, 15f, 3);
+        CreateBullet(7f, 0f, 1f, -135f, 15f, 2);
+        laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3f, 3f, 0f);
+        RotateLaser(laserClone, -900f, 5f);
 
         yield return new WaitForSeconds(2f);
+
+        BorderRightScale(-2f, 1f);
+        BorderTopScale(-2f, 1f);
+        MoveLaser(laserClone, laserClone.transform.position.x - 1f, laserClone.transform.position.y - 1f, 2f);
+
+        yield return new WaitForSeconds(3f);
 
         print("You won, gg");
         StopCoroutine(Launch());
@@ -114,5 +125,25 @@ public class Level0 : MonoBehaviour
         cloneScript.level = level;
 
         return bulletClone;
+    }
+
+    void BorderLeftScale(float scaleValue, float time)
+    {
+        borderLeft.transform.DOMoveX(borderLeft.transform.position.x - scaleValue, time);
+    }
+
+    void BorderRightScale(float scaleValue, float time)
+    {
+        borderRight.transform.DOMoveX(borderRight.transform.position.x + scaleValue, time);
+    }
+
+    void BorderTopScale(float scaleValue, float time)
+    {
+        borderTop.transform.DOMoveY(borderTop.transform.position.y + scaleValue, time);
+    }
+
+    void BorderBottomScale(float scaleValue, float time)
+    {
+        borderBottom.transform.DOMoveY(borderBottom.transform.position.y - scaleValue, time);
     }
 }
