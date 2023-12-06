@@ -540,7 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 837057321}
-  - component: {fileID: 837057322}
+  - component: {fileID: 837057326}
   - component: {fileID: 837057325}
   m_Layer: 0
   m_Name: Borders
@@ -568,26 +568,6 @@ Transform:
   - {fileID: 941275130}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &837057322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837057320}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe7672403071b74a80abd167e27b4cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  borderLeft: {fileID: 609311340}
-  borderRight: {fileID: 80905358}
-  borderTop: {fileID: 2031814999}
-  borderBottom: {fileID: 941275128}
-  scaleLeft: 0
-  scaleRight: 0
-  scaleTop: 0
-  scaleBottom: 0
 --- !u!114 &837057325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,8 +585,26 @@ MonoBehaviour:
   borderRight: {fileID: 80905358}
   borderTop: {fileID: 2031814999}
   borderBottom: {fileID: 941275128}
+  player: {fileID: 2133967142}
   bullet: {fileID: 1807014129}
   laser: {fileID: 2126072562}
+--- !u!114 &837057326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837057320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a5cd346e2aa174098112962162e102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  borderLeft: {fileID: 609311340}
+  borderRight: {fileID: 80905358}
+  borderTop: {fileID: 2031814999}
+  borderBottom: {fileID: 941275128}
+  borderWidth: 0.5
 --- !u!1 &941275128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,7 +1263,6 @@ GameObject:
   - component: {fileID: 2133967147}
   - component: {fileID: 2133967148}
   - component: {fileID: 2133967151}
-  - component: {fileID: 2133967152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1334,7 +1331,7 @@ Transform:
   m_GameObject: {fileID: 2133967142}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1468,20 +1465,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleSpeed: 0.05
---- !u!114 &2133967152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133967142}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd1a751164d9f14cba94e3f40837f04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 8
-  angle: 90
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

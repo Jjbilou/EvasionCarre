@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +19,8 @@ public class Level0 : MonoBehaviour
     [SerializeField]
     GameObject borderBottom;
     [SerializeField]
+    GameObject player;
+    [SerializeField]
     GameObject bullet;
     [SerializeField]
     GameObject laser;
@@ -30,13 +33,24 @@ public class Level0 : MonoBehaviour
 
     IEnumerator Launch()
     {
+        PlayerAttraction(45f, 10f, 2f);
+        PlayerScale(1f, 1f);
+        
         yield return new WaitForSeconds(2f);
+        
+        PlayerScale(-1f, 1f);
+
+        yield return new WaitForSeconds(1f);
+
+        GameObject laserClone;
+
+        yield return new WaitForSeconds(1f);
 
         EnableDeadlyBorders();
 
         yield return new WaitForSeconds(1f);
 
-        GameObject laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 6f, 0f);
+        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 6f, 0f);
         RotateLaser(laserClone, -180f, 2f);
         MoveLaser(laserClone, borderRight.transform.position.x, borderTop.transform.position.y, 2f);
 
@@ -45,8 +59,17 @@ public class Level0 : MonoBehaviour
         Destroy(laserClone);
         DisableDeadlyBorders();
         CreateBullet(7f, 0f, 1f, 135f, 15f, 3);
+        CreateBullet(7f, 0f, 1f, -135f, 15f, 2);
+        laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3f, 3f, 0f);
+        RotateLaser(laserClone, -900f, 5f);
 
         yield return new WaitForSeconds(2f);
+
+        BorderRightScale(-2f, 1f);
+        BorderTopScale(-2f, 1f);
+        MoveLaser(laserClone, laserClone.transform.position.x - 1f, laserClone.transform.position.y - 1f, 2f);
+
+        yield return new WaitForSeconds(3f);
 
         print("You won, gg");
         StopCoroutine(Launch());
@@ -92,14 +115,14 @@ public class Level0 : MonoBehaviour
         return laserClone;
     }
 
-    void RotateLaser(GameObject laser, float angle, float time)
+    void RotateLaser(GameObject laser, float angle, float duration)
     {
-        laser.transform.DORotate(new Vector3(0f, 0f, 90f - transform.rotation.z + angle), time);
+        laser.transform.DORotate(new Vector3(0f, 0f, 90f - transform.rotation.z + angle), duration);
     }
 
-    void MoveLaser(GameObject laser, float posX, float posY, float time)
+    void MoveLaser(GameObject laser, float posX, float posY, float duration)
     {
-        laser.transform.DOMove(new Vector3(posX, posY, 1f), time);
+        laser.transform.DOMove(new Vector3(posX, posY, 1f), duration);
     }
 
     GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
@@ -114,5 +137,36 @@ public class Level0 : MonoBehaviour
         cloneScript.level = level;
 
         return bulletClone;
+    }
+
+    void BorderLeftScale(float scaleValue, float animationTime)
+    {
+        borderLeft.transform.DOMoveX(borderLeft.transform.position.x - scaleValue, animationTime);
+    }
+
+    void BorderRightScale(float scaleValue, float animationTime)
+    {
+        borderRight.transform.DOMoveX(borderRight.transform.position.x + scaleValue, animationTime);
+    }
+
+    void BorderTopScale(float scaleValue, float animationTime)
+    {
+        borderTop.transform.DOMoveY(borderTop.transform.position.y + scaleValue, animationTime);
+    }
+
+    void BorderBottomScale(float scaleValue, float animationTime)
+    {
+        borderBottom.transform.DOMoveY(borderBottom.transform.position.y - scaleValue, animationTime);
+    }
+
+    void PlayerAttraction(float angle, float force, float duration)
+    {
+        angle = (float)Math.PI * angle / 180;
+        player.transform.DOMove(player.transform.position + force * new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f), duration);
+    }
+
+    void PlayerScale(float scaleValue, float animationTime)
+    {
+        player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1f), animationTime);
     }
 }
