@@ -25,7 +25,7 @@ public class Level0 : MonoBehaviour
     GameObject bullet;
     [SerializeField]
     GameObject laser;
-
+    
     bool isAttracted = false;
     Vector3 attractMovement;
 
@@ -78,7 +78,6 @@ public class Level0 : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         print("You won, gg");
-        StopCoroutine(Launch());
     }
 
     // Update is called once per frame
@@ -180,7 +179,6 @@ public class Level0 : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         isAttracted = false;
-
     }
 
     void PlayerScale(float scaleValue, float animationTime)
