@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Laser : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.DOMoveX(4, 20);
     }
 
     IEnumerator DisplayLaser(float interval)
