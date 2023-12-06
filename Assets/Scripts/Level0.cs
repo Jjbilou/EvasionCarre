@@ -44,6 +44,9 @@ public class Level0 : MonoBehaviour
 
         Destroy(laserClone);
         DisableDeadlyBorders();
+        CreateBullet(7f, 0f, 1f, 90f, 15f, 2);
+
+        yield return new WaitForSeconds(2f);
 
         print("You won, gg");
         StopCoroutine(Launch());
@@ -97,5 +100,19 @@ public class Level0 : MonoBehaviour
     void MoveLaser(GameObject laser, float posX, float posY, float time)
     {
         laser.transform.DOMove(new Vector3(posX, posY, 1f), time);
+    }
+
+    GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
+    {
+        GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
+
+        Bullet cloneScript = bulletClone.GetComponent<Bullet>();
+        cloneScript.enabled = true;
+        cloneScript.size = size;
+        cloneScript.angle = angle;
+        cloneScript.speed = speed;
+        cloneScript.level = level;
+
+        return bulletClone;
     }
 }
