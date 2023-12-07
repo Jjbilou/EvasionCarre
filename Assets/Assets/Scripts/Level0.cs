@@ -21,7 +21,7 @@ public class Level0 : MonoBehaviour
     GameObject player;
     [SerializeField]
     GameObject bullet;
-    [SerializeField] 
+    [SerializeField]
     GameObject laser;
 
     bool isAttracted = false;

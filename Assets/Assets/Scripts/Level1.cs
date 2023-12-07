@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class Level1 : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class Level1 : MonoBehaviour
     GameObject player;
     [SerializeField]
     GameObject bullet;
-    [SerializeField] 
+    [SerializeField]
     GameObject laser;
 
     bool isAttracted = false;
@@ -56,6 +56,11 @@ public class Level1 : MonoBehaviour
         GameObject laserClone;
         GameObject laserClone2;
 
+        GameObject bullet;
+        GameObject bullet2;
+        GameObject bullet3;
+        GameObject bullet4;
+
         yield return new WaitForSeconds(2f);
 
         laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
@@ -64,29 +69,29 @@ public class Level1 : MonoBehaviour
         RotateLaser(laserClone2, 90f, 0.5f);
 
         yield return new WaitForSeconds(0.1f);
-        
+
         PlayerAttraction(90f, 10f, 0.15f);
 
         yield return new WaitForSeconds(0.15f);
 
         CreateBullet(0f, 0f, 1f, -90f, 10f, 1);
-        
+
         yield return new WaitForSeconds(0.25f);
 
         Destroy(laserClone);
         Destroy(laserClone2);
-        
-        CreateBullet(0f, 0f, 1f, 45f, 10f, 4);
-        CreateBullet(0f, 0f, 1f, -45f, 10f, 4);
-        CreateBullet(0f, 0f, 1f, 135f, 10f, 4);
-        CreateBullet(0f, 0f, 1f, -135f, 10f, 4);
-        
+
+        bullet = CreateBullet(0f, 0f, 1f, 45f, 10f, 4);
+        bullet2 = CreateBullet(0f, 0f, 1f, -45f, 10f, 4);
+        bullet3 = CreateBullet(0f, 0f, 1f, 135f, 10f, 4);
+        bullet4 = CreateBullet(0f, 0f, 1f, -135f, 10f, 4);
+
         yield return new WaitForSeconds(1f);
 
         BorderTopScale(-5, 1f);
         BorderLeftScale(-2f, 0.5f);
         BorderBottomScale(-2f, 0.5f);
-        
+
         yield return new WaitForSeconds(0.5f);
 
         PlayerScale(1f, 0.5f);
@@ -103,7 +108,100 @@ public class Level1 : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         Destroy(laserClone);
+        Destroy(bullet);
+        Destroy(bullet2);
+        Destroy(bullet3);
+        Destroy(bullet4);
+        BorderTopScale(5, 0.5f);
+        BorderLeftScale(2f, 0.5f);
+        BorderBottomScale(2f, 0.5f);
+
+        yield return new WaitForSeconds(1f); //10.5'
+
+        EnableDeadlyBorders();
+        PlayerAttraction(0f, 6f, 10f);
+
+        for (int i = -9; i < 9; i++)
+        {
+            if (i != 6 && i != 7)
+            {
+                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = -9; i < 9; i++)
+        {
+            if (i != 1 && i != 2)
+            {
+                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = -9; i < 9; i++)
+        {
+            if (i != -4 && i != -3)
+            {
+                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = -9; i < 9; i++)
+        {
+            if (i != 7 && i != 8)
+            {
+                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        BorderLeftScale(-5f, 1);
+        BorderRightScale(-5f, 1);
+        BorderTopScale(-5f, 1);
+        BorderBottomScale(-5f, 1);
+
+        yield return new WaitForSeconds(1f);
+
+        BorderLeftScale(-5f, 2);
+        BorderRightScale(5f, 2);
+        BorderTopScale(5f, 2);
+        BorderBottomScale(-5f, 2);
+
+        yield return new WaitForSeconds(2f);
+
+        BorderLeftScale(10f, 2);
+        BorderRightScale(-10f, 2);
+        BorderTopScale(-10f, 2);
+        BorderBottomScale(10f, 2);
+
+        yield return new WaitForSeconds(2f);
+
+        BorderRightScale(10f, 2);
+        BorderTopScale(10f, 2);
+
+        yield return new WaitForSeconds(2f); //21.5'
+
+        DisableDeadlyBorders();
+        for (int i = 0; i < 20; i++)
+        {
+            CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 3);
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        CreateBullet(-8f, 8f, 1f, -30f, 11f, 3);
+        laserClone = CreateLaser(borderRight.transform.position.x, 0, 3f, 4f, 90f);
+        MoveLaser(laserClone, 0, 0, 3);
         
+        yield return new WaitForSeconds(4f); //30.5'
+
+        Destroy(laserClone);
+
         yield return new WaitForSeconds(3f);
 
         GameWon();

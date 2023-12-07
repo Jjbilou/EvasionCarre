@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         bulletRenderer.enabled = true;
         transform.localScale *= size;
 
-        level1Color = new Color(0f, 0f, 0f);
+        level1Color = new Color(0f, 1f, 0f);
         level2Color = new Color(0.36f, 0f, 0.62f);
         level3Color = new Color(1f, 0f, 0f);
 
@@ -38,16 +38,16 @@ public class Bullet : MonoBehaviour
 
         switch (level)
         {
-            case 0:
+            case 1:
                 bulletRenderer.color = level1Color;
                 break;
-            case 1:
+            case 2:
                 bulletRenderer.color = level2Color;
                 break;
-            case 2:
+            case 3:
                 bulletRenderer.color = level3Color;
                 break;
-            case 3:
+            case 4:
                 bulletRenderer.color = new Color(1, 1, 1);
                 break;
         }
