@@ -1,22 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Volume : MonoBehaviour
+public class GameAudio : MonoBehaviour
 {
-    Slider slider;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        slider = GetComponent<Slider>();
-        slider.value = PlayerPrefs.GetFloat("volume");
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerPrefs.SetFloat("volume", slider.value);
+        audioSource.volume = PlayerPrefs.GetFloat("volume");
     }
 }
