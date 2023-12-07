@@ -30,12 +30,28 @@ public class Level0 : MonoBehaviour
 
     bool isAttracted = false;
     Vector3 attractMovement;
+    PlayerCollision playerCollision;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerCollision = player.GetComponent<PlayerCollision>();
         UnloadAllScenesExcept("Game");
         StartCoroutine(Launch());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isAttracted)
+        {
+            player.transform.position += attractMovement * Time.deltaTime;
+        }
+
+        if (!playerCollision.running)
+        {
+            StopAllCoroutines();
+        }
     }
 
     IEnumerator Launch()
@@ -79,15 +95,6 @@ public class Level0 : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         GameWon();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isAttracted)
-        {
-            player.transform.position += attractMovement * Time.deltaTime;
-        }
     }
 
     void EnableDeadlyBorders()

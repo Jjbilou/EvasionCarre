@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
@@ -14,6 +15,8 @@ public class PlayerCollision : MonoBehaviour
     GameObject borderTop;
     [SerializeField]
     GameObject borderBottom;
+
+    public bool running = true;
 
     // Start is called before the first frame update
     void Start()
@@ -77,8 +80,14 @@ public class PlayerCollision : MonoBehaviour
 
     void GameLost()
     {
-        StopAllCoroutines();
+        running = false;
         DOTween.PauseAll();
+        StartCoroutine(DeathAnimation());
+    }
+    
+    IEnumerator DeathAnimation()
+    {
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("LoseMenu");
     }
 }
