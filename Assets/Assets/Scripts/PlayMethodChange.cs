@@ -6,26 +6,22 @@ public class PlayMethodChange : MonoBehaviour
 {
     public GameObject player;
 
-    PlayerMouseMovement mouseMovement;
-    PlayerKeyboardMovement keyboardMovement;
-
     public void ActivateMouse()
     {
-        mouseMovement.enabled = true;
-        keyboardMovement.enabled = false;
+        player.GetComponent<PlayerMouseMovement>().enabled = true;
+        player.GetComponent<PlayerKeyboardMovement>().enabled = false;
     }
 
     public void ActivateKeyboard()
     {
-        mouseMovement.enabled = false;
-        keyboardMovement.enabled = true;
+        player.GetComponent<PlayerMouseMovement>().enabled = false;
+        player.GetComponent<PlayerKeyboardMovement>().enabled = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        mouseMovement = player.GetComponent<PlayerMouseMovement>();
-        keyboardMovement = player.GetComponent<PlayerKeyboardMovement>();
+
     }
 
     // Update is called once per frame
