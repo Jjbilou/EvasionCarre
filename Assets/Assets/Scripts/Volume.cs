@@ -1,24 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class SceneChange : MonoBehaviour
+public class Volume : MonoBehaviour
 {
-    public void ChangeScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+    Slider slider;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        slider = GetComponent<Slider>();
+        slider.value = PlayerPrefs.GetFloat("volume");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        PlayerPrefs.SetFloat("volume", slider.value);
     }
 }

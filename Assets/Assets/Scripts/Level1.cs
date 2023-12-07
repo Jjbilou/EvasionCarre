@@ -197,7 +197,7 @@ public class Level1 : MonoBehaviour
         CreateBullet(-8f, 8f, 1f, -30f, 11f, 3);
         laserClone = CreateLaser(borderRight.transform.position.x, 0, 3f, 4f, 90f);
         MoveLaser(laserClone, 0, 0, 3);
-        
+
         yield return new WaitForSeconds(4f); //30.5'
 
         Destroy(laserClone);
