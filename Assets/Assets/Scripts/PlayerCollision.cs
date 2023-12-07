@@ -95,3 +95,4 @@ public class PlayerCollision : MonoBehaviour
         SceneManager.LoadScene("LoseMenu");
     }
 }
+//LOL
