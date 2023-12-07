@@ -15,7 +15,10 @@ public class AudioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            Destroy(this.gameObject);
+        }
     }
     void Awake ()
     {
@@ -24,10 +27,6 @@ public class AudioController : MonoBehaviour
             Destroy(this.gameObject);
  
         DontDestroyOnLoad(this.gameObject);
-        if (SceneManager.GetActiveScene().name == "Game")
-        {
-            Destroy(this.gameObject);
-        }
  
     }
 }
