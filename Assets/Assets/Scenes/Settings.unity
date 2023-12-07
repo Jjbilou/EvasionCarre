@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1184621007}
         m_TargetAssemblyTypeName: PlayMethodChange, Assembly-CSharp
         m_MethodName: ActivateKeyboard
         m_Mode: 1
@@ -681,7 +681,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1184621007}
         m_TargetAssemblyTypeName: PlayMethodChange, Assembly-CSharp
         m_MethodName: ActivateMouse
         m_Mode: 1
