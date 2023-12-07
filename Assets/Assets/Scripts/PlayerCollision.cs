@@ -15,6 +15,9 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField]
     GameObject borderBottom;
     [SerializeField]
+    private AudioSource deathSound;
+    [SerializeField] 
+
     ParticleSystem dieParticleSystem;
 
     public bool running = true;
@@ -98,6 +101,7 @@ public class PlayerCollision : MonoBehaviour
     IEnumerator DeathAnimation()
     {
         dieParticleSystem.Play();
+        deathSound.Play();
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         transform.DOMove(transform.position, 2f);
@@ -107,3 +111,4 @@ public class PlayerCollision : MonoBehaviour
         SceneManager.LoadScene("LoseMenu");
     }
 }
+//LOL

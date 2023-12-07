@@ -6223,6 +6223,8 @@ MonoBehaviour:
   borderRight: {fileID: 80905358}
   borderTop: {fileID: 2031814999}
   borderBottom: {fileID: 941275128}
+  dieParticleSystem: {fileID: 0}
+  running: 1
 --- !u!61 &2133967150
 BoxCollider2D:
   m_ObjectHideFlags: 0
