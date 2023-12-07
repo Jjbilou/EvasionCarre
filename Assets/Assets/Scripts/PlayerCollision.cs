@@ -19,6 +19,15 @@ public class PlayerCollision : MonoBehaviour
 
     public bool running = true;
 
+    void Awake()
+    {
+        if (PlayerPrefs.GetString("movement") == "mouse")
+        {
+            GetComponent<PlayerMouseMovement>().enabled = true;
+            GetComponent<PlayerKeyboardMovement>().enabled = false;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,8 +100,10 @@ public class PlayerCollision : MonoBehaviour
         dieParticleSystem.Play();
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
-        transform.DOMove(transform.position, 3f);
-        yield return new WaitForSeconds(3f);
+        transform.DOMove(transform.position, 2f);
+
+        yield return new WaitForSeconds(2f);
+
         SceneManager.LoadScene("LoseMenu");
     }
 }
