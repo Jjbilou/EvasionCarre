@@ -16,7 +16,7 @@ public class PlayerCollision : MonoBehaviour
     GameObject borderBottom;
     [SerializeField]
     private AudioSource deathSound;
-    [SerializeField] 
+    [SerializeField]
 
     ParticleSystem dieParticleSystem;
 
@@ -97,7 +97,7 @@ public class PlayerCollision : MonoBehaviour
         DOTween.PauseAll();
         StartCoroutine(DeathAnimation());
     }
-    
+
     IEnumerator DeathAnimation()
     {
         dieParticleSystem.Play();
