@@ -89,6 +89,8 @@ public class PlayerCollision : MonoBehaviour
     IEnumerator DeathAnimation()
     {
         dieParticleSystem.Play();
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("LoseMenu");
     }
