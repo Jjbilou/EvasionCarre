@@ -40,6 +40,8 @@ public class Level0 : MonoBehaviour
 
     IEnumerator Launch()
     {
+        GameObject laserClone;
+
         yield return new WaitForSeconds(2f);
 
         PlayerAttraction(90f, 10f, 2f);
@@ -49,11 +51,7 @@ public class Level0 : MonoBehaviour
 
         PlayerScale(-1f, 1f);
 
-        yield return new WaitForSeconds(1f);
-
-        GameObject laserClone;
-
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         EnableDeadlyBorders();
 
