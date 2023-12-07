@@ -14,6 +14,10 @@ public class PlayerCollision : MonoBehaviour
     GameObject borderTop;
     [SerializeField]
     GameObject borderBottom;
+    [SerializeField]
+    ParticleSystem dieParticleSystem;
+
+    public bool running = true;
 
     // Start is called before the first frame update
     void Start()
@@ -77,8 +81,17 @@ public class PlayerCollision : MonoBehaviour
 
     void GameLost()
     {
-        StopAllCoroutines();
+        running = false;
         DOTween.PauseAll();
+        StartCoroutine(DeathAnimation());
+    }
+    
+    IEnumerator DeathAnimation()
+    {
+        dieParticleSystem.Play();
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("LoseMenu");
     }
 }

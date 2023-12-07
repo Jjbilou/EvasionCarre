@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using DG.Tweening;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,16 +22,34 @@ public class Level0 : MonoBehaviour
     [SerializeField]
     GameObject bullet;
     [SerializeField]
+    GameObject ParticleSystem;
+    [SerializeField] 
     GameObject laser;
 
     bool isAttracted = false;
     Vector3 attractMovement;
+    PlayerCollision playerCollision;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerCollision = player.GetComponent<PlayerCollision>();
         UnloadAllScenesExcept("Game");
         StartCoroutine(Launch());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isAttracted)
+        {
+            player.transform.position += attractMovement * Time.deltaTime;
+        }
+
+        if (!playerCollision.running)
+        {
+            StopAllCoroutines();
+        }
     }
 
     IEnumerator Launch()
@@ -79,15 +93,6 @@ public class Level0 : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         GameWon();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isAttracted)
-        {
-            player.transform.position += attractMovement * Time.deltaTime;
-        }
     }
 
     void EnableDeadlyBorders()
