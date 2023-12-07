@@ -21,8 +21,6 @@ public class Level0 : MonoBehaviour
     GameObject player;
     [SerializeField]
     GameObject bullet;
-    [SerializeField]
-    GameObject ParticleSystem;
     [SerializeField] 
     GameObject laser;
 
