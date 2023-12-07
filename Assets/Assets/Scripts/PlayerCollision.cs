@@ -19,6 +19,15 @@ public class PlayerCollision : MonoBehaviour
 
     public bool running = true;
 
+    void Awake()
+    {
+        if (PlayerPrefs.GetString("movement") == "mouse")
+        {
+            GetComponent<PlayerMouseMovement>().enabled = true;
+            GetComponent<PlayerKeyboardMovement>().enabled = false;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

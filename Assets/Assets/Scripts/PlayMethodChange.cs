@@ -5,18 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayMethodChange : MonoBehaviour
 {
-    public GameObject player;
-
     public void ActivateMouse()
     {
-        player.GetComponent<PlayerMouseMovement>().enabled = true;
-        player.GetComponent<PlayerKeyboardMovement>().enabled = false;
+        PlayerPrefs.SetString("movement", "mouse");
     }
 
     public void ActivateKeyboard()
     {
-        player.GetComponent<PlayerMouseMovement>().enabled = false;
-        player.GetComponent<PlayerKeyboardMovement>().enabled = true;
+        PlayerPrefs.SetString("movement", "keyboard");
     }
 
     // Start is called before the first frame update
