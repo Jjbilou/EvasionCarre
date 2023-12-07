@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -55,21 +57,28 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.tag == "Danger")
         {
-            Destroy(gameObject);
+            GameLost();
         }
         if (collision.tag == "HorizontalBorder")
         {
             if (collision.transform.parent.tag == "Danger")
             {
-                Destroy(gameObject);
+                GameLost();
             }
         }
         if (collision.tag == "VerticalBorder")
         {
             if (collision.transform.parent.tag == "Danger")
             {
-                Destroy(gameObject);
+                GameLost();
             }
         }
+    }
+
+    void GameLost()
+    {
+        StopAllCoroutines();
+        DOTween.PauseAll();
+        SceneManager.LoadScene("LoseMenu");
     }
 }

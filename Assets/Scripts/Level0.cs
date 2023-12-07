@@ -5,7 +5,9 @@ using System.Data;
 using DG.Tweening;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Level0 : MonoBehaviour
 {
@@ -25,13 +27,14 @@ public class Level0 : MonoBehaviour
     GameObject bullet;
     [SerializeField]
     GameObject laser;
-    
+
     bool isAttracted = false;
     Vector3 attractMovement;
 
     // Start is called before the first frame update
     void Start()
     {
+        UnloadAllScenesExcept("Game");
         StartCoroutine(Launch());
     }
 
@@ -77,7 +80,7 @@ public class Level0 : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        print("You won, gg");
+        GameWon();
     }
 
     // Update is called once per frame
@@ -184,5 +187,25 @@ public class Level0 : MonoBehaviour
     void PlayerScale(float scaleValue, float animationTime)
     {
         player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1f), animationTime);
+    }
+
+    void UnloadAllScenesExcept(string sceneName)
+    {
+        int sceneNumber = SceneManager.sceneCount;
+        for (int i = 0; i < sceneNumber; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (scene.name != sceneName)
+            {
+                SceneManager.UnloadSceneAsync(scene);
+            }
+        }
+    }
+
+    void GameWon()
+    {
+        StopAllCoroutines();
+        DOTween.PauseAll();
+        SceneManager.LoadScene("WinMenu");
     }
 }
