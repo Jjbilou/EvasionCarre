@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
@@ -15,6 +14,8 @@ public class PlayerCollision : MonoBehaviour
     GameObject borderTop;
     [SerializeField]
     GameObject borderBottom;
+    [SerializeField]
+    ParticleSystem dieParticleSystem;
 
     public bool running = true;
 
@@ -87,6 +88,7 @@ public class PlayerCollision : MonoBehaviour
     
     IEnumerator DeathAnimation()
     {
+        dieParticleSystem.Play();
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("LoseMenu");
     }
