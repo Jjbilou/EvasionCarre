@@ -26,6 +26,8 @@ public class Level0 : MonoBehaviour
     [SerializeField]
     GameObject bullet;
     [SerializeField]
+    GameObject ParticleSystem;
+    [SerializeField] 
     GameObject laser;
 
     bool isAttracted = false;
