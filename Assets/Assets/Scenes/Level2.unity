@@ -493,12 +493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75260161f539f04ba74ec3e8c3e7f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  borders: {fileID: 1226319736}
-  borderLeft: {fileID: 679235869}
-  borderRight: {fileID: 1124820793}
-  borderTop: {fileID: 257050725}
-  borderBottom: {fileID: 2120403642}
-  player: {fileID: 571331341}
   bullet: {fileID: 2999465936438248413, guid: 7df443d0d65534b468c2d38541196243, type: 3}
   laser: {fileID: 4952034522435725100, guid: 525f144bb1342804d9db935bce23d75e, type: 3}
 --- !u!1001 &1372761773

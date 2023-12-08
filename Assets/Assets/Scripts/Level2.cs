@@ -47,6 +47,7 @@ public class Level2 : MonoBehaviour
 
         if (!playerCollision.running)
         {
+            isAttracted = false;
             StopAllCoroutines();
         }
     }
