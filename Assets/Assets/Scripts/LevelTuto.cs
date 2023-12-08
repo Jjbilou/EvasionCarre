@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 
 public class LevelTuto : MonoBehaviour
@@ -20,34 +18,34 @@ GameObject borders;
     GameObject bullet;
     [SerializeField]
     GameObject laser;
+    [SerializeField]
+    TMP_Text Txt1;
+    [SerializeField]
+    TMP_Text Txt2;
+    [SerializeField]
+    TMP_Text Txt3;
+    [SerializeField]
+    TMP_Text Txt4;
+    [SerializeField]
+    TMP_Text Txt5;
+    [SerializeField]
+    TMP_Text Txt6;
+    [SerializeField]
+    TMP_Text Txt7;
+    [SerializeField]
+    TMP_Text Txt8;
+    [SerializeField]
+    TMP_Text Txt9;
+    [SerializeField]
+    TMP_Text Txt10;
+    [SerializeField]
+    TMP_Text Txt11;
+    [SerializeField]
+    TMP_Text Txt12;
+    [SerializeField]
+    TMP_Text Txt13;
 
     bool isAttracted = false;
-    [SerializeField]
-    public TMP_Text Txt1;
-    [SerializeField]
-    public TMP_Text Txt2;
-    [SerializeField]
-    public TMP_Text Txt3;
-    [SerializeField]
-    public TMP_Text Txt4;
-    [SerializeField]
-    public TMP_Text Txt5;
-    [SerializeField]
-    public TMP_Text Txt6;
-    [SerializeField]
-    public TMP_Text Txt7;
-    [SerializeField]
-    public TMP_Text Txt8;
-    [SerializeField]
-    public TMP_Text Txt9;
-    [SerializeField]
-    public TMP_Text Txt10;
-    [SerializeField]
-    public TMP_Text Txt11;
-    [SerializeField]
-    public TMP_Text Txt12;
-    [SerializeField]
-    public TMP_Text Txt13;
     Vector3 attractMovement;
     PlayerCollision playerCollision;
 
@@ -206,8 +204,9 @@ GameObject borders;
         Txt13.enabled = false;
         for (int i = 0; i < 20; i++)
             {
-                CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 3);
-                yield return new WaitForSeconds(0.25f);
+                CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 4);
+                CreateBullet(0f, 0f, 1f, 90f + i * 18f, 7f, 4);
+                yield return new WaitForSeconds(0.1f);
             }
 
         yield return new WaitForSeconds (10f);
@@ -240,8 +239,7 @@ GameObject borders;
 
     GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
-        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
-
+        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));
         Laser cloneScript = laserClone.GetComponent<Laser>();
         cloneScript.enabled = true;
         cloneScript.laserWidth = laserWidth;
@@ -252,7 +250,7 @@ GameObject borders;
 
     void RotateLaser(GameObject laser, float angle, float duration)
     {
-        laser.transform.DORotate(new Vector3(0f, 0f, 90f - transform.rotation.z + angle), duration);
+        laser.transform.DORotate(new Vector3(0f, 0f, angle + laser.transform.eulerAngles.z), duration, RotateMode.FastBeyond360);
     }
 
     void MoveLaser(GameObject laser, float posX, float posY, float duration)

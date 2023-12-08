@@ -65,10 +65,10 @@ public class Level2 : MonoBehaviour
 
         laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
         laserClone2 = CreateLaser(borderRight.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
-        RotateLaser(laserClone, -90f, 2f);
-        RotateLaser(laserClone2, 90f, 2f);
+        RotateLaser(laserClone, -90f, 0.5f);
+        RotateLaser(laserClone2, 90f, 0.5f);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
 
         PlayerAttraction(90f, 10f, 0.15f);
 
@@ -99,7 +99,7 @@ public class Level2 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3f, 4f, 90f);
-        RotateLaser(laserClone, 180f, 5f);
+        RotateLaser(laserClone, -180f, 5f);
 
         yield return new WaitForSeconds(2f);
 

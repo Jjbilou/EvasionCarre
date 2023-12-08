@@ -12,7 +12,6 @@ public class Level1 : MonoBehaviour
     [SerializeField]
     GameObject laser;
 
-    GameObject borders;
     GameObject borderLeft;
     GameObject borderRight;
     GameObject borderTop;
