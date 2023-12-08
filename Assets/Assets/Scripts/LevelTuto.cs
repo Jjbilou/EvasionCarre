@@ -8,7 +8,6 @@ using TMPro;
 
 public class LevelTuto : MonoBehaviour
 {
-GameObject borders;
     GameObject borderLeft;
     GameObject borderRight;
     GameObject borderTop;
@@ -46,6 +45,7 @@ GameObject borders;
     TMP_Text Txt13;
 
     bool isAttracted = false;
+    public bool clear = false;
     Vector3 attractMovement;
     PlayerCollision playerCollision;
 
@@ -98,7 +98,7 @@ GameObject borders;
         GameObject laser2;
         GameObject laser3;
 
-        /*yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (1f);
 
         Txt1.enabled = true;
 
@@ -200,11 +200,12 @@ GameObject borders;
         yield return new WaitForSeconds (5f);
 
         Txt12.enabled = false;
-        Txt13.enabled = true;*/
+        Txt13.enabled = true;
 
         yield return new WaitForSeconds (2f);
 
         Txt13.enabled = false;
+        clear = true;
         laser2 = CreateLaser(0, 0, 2f, 3f, 0f);
         laser3 = CreateLaser(0, 0, 2f, 3f, 90f);
         RotateLaser(laser2, 360, 10);
