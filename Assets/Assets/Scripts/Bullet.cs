@@ -29,9 +29,9 @@ public class Bullet : MonoBehaviour
         bulletRenderer.enabled = true;
         transform.localScale *= size;
 
-        level1Color = new Color(0f, 1f, 0f);
-        level2Color = new Color(0.36f, 0f, 0.62f);
-        level3Color = new Color(1f, 0f, 0f);
+        level1Color = new Color(0.25f, 0.25f, 0.25f);
+        level2Color = new Color(0.5f, 0.5f, 0.5f);
+        level3Color = new Color(0.75f, 0.75f, 0.75f);
 
         angle = (float)Math.PI * angle / 180;
         movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);

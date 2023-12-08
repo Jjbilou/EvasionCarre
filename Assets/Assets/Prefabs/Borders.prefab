@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6643232223676039021}
   - component: {fileID: 5595207722692010897}
-  - component: {fileID: 2554043401857569765}
   m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
@@ -54,26 +53,6 @@ MonoBehaviour:
   borderTop: {fileID: 995002982123105721}
   borderBottom: {fileID: 2883960745609412118}
   borderWidth: 0.5
---- !u!114 &2554043401857569765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3498516414374159679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a215139f0e4f341ad8ba8f6ab5832e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  borders: {fileID: 3498516414374159679}
-  borderLeft: {fileID: 5810344616900822219}
-  borderRight: {fileID: 2624979425666783688}
-  borderTop: {fileID: 995002982123105721}
-  borderBottom: {fileID: 2883960745609412118}
-  player: {fileID: 8525731078949643333, guid: 2788a4b4a14de8e42a0269338422ad16, type: 3}
-  bullet: {fileID: 2999465936438248413, guid: 7df443d0d65534b468c2d38541196243, type: 3}
-  laser: {fileID: 4952034522435725100, guid: 525f144bb1342804d9db935bce23d75e, type: 3}
 --- !u!1001 &3925660579571358050
 PrefabInstance:
   m_ObjectHideFlags: 0

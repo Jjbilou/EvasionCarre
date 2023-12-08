@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 7737372278491502357}
   - component: {fileID: 3957361773122656375}
   - component: {fileID: 2340089113165502915}
-  - component: {fileID: -9012710860043236265}
+  - component: {fileID: -6386985310872912361}
   m_Layer: 5
   m_Name: ReplayButton
   m_TagString: Untagged
@@ -256,10 +256,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -9012710860043236265}
-        m_TargetAssemblyTypeName: Menucontroller, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: -6386985310872912361}
+        m_TargetAssemblyTypeName: Replay, Assembly-CSharp
+        m_MethodName: Reload
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -268,7 +268,7 @@ MonoBehaviour:
           m_StringArgument: Game
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-9012710860043236265
+--- !u!114 &-6386985310872912361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,6 +277,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3481881413541732414}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39ad91c08fc2403e81b8e79c98c76a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 321cb121dc0d0da40beddb3edba005a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

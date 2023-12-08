@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level0 : MonoBehaviour
+public class LevelTuto : MonoBehaviour
 {
     [SerializeField]
     GameObject borders;
@@ -32,7 +33,7 @@ public class Level0 : MonoBehaviour
     void Start()
     {
         playerCollision = player.GetComponent<PlayerCollision>();
-        UnloadAllScenesExcept("Game");
+        UnloadAllScenesExcept("LevelTuto");
         StartCoroutine(Launch());
     }
 
@@ -52,44 +53,7 @@ public class Level0 : MonoBehaviour
 
     IEnumerator Launch()
     {
-        GameObject laserClone;
-
-        yield return new WaitForSeconds(2f);
-
-        PlayerAttraction(90f, 10f, 2f);
-        PlayerScale(1f, 1f);
-
-        yield return new WaitForSeconds(2f);
-
-        PlayerScale(-1f, 1f);
-
-        yield return new WaitForSeconds(2f);
-
-        EnableDeadlyBorders();
-
         yield return new WaitForSeconds(1f);
-
-        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 6f, 0f);
-        RotateLaser(laserClone, -180f, 2f);
-        MoveLaser(laserClone, borderRight.transform.position.x, borderTop.transform.position.y, 2f);
-
-        yield return new WaitForSeconds(2f);
-
-        Destroy(laserClone);
-        DisableDeadlyBorders();
-        CreateBullet(7f, 0f, 1f, 135f, 15f, 3);
-        CreateBullet(7f, 0f, 1f, -135f, 15f, 2);
-        laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3f, 3f, 0f);
-        RotateLaser(laserClone, -900f, 5f);
-
-        yield return new WaitForSeconds(2f);
-
-        BorderRightScale(-2f, 1f);
-        BorderTopScale(-2f, 1f);
-        MoveLaser(laserClone, laserClone.transform.position.x - 1f, laserClone.transform.position.y - 1f, 2f);
-
-        yield return new WaitForSeconds(3f);
-
         GameWon();
     }
 
@@ -207,6 +171,7 @@ public class Level0 : MonoBehaviour
     {
         StopAllCoroutines();
         DOTween.PauseAll();
-        SceneManager.LoadScene("WinMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
+

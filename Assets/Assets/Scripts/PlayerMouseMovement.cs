@@ -8,13 +8,13 @@ public class PlayerMouseMovement : MonoBehaviour
 {
     [SerializeField]
     float speed;
-    [SerializeField]
-    Camera gameCamera;
+    
     private Vector2 ratio;
 
     // Start is called before the first frame update
     void Start()
     {
+        Camera gameCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         float cameraHeight = 2f * gameCamera.orthographicSize;
         float cameraWidth = cameraHeight * gameCamera.aspect;
 

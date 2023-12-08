@@ -5,20 +5,20 @@ using UnityEngine;
 public class Borders : MonoBehaviour
 {
     [SerializeField]
-    GameObject borderLeft;
-    [SerializeField]
-    GameObject borderRight;
-    [SerializeField]
-    GameObject borderTop;
-    [SerializeField]
-    GameObject borderBottom;
-    [SerializeField]
     float borderWidth;
+    
+    GameObject borderLeft;
+    GameObject borderRight;
+    GameObject borderTop;
+    GameObject borderBottom;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        borderLeft = GameObject.Find("Left");
+        borderRight = GameObject.Find("Right");
+        borderTop = GameObject.Find("Top");
+        borderBottom = GameObject.Find("Bottom");
     }
 
     // Update is called once per frame
