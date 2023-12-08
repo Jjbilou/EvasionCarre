@@ -73,6 +73,7 @@ GameObject borders;
         Txt12.enabled = false;
         Txt13.enabled = false;
         UnloadAllScenesExcept("LevelTuto");
+        PlayerPrefs.SetString("level", "LevelTuto");
         StartCoroutine(Launch());
     }
 
@@ -94,8 +95,10 @@ GameObject borders;
     {
         GameObject bullet;
         GameObject laser;
+        GameObject laser2;
+        GameObject laser3;
 
-        yield return new WaitForSeconds (1f);
+        /*yield return new WaitForSeconds (1f);
 
         Txt1.enabled = true;
 
@@ -197,16 +200,20 @@ GameObject borders;
         yield return new WaitForSeconds (5f);
 
         Txt12.enabled = false;
-        Txt13.enabled = true;
+        Txt13.enabled = true;*/
 
         yield return new WaitForSeconds (2f);
 
         Txt13.enabled = false;
+        laser2 = CreateLaser(0, 0, 2f, 3f, 0f);
+        laser3 = CreateLaser(0, 0, 2f, 3f, 90f);
+        RotateLaser(laser2, 360, 10);
+        RotateLaser(laser3, 360, 10);
         for (int i = 0; i < 20; i++)
             {
                 CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 4);
                 CreateBullet(0f, 0f, 1f, 90f + i * 18f, 7f, 4);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
 
         yield return new WaitForSeconds (10f);
