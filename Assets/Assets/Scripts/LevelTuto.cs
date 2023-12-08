@@ -5,20 +5,16 @@ using System.Net;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class LevelTuto : MonoBehaviour
 {
-    [SerializeField]
-    GameObject borders;
-    [SerializeField]
+GameObject borders;
     GameObject borderLeft;
-    [SerializeField]
     GameObject borderRight;
-    [SerializeField]
     GameObject borderTop;
-    [SerializeField]
     GameObject borderBottom;
-    [SerializeField]
     GameObject player;
     [SerializeField]
     GameObject bullet;
@@ -26,13 +22,58 @@ public class LevelTuto : MonoBehaviour
     GameObject laser;
 
     bool isAttracted = false;
+    [SerializeField]
+    public TMP_Text Txt1;
+    [SerializeField]
+    public TMP_Text Txt2;
+    [SerializeField]
+    public TMP_Text Txt3;
+    [SerializeField]
+    public TMP_Text Txt4;
+    [SerializeField]
+    public TMP_Text Txt5;
+    [SerializeField]
+    public TMP_Text Txt6;
+    [SerializeField]
+    public TMP_Text Txt7;
+    [SerializeField]
+    public TMP_Text Txt8;
+    [SerializeField]
+    public TMP_Text Txt9;
+    [SerializeField]
+    public TMP_Text Txt10;
+    [SerializeField]
+    public TMP_Text Txt11;
+    [SerializeField]
+    public TMP_Text Txt12;
+    [SerializeField]
+    public TMP_Text Txt13;
     Vector3 attractMovement;
     PlayerCollision playerCollision;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        borderLeft = GameObject.Find("Left");
+        borderRight = GameObject.Find("Right");
+        borderTop = GameObject.Find("Top");
+        borderBottom = GameObject.Find("Bottom");
+        player = GameObject.Find("Player");
         playerCollision = player.GetComponent<PlayerCollision>();
+        Txt1.enabled = false;
+        Txt2.enabled = false;
+        Txt3.enabled = false;
+        Txt4.enabled = false;
+        Txt5.enabled = false;
+        Txt6.enabled = false;
+        Txt7.enabled = false;
+        Txt8.enabled = false;
+        Txt9.enabled = false;
+        Txt10.enabled = false;
+        Txt11.enabled = false;
+        Txt12.enabled = false;
+        Txt13.enabled = false;
         UnloadAllScenesExcept("LevelTuto");
         StartCoroutine(Launch());
     }
@@ -53,7 +94,124 @@ public class LevelTuto : MonoBehaviour
 
     IEnumerator Launch()
     {
+        GameObject bullet;
+        GameObject laser;
+
+        yield return new WaitForSeconds (1f);
+
+        Txt1.enabled = true;
+
+        yield return new WaitForSeconds (5f);
+
+        Txt1.enabled = false;
+        Txt2.enabled = true;
+
+        yield return new WaitForSeconds (5f);
+
+        Txt2.enabled = false;
+        Txt3.enabled = true;
+        bullet = CreateBullet(0f, 0f, 1f, 180f, 10f, 4);
+
+        yield return new WaitForSeconds (7f);
+
+        Destroy(bullet);
+        Txt3.enabled = false;
+        Txt4.enabled = true;
+
+        yield return new WaitForSeconds (2f);
+
+        CreateBullet(0f, 0f, 1f, 180f, 10f, 3);
+
+        yield return new WaitForSeconds (7f);
+
+        Txt4.enabled = false;
+        Txt5.enabled = true;
+        laser = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 2f, 2f, 0f);
+        MoveLaser(laser, 0, -5, 5);
+
+        yield return new WaitForSeconds (7f);
+
+        Txt5.enabled = false;
+        Txt6.enabled = true;
+        MoveLaser(laser, 0, 2, 5);
+
+        yield return new WaitForSeconds (5f);
+
+        RotateLaser(laser, 180f, 5f);
+
+        yield return new WaitForSeconds (7f);
+
+        Destroy(laser);
+        Txt6.enabled = false;
+        Txt7.enabled = true;
+
         yield return new WaitForSeconds (3f);
+
+        EnableDeadlyBorders();
+
+        yield return new WaitForSeconds (3f);
+
+        Txt7.enabled = false;
+        Txt8.enabled = true;
+
+        yield return new WaitForSeconds (2f);
+        
+        DisableDeadlyBorders();
+        BorderLeftScale(-8f, 3);
+        BorderRightScale(-8f, 3);
+        BorderTopScale(-8f, 3);
+        BorderBottomScale(-8f, 3);
+
+        yield return new WaitForSeconds (6f);
+
+        Txt8.enabled = false;
+        Txt9.enabled = true;
+        BorderLeftScale(8f, 3);
+        BorderRightScale(8f, 3);
+        BorderTopScale(8f, 3);
+        BorderBottomScale(8f, 3);
+
+        yield return new WaitForSeconds (6f);
+
+        Txt9.enabled = false;
+        Txt10.enabled = true;
+        PlayerAttraction(0f, 10f, 5f);
+        
+        yield return new WaitForSeconds (5f);
+
+        PlayerAttraction(180f, 20f, 5f);
+
+        yield return new WaitForSeconds (5f);
+
+        Txt10.enabled = false;
+        Txt11.enabled = true;
+        PlayerScale(4f, 2f);
+
+        yield return new WaitForSeconds (3f);
+
+        PlayerScale(-4f, 2f);
+
+        yield return new WaitForSeconds (3f);
+
+        Txt11.enabled = false;
+        Txt12.enabled = true;
+
+        yield return new WaitForSeconds (5f);
+
+        Txt12.enabled = false;
+        Txt13.enabled = true;
+
+        yield return new WaitForSeconds (2f);
+
+        Txt13.enabled = false;
+        for (int i = 0; i < 20; i++)
+            {
+                CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 3);
+                yield return new WaitForSeconds(0.25f);
+            }
+
+        yield return new WaitForSeconds (10f);
+    
         GameWon();
     }
 
@@ -61,7 +219,7 @@ public class LevelTuto : MonoBehaviour
     {
         Color borderColor = new Color(1f, 0f, 0f);
 
-        borders.tag = "Danger";
+        gameObject.tag = "Danger";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
         borderRight.GetComponent<SpriteRenderer>().color = borderColor;
         borderTop.GetComponent<SpriteRenderer>().color = borderColor;
@@ -72,12 +230,13 @@ public class LevelTuto : MonoBehaviour
     {
         Color borderColor = new Color(1f, 1f, 1f);
 
-        borders.tag = "Untagged";
+        gameObject.tag = "Untagged";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
         borderRight.GetComponent<SpriteRenderer>().color = borderColor;
         borderTop.GetComponent<SpriteRenderer>().color = borderColor;
         borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
     }
+
 
     GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
