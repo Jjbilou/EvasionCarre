@@ -129,7 +129,7 @@ public class Level1 : MonoBehaviour
 
     void RotateLaser(GameObject laser, float angle, float duration)
     {
-        laser.transform.DORotate(new Vector3(0f, 0f, 90f - transform.rotation.z + angle), duration);
+        laser.transform.DORotate(new Vector3(0f, 0f, 90f - laser.transform.rotation.z + angle), duration);
     }
 
     void MoveLaser(GameObject laser, float posX, float posY, float duration)

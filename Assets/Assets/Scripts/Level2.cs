@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -66,10 +65,10 @@ public class Level2 : MonoBehaviour
 
         laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
         laserClone2 = CreateLaser(borderRight.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
-        RotateLaser(laserClone, -90f, 0.5f);
-        RotateLaser(laserClone2, 90f, 0.5f);
+        RotateLaser(laserClone, -90f, 2f);
+        RotateLaser(laserClone2, 90f, 2f);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2f);
 
         PlayerAttraction(90f, 10f, 0.15f);
 
@@ -122,7 +121,7 @@ public class Level2 : MonoBehaviour
         EnableDeadlyBorders();
         PlayerAttraction(0f, 6f, 10f);
 
-        for (int i = -9; i < 9; i++)
+        for (int i = -8; i < 9; i++)
         {
             if (i != 6 && i != 7)
             {
@@ -132,7 +131,7 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        for (int i = -9; i < 9; i++)
+        for (int i = -8; i < 9; i++)
         {
             if (i != 1 && i != 2)
             {
@@ -142,7 +141,7 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        for (int i = -9; i < 9; i++)
+        for (int i = -8; i < 9; i++)
         {
             if (i != -4 && i != -3)
             {
@@ -152,7 +151,7 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        for (int i = -9; i < 9; i++)
+        for (int i = -8; i < 9; i++)
         {
             if (i != 7 && i != 8)
             {
@@ -196,8 +195,8 @@ public class Level2 : MonoBehaviour
         }
 
         CreateBullet(-8f, 8f, 1f, -30f, 11f, 3);
-        laserClone = CreateLaser(borderRight.transform.position.x, 0, 3f, 4f, 90f);
-        MoveLaser(laserClone, 0, 0, 3);
+        laserClone = CreateLaser(borderRight.transform.position.x, 0f, 3f, 4f, 90f);
+        MoveLaser(laserClone, 0f, 0f, 3f);
 
         yield return new WaitForSeconds(4f); //31.5'
 
@@ -232,8 +231,7 @@ public class Level2 : MonoBehaviour
 
     GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
-        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
-
+        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));
         Laser cloneScript = laserClone.GetComponent<Laser>();
         cloneScript.enabled = true;
         cloneScript.laserWidth = laserWidth;
@@ -244,7 +242,7 @@ public class Level2 : MonoBehaviour
 
     void RotateLaser(GameObject laser, float angle, float duration)
     {
-        laser.transform.DORotate(new Vector3(0f, 0f, 90f - transform.rotation.z + angle), duration);
+        laser.transform.DORotate(new Vector3(0f, 0f, angle + laser.transform.eulerAngles.z), duration, RotateMode.FastBeyond360);
     }
 
     void MoveLaser(GameObject laser, float posX, float posY, float duration)

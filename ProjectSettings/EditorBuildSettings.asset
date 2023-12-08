@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Assets/Scenes/Level2.unity
     guid: 8873a1e2207a7b1469ff84b657ecf040
   - enabled: 1
+    path: Assets/Assets/Scenes/LevelEndless.unity
+    guid: 479569e0d3a7bc04fb7c3eee4400de7a
+  - enabled: 1
     path: Assets/Assets/Scenes/LoseMenu.unity
     guid: ff68b5e42f12a7f40ae1c1ffdb259bec
   - enabled: 1
