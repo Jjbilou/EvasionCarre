@@ -31,7 +31,8 @@ public class AudioController : MonoBehaviour
     void Update()
     {
         audioSource.volume = PlayerPrefs.GetFloat("volume");
-        if (SceneManager.GetActiveScene().name == "Game")
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName.Contains("Level") && sceneName != "LevelChoose")
         {
             Destroy(this.gameObject);
         }
