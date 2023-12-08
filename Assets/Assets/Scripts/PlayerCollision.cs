@@ -126,6 +126,20 @@ public class PlayerCollision : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        SceneManager.LoadScene("LoseMenu");
+        if (SceneManager.GetActiveScene().name == "LevelTuto")
+        {
+            if (GameObject.Find("Borders").GetComponent<LevelTuto>().clear)
+            {
+                SceneManager.LoadScene("TutoWin");
+            }
+            else
+            {
+                SceneManager.LoadScene("TutoLose");
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene("LoseMenu");
+        }
     }
 }
