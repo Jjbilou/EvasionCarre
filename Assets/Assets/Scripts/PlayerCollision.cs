@@ -8,7 +8,7 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField]
     ParticleSystem dieParticleSystem;
-    
+
     GameObject borderLeft;
     GameObject borderRight;
     GameObject borderTop;
@@ -16,6 +16,7 @@ public class PlayerCollision : MonoBehaviour
     AudioSource deathSound;
     PlayerMouseMovement mouseScript;
     PlayerKeyboardMovement keyboardScript;
+    Timer timer;
 
     public bool running = true;
 
@@ -38,6 +39,10 @@ public class PlayerCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "LevelEndless")
+        {
+            timer = GameObject.Find("TimerValue").GetComponent<Timer>();
+        }
         borderLeft = GameObject.Find("Left");
         borderRight = GameObject.Find("Right");
         borderTop = GameObject.Find("Top");
@@ -103,6 +108,10 @@ public class PlayerCollision : MonoBehaviour
     {
         running = false;
         DOTween.PauseAll();
+        if (SceneManager.GetActiveScene().name == "LevelEndless")
+        {
+            timer.active = false;
+        }
         StartCoroutine(DeathAnimation());
     }
 
