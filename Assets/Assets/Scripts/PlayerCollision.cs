@@ -7,34 +7,42 @@ using UnityEngine.SceneManagement;
 public class PlayerCollision : MonoBehaviour
 {
     [SerializeField]
-    GameObject borderLeft;
-    [SerializeField]
-    GameObject borderRight;
-    [SerializeField]
-    GameObject borderTop;
-    [SerializeField]
-    GameObject borderBottom;
-    [SerializeField]
-    private AudioSource deathSound;
-    [SerializeField]
-
     ParticleSystem dieParticleSystem;
+    
+    GameObject borderLeft;
+    GameObject borderRight;
+    GameObject borderTop;
+    GameObject borderBottom;
+    AudioSource deathSound;
+    PlayerMouseMovement mouseScript;
+    PlayerKeyboardMovement keyboardScript;
 
     public bool running = true;
 
     void Awake()
     {
+        mouseScript = GetComponent<PlayerMouseMovement>();
+        keyboardScript = GetComponent<PlayerKeyboardMovement>();
         if (PlayerPrefs.GetString("movement") == "mouse")
         {
-            GetComponent<PlayerMouseMovement>().enabled = true;
-            GetComponent<PlayerKeyboardMovement>().enabled = false;
+            mouseScript.enabled = true;
+            keyboardScript.enabled = false;
+        }
+        else
+        {
+            mouseScript.enabled = false;
+            keyboardScript.enabled = true;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        borderLeft = GameObject.Find("Left");
+        borderRight = GameObject.Find("Right");
+        borderTop = GameObject.Find("Top");
+        borderBottom = GameObject.Find("Bottom");
+        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -104,11 +112,11 @@ public class PlayerCollision : MonoBehaviour
         deathSound.Play();
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
-        transform.DOMove(transform.position, 2f);
+        keyboardScript.enabled = false;
+        mouseScript.enabled = false;
 
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("LoseMenu");
     }
 }
-//LOL

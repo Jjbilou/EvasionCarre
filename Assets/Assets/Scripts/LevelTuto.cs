@@ -53,7 +53,7 @@ public class LevelTuto : MonoBehaviour
 
     IEnumerator Launch()
     {
-
+        yield return new WaitForSeconds(1f);
         GameWon();
     }
 
