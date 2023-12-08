@@ -68,8 +68,8 @@ public class Level1 : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 6f, 0f);
-        RotateLaser(laserClone, -180f, 2f);
+        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 5.3f, 0f);
+        RotateLaser(laserClone, 180f, 2f);
         MoveLaser(laserClone, borderRight.transform.position.x, borderTop.transform.position.y, 2f);
 
         yield return new WaitForSeconds(2f);
