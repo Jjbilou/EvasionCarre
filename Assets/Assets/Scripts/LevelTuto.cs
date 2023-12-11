@@ -87,6 +87,7 @@ public class LevelTuto : MonoBehaviour
 
         if (!playerCollision.running)
         {
+            isAttracted = false;
             StopAllCoroutines();
         }
     }
