@@ -87,6 +87,7 @@ public class LevelTuto : MonoBehaviour
 
         if (!playerCollision.running)
         {
+            isAttracted = false;
             StopAllCoroutines();
         }
     }
@@ -214,7 +215,7 @@ public class LevelTuto : MonoBehaviour
             {
                 CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 4);
                 CreateBullet(0f, 0f, 1f, 90f + i * 18f, 7f, 4);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.05f);
             }
 
         yield return new WaitForSeconds (10f);
