@@ -85,12 +85,43 @@ public class Level3 : MonoBehaviour
         MoveLaser(laser4, -12, 0, 1f);
         MoveLaser(laser, 9, 0, 1f);
     
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (0.8f);
 
         MoveLaser(laser3, 0, 0, 1f);
 
+        yield return new WaitForSeconds (1f);
 
-        
+        MoveLaser(laser, 0, 0, 1f);
+        MoveLaser(laser2, 0, 0, 1f);
+        MoveLaser(laser4, 0, 0, 1f);
+
+        yield return new WaitForSeconds (1f);
+
+        ScaleLaser(laser3, 0, 1, 1f);
+        ScaleLaser(laser4, 0, 1, 1f);
+        RotateLaser(laser3, 720, 20f);
+        RotateLaser(laser4, 720, 20f);
+
+        for (int i = 0; i < 2; i++)
+        {
+            MoveLaser(laser2, 0, 3, 1f);
+
+            yield return new WaitForSeconds (1.5f);
+
+            MoveLaser(laser, -3, 0, 1f);
+
+            yield return new WaitForSeconds (1.5f);
+
+            MoveLaser(laser2, 0, -3, 1f);
+
+            yield return new WaitForSeconds (1.5f);
+
+            MoveLaser(laser, 3, 0, 1f);
+
+            yield return new WaitForSeconds (1.5f);
+        }
+
+        yield return new WaitForSeconds (5f);
 
         /*laser5 = CreateLaser(-1, 8, 2f, 2.5f, 0f);
         MoveLaser(laser5, 0, -9, 4);
@@ -146,6 +177,11 @@ public class Level3 : MonoBehaviour
     void MoveLaser(GameObject laser, float posX, float posY, float duration)
     {
         laser.transform.DOMove(new Vector3(posX, posY, 1f), duration);
+    }
+
+    void ScaleLaser(GameObject laser, float width, float height, float duration)
+    {
+        laser.transform.DOScale(new Vector3(laser.transform.localScale.x + width, laser.transform.localScale.y + height, 1f), duration);
     }
 
     GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
