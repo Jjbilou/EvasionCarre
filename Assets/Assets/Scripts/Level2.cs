@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Level2 : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class Level2 : MonoBehaviour
 
     IEnumerator Launch()
     {
+        GameObject[] lasers;
         GameObject laserClone;
         GameObject laserClone2;
 
@@ -64,146 +66,168 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
-        laserClone2 = CreateLaser(borderRight.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
-        RotateLaser(laserClone, -90f, 0.5f);
-        RotateLaser(laserClone2, 90f, 0.5f);
+        // laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
+        // laserClone2 = CreateLaser(borderRight.transform.position.x, borderTop.transform.position.y, 3f, 5.7f, 0f);
+        // RotateLaser(laserClone, -90f, 0.5f);
+        // RotateLaser(laserClone2, 90f, 0.5f);
 
-        yield return new WaitForSeconds(0.1f);
+        // yield return new WaitForSeconds(0.1f);
 
-        PlayerAttraction(90f, 10f, 0.15f);
+        // PlayerAttraction(90f, 10f, 0.15f);
 
-        yield return new WaitForSeconds(0.15f);
+        // yield return new WaitForSeconds(0.15f);
 
-        CreateBullet(0f, 0f, 1f, -90f, 10f, 1);
+        // CreateBullet(0f, 0f, 1f, -90f, 10f, 1);
 
-        yield return new WaitForSeconds(0.25f);
+        // yield return new WaitForSeconds(0.25f);
 
-        Destroy(laserClone);
-        Destroy(laserClone2);
+        // Destroy(laserClone);
+        // Destroy(laserClone2);
 
-        bullet = CreateBullet(0f, 0f, 1f, 45f, 10f, 4);
-        bullet2 = CreateBullet(0f, 0f, 1f, -45f, 10f, 4);
-        bullet3 = CreateBullet(0f, 0f, 1f, 135f, 10f, 4);
-        bullet4 = CreateBullet(0f, 0f, 1f, -135f, 10f, 4);
+        // bullet = CreateBullet(0f, 0f, 1f, 45f, 10f, 4);
+        // bullet2 = CreateBullet(0f, 0f, 1f, -45f, 10f, 4);
+        // bullet3 = CreateBullet(0f, 0f, 1f, 135f, 10f, 4);
+        // bullet4 = CreateBullet(0f, 0f, 1f, -135f, 10f, 4);
 
-        yield return new WaitForSeconds(1f);
+        // yield return new WaitForSeconds(1f);
 
-        BorderTopScale(-5, 1f);
-        BorderLeftScale(-2f, 0.5f);
-        BorderBottomScale(-2f, 0.5f);
+        // BorderTopScale(-5, 1f);
+        // BorderLeftScale(-2f, 0.5f);
+        // BorderBottomScale(-2f, 0.5f);
 
-        yield return new WaitForSeconds(0.5f);
+        // yield return new WaitForSeconds(0.5f);
 
-        PlayerScale(1f, 0.5f);
+        // PlayerScale(1f, 0.5f);
 
-        yield return new WaitForSeconds(0.5f);
+        // yield return new WaitForSeconds(0.5f);
 
-        laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3f, 4f, 90f);
-        RotateLaser(laserClone, -180f, 5f);
+        // laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3f, 4f, 90f);
+        // RotateLaser(laserClone, -180f, 5f);
 
-        yield return new WaitForSeconds(2f);
+        // yield return new WaitForSeconds(2f);
 
-        PlayerScale(-1f, 1f);
+        // PlayerScale(-1f, 1f);
+
+        // yield return new WaitForSeconds(3f);
+
+        // Destroy(laserClone);
+        // Destroy(bullet);
+        // Destroy(bullet2);
+        // Destroy(bullet3);
+        // Destroy(bullet4);
+        // BorderTopScale(5, 0.5f);
+        // BorderLeftScale(2f, 0.5f);
+        // BorderBottomScale(2f, 0.5f);
+
+        // yield return new WaitForSeconds(1f); //10.5'
+
+        // EnableDeadlyBorders();
+        // PlayerAttraction(0f, 6f, 10f);
+
+        // for (int i = -8; i < 9; i++)
+        // {
+        //     if (i != 6 && i != 7)
+        //     {
+        //         CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+        //     }
+        // }
+
+        // yield return new WaitForSeconds(1f);
+
+        // for (int i = -8; i < 9; i++)
+        // {
+        //     if (i != 1 && i != 2)
+        //     {
+        //         CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+        //     }
+        // }
+
+        // yield return new WaitForSeconds(1f);
+
+        // for (int i = -8; i < 9; i++)
+        // {
+        //     if (i != -4 && i != -3)
+        //     {
+        //         CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+        //     }
+        // }
+
+        // yield return new WaitForSeconds(1f);
+
+        // for (int i = -8; i < 9; i++)
+        // {
+        //     if (i != 7 && i != 8)
+        //     {
+        //         CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
+        //     }
+        // }
+
+        // yield return new WaitForSeconds(2f);
+
+        // BorderLeftScale(-5f, 1);
+        // BorderRightScale(-5f, 1);
+        // BorderTopScale(-5f, 1);
+        // BorderBottomScale(-5f, 1);
+
+        // yield return new WaitForSeconds(1f);
+
+        // BorderLeftScale(-5f, 2);
+        // BorderRightScale(5f, 2);
+        // BorderTopScale(5f, 2);
+        // BorderBottomScale(-5f, 2);
+
+        // yield return new WaitForSeconds(2f);
+
+        // BorderLeftScale(10f, 2);
+        // BorderRightScale(-10f, 2);
+        // BorderTopScale(-10f, 2);
+        // BorderBottomScale(10f, 2);
+
+        // yield return new WaitForSeconds(2f); //20.5'
+
+        // BorderRightScale(10f, 2);
+        // BorderTopScale(10f, 2);
+
+        // yield return new WaitForSeconds(2f);
+
+        // DisableDeadlyBorders();
+        // for (int i = 0; i < 20; i++)
+        // {
+        //     CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 3);
+        //     yield return new WaitForSeconds(0.25f);
+        // }
+
+        // CreateBullet(-8f, 8f, 1f, -30f, 11f, 3);
+        // laserClone = CreateLaser(borderRight.transform.position.x, 0f, 3f, 4f, 90f);
+        // MoveLaser(laserClone, 0f, 0f, 3f);
+
+        // yield return new WaitForSeconds(4f); //31.5'
+
+        // Destroy(laserClone);
+
+        // yield return new WaitForSeconds(3f);
+
+        lasers = new GameObject[12];
+        for (int i = 0; i < 12; i++)
+        {
+            lasers[i] = CreateLaser(0f, 0f, 3f, 4f, 180f - i * 36);
+            ScaleLaser(lasers[i], 0f, -8f, 2.5f);
+            RotateLaser(lasers[i], 180f, 5f);
+        }
+        
+        yield return new WaitForSeconds(2.5f);
+
+        for (int i = 0; i < 12; i++)
+        {
+            ScaleLaser(lasers[i], 0f, 8f, 2.5f);
+        }
 
         yield return new WaitForSeconds(3f);
 
-        Destroy(laserClone);
-        Destroy(bullet);
-        Destroy(bullet2);
-        Destroy(bullet3);
-        Destroy(bullet4);
-        BorderTopScale(5, 0.5f);
-        BorderLeftScale(2f, 0.5f);
-        BorderBottomScale(2f, 0.5f);
-
-        yield return new WaitForSeconds(1f); //10.5'
-
-        EnableDeadlyBorders();
-        PlayerAttraction(0f, 6f, 10f);
-
-        for (int i = -8; i < 9; i++)
+        for (int i = 0; i < 12; i++)
         {
-            if (i != 6 && i != 7)
-            {
-                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
-            }
+            Destroy(lasers[i]);
         }
-
-        yield return new WaitForSeconds(1f);
-
-        for (int i = -8; i < 9; i++)
-        {
-            if (i != 1 && i != 2)
-            {
-                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
-            }
-        }
-
-        yield return new WaitForSeconds(1f);
-
-        for (int i = -8; i < 9; i++)
-        {
-            if (i != -4 && i != -3)
-            {
-                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
-            }
-        }
-
-        yield return new WaitForSeconds(1f);
-
-        for (int i = -8; i < 9; i++)
-        {
-            if (i != 7 && i != 8)
-            {
-                CreateBullet(borderLeft.transform.position.x + 1f, i, 1f, 0f, 7f, 1);
-            }
-        }
-
-        yield return new WaitForSeconds(2f);
-
-        BorderLeftScale(-5f, 1);
-        BorderRightScale(-5f, 1);
-        BorderTopScale(-5f, 1);
-        BorderBottomScale(-5f, 1);
-
-        yield return new WaitForSeconds(1f);
-
-        BorderLeftScale(-5f, 2);
-        BorderRightScale(5f, 2);
-        BorderTopScale(5f, 2);
-        BorderBottomScale(-5f, 2);
-
-        yield return new WaitForSeconds(2f);
-
-        BorderLeftScale(10f, 2);
-        BorderRightScale(-10f, 2);
-        BorderTopScale(-10f, 2);
-        BorderBottomScale(10f, 2);
-
-        yield return new WaitForSeconds(2f); //20.5'
-
-        BorderRightScale(10f, 2);
-        BorderTopScale(10f, 2);
-
-        yield return new WaitForSeconds(2f);
-
-        DisableDeadlyBorders();
-        for (int i = 0; i < 20; i++)
-        {
-            CreateBullet(0f, 0f, 1f, 90f - i * 18f, 7f, 3);
-            yield return new WaitForSeconds(0.25f);
-        }
-
-        CreateBullet(-8f, 8f, 1f, -30f, 11f, 3);
-        laserClone = CreateLaser(borderRight.transform.position.x, 0f, 3f, 4f, 90f);
-        MoveLaser(laserClone, 0f, 0f, 3f);
-
-        yield return new WaitForSeconds(4f); //31.5'
-
-        Destroy(laserClone);
-
-        yield return new WaitForSeconds(3f);
 
         GameWon();
     }
@@ -234,9 +258,9 @@ public class Level2 : MonoBehaviour
     {
         GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));
         Laser cloneScript = laserClone.GetComponent<Laser>();
+        
+        laserClone.transform.localScale = new Vector3(laserWidth, laserHeight, 1f);
         cloneScript.enabled = true;
-        cloneScript.laserWidth = laserWidth;
-        cloneScript.laserHeight = laserHeight;
 
         return laserClone;
     }
@@ -251,13 +275,18 @@ public class Level2 : MonoBehaviour
         laser.transform.DOMove(new Vector3(posX, posY, 1f), duration);
     }
 
+    void ScaleLaser(GameObject laser, float width, float height, float duration)
+    {
+        laser.transform.DOScale(new Vector3(laser.transform.localScale.x + width, laser.transform.localScale.y + height, 1f), duration);
+    }
+
     GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
     {
         GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
 
         Bullet cloneScript = bulletClone.GetComponent<Bullet>();
+        bulletClone.transform.localScale *= size;
         cloneScript.enabled = true;
-        cloneScript.size = size;
         cloneScript.angle = angle;
         cloneScript.speed = speed;
         cloneScript.level = level;

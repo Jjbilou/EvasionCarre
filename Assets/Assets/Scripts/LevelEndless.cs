@@ -188,11 +188,10 @@ public class LevelEndless : MonoBehaviour
     GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
         GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));
-
         Laser cloneScript = laserClone.GetComponent<Laser>();
+        
+        laserClone.transform.localScale = new Vector3(laserWidth, laserHeight, 1f);
         cloneScript.enabled = true;
-        cloneScript.laserWidth = laserWidth;
-        cloneScript.laserHeight = laserHeight;
 
         return laserClone;
     }
@@ -212,8 +211,8 @@ public class LevelEndless : MonoBehaviour
         GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
 
         Bullet cloneScript = bulletClone.GetComponent<Bullet>();
+        bulletClone.transform.localScale *= size;
         cloneScript.enabled = true;
-        cloneScript.size = size;
         cloneScript.angle = angle;
         cloneScript.speed = speed;
         cloneScript.level = level;
