@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float size;
     public float angle;
     public float speed;
     public int level;
@@ -27,7 +26,6 @@ public class Bullet : MonoBehaviour
         GetComponent<Animator>().enabled = true;
         bulletRenderer = GetComponent<SpriteRenderer>();
         bulletRenderer.enabled = true;
-        transform.localScale *= size;
 
         level1Color = new Color(0.25f, 0.25f, 0.25f);
         level2Color = new Color(0.5f, 0.5f, 0.5f);
