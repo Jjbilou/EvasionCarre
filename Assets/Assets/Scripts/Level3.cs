@@ -11,6 +11,8 @@ public class Level3 : MonoBehaviour
     GameObject bullet;
     [SerializeField]
     GameObject laser;
+    [SerializeField]
+    GameObject redLine;
 
     GameObject borders;
     GameObject borderLeft;
@@ -25,6 +27,7 @@ public class Level3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DOTween.defaultEaseType = Ease.Linear;
         borders = GameObject.Find("Borders");
         borderLeft = GameObject.Find("Left");
         borderRight = GameObject.Find("Right");
@@ -99,18 +102,18 @@ public class Level3 : MonoBehaviour
 
         ScaleLaser(laser3, 0, 1, 1f);
         ScaleLaser(laser4, 0, 1, 1f);
-        RotateLaser(laser3, 720, 20f);
-        RotateLaser(laser4, 720, 20f);
+        RotateLaser(laser3, 720, 10f);
+        RotateLaser(laser4, 720, 10f);
 
         for (int i = 0; i < 2; i++)
         {
             MoveLaser(laser2, 0, 3, 1f);
 
-            yield return new WaitForSeconds (1.5f);
+            yield return new WaitForSeconds (1f);
 
             MoveLaser(laser, -3, 0, 1f);
 
-            yield return new WaitForSeconds (1.5f);
+            yield return new WaitForSeconds (1f);
 
             MoveLaser(laser2, 0, -3, 1f);
 
@@ -121,16 +124,91 @@ public class Level3 : MonoBehaviour
             yield return new WaitForSeconds (1.5f);
         }
 
-        yield return new WaitForSeconds (5f);
+        ScaleLaser(laser3, 0, -1, 1f);
+        ScaleLaser(laser4, 0, -1, 1f);
+        yield return new WaitForSeconds (1f);
 
-        /*laser5 = CreateLaser(-1, 8, 2f, 2.5f, 0f);
-        MoveLaser(laser5, 0, -9, 4);
-        laser6 = CreateLaser(-1, 8, 2f, 2.5f, 0f);
-        MoveLaser(laser6, 0, -9, 4);*/
+        MoveLaser(laser, 0, 0, 1f);
+        MoveLaser(laser, 0, 0, 1f);
 
+        yield return new WaitForSeconds (1f);
+    
+        MoveLaser(laser, -18, -6, 2f);
+        MoveLaser(laser2, -6, -18, 2f);
+        MoveLaser(laser3, -18, 0, 2f);
+        MoveLaser(laser4, 0, -18, 2f);
+        RotateLaser(laser4, 90, 1f);
+        laser5 = CreateLaser(-18, 6, 2f, 3f, 0f);
+        laser6 = CreateLaser(6, -18, 2f, 3f, 90f);
 
+        yield return new WaitForSeconds (2f);
 
-        yield return new WaitForSeconds (3f);
+        GameObject red1 = CreateRedLine(-18, -6, 0);
+        GameObject red2 = CreateRedLine(-6, -18, 90);
+        GameObject red3 = CreateRedLine(-18, -0, 0);
+        GameObject red4 = CreateRedLine(0, -18, 90);
+        GameObject red5 = CreateRedLine(-18, 6, 0);
+        GameObject red6 = CreateRedLine(6, -18, 90);
+
+        yield return new WaitForSeconds (0.5f);
+
+        MoveRedLine(red1, 0, -6, 0.2f);
+
+        yield return new WaitForSeconds (0.3f);
+        
+        MoveRedLine(red2, -6, 0, 0.2f);
+        Destroy(red1);
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveRedLine(red3, 0, -0, 0.2f);
+        Destroy(red2);
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveRedLine(red4, 0, 0, 0.2f);
+        Destroy(red3);
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveRedLine(red5, 0, 6, 0.2f);
+        Destroy(red4);
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveRedLine(red6, 6, 0, 0.2f);
+        Destroy(red5);
+
+        yield return new WaitForSeconds (0.3f);
+
+        Destroy(red6);
+
+        yield return new WaitForSeconds (1f);
+
+        MoveLaser(laser, 0, -6, 0.2f);
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveLaser(laser2, -6, 0, 0.2f);  
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveLaser(laser3, 0, -0, 0.2f);
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveLaser(laser4, 0, 0, 0.2f);
+
+        yield return new WaitForSeconds (0.3f);
+
+        MoveLaser(laser5, 0, 6, 0.2f);
+
+        yield return new WaitForSeconds (0.3f);
+        
+        MoveLaser(laser6, 6, 0, 0.2f);
+
+        yield return new WaitForSeconds (0.3f);
+
 
 
         GameWon();
@@ -197,6 +275,18 @@ public class Level3 : MonoBehaviour
 
         return bulletClone;
     }
+
+    GameObject CreateRedLine(float posX, float posY, float angle)
+    {
+        GameObject redLineClone = Instantiate(redLine, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));        
+        return redLineClone;
+    }
+
+    void MoveRedLine(GameObject redLine, float posX, float posY, float duration)
+    {
+        redLine.transform.DOMove(new Vector3(posX, posY, 1f), duration);
+    }
+
     void BorderLeftScale(float scaleValue, float animationTime)
     {
         borderLeft.transform.DOMoveX(borderLeft.transform.position.x - scaleValue, animationTime);
