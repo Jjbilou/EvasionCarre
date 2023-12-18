@@ -130,6 +130,7 @@ public class Level3 : MonoBehaviour
 
         MoveLaser(laser, 0, 0, 1f);
         MoveLaser(laser, 0, 0, 1f);
+        RotateLaser(laser4, 90, 1f);
 
         yield return new WaitForSeconds (1f);
     
@@ -137,7 +138,6 @@ public class Level3 : MonoBehaviour
         MoveLaser(laser2, -6, -18, 2f);
         MoveLaser(laser3, -18, 0, 2f);
         MoveLaser(laser4, 0, -18, 2f);
-        RotateLaser(laser4, 90, 1f);
         laser5 = CreateLaser(-18, 6, 2f, 3f, 0f);
         laser6 = CreateLaser(6, -18, 2f, 3f, 90f);
 
@@ -150,66 +150,72 @@ public class Level3 : MonoBehaviour
         GameObject red5 = CreateRedLine(-18, 6, 0);
         GameObject red6 = CreateRedLine(6, -18, 90);
 
-        yield return new WaitForSeconds (0.5f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveRedLine(red1, 0, -6, 0.2f);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
         
         MoveRedLine(red2, -6, 0, 0.2f);
         Destroy(red1);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveRedLine(red3, 0, -0, 0.2f);
         Destroy(red2);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveRedLine(red4, 0, 0, 0.2f);
         Destroy(red3);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveRedLine(red5, 0, 6, 0.2f);
         Destroy(red4);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveRedLine(red6, 6, 0, 0.2f);
         Destroy(red5);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         Destroy(red6);
-
-        yield return new WaitForSeconds (1f);
-
         MoveLaser(laser, 0, -6, 0.2f);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveLaser(laser2, -6, 0, 0.2f);  
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveLaser(laser3, 0, -0, 0.2f);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveLaser(laser4, 0, 0, 0.2f);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
         MoveLaser(laser5, 0, 6, 0.2f);
 
-        yield return new WaitForSeconds (0.3f);
-        
+        yield return new WaitForSeconds (0.2f);
+
         MoveLaser(laser6, 6, 0, 0.2f);
 
-        yield return new WaitForSeconds (0.3f);
+        yield return new WaitForSeconds (0.2f);
 
+        BorderLeftScale(-16, 2);
+        BorderBottomScale(-16, 2);
+        EnableDeadlyBorders();
 
+        yield return new WaitForSeconds(3f);
+
+        DisableDeadlyBorders();
+
+        yield return new WaitForSeconds(1f);
+        
 
         GameWon();
     }
