@@ -219,8 +219,8 @@ public class Level3 : MonoBehaviour
 
     void PlayerAttraction(float angle, float force, float duration)
     {
-        angle = (float)Math.PI * angle / 180;
-        attractMovement = force * new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 1f);
+        angle = Mathf.PI * angle / 180;
+        attractMovement = force * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 1f);
         isAttracted = true;
         StartCoroutine(WaitAttractEnd(duration));
     }

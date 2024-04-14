@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
@@ -10,11 +8,5 @@ public class Laser : MonoBehaviour
         GetComponent<Renderer>().enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<Animator>().enabled = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

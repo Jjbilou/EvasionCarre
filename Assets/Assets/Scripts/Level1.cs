@@ -1,16 +1,12 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Level1 : MonoBehaviour
 {
-    [SerializeField]
-    GameObject bullet;
-    [SerializeField]
-    GameObject laser;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject laser;
 
     GameObject borderLeft;
     GameObject borderRight;
@@ -95,7 +91,7 @@ public class Level1 : MonoBehaviour
 
     void EnableDeadlyBorders()
     {
-        Color borderColor = new Color(1f, 0f, 0f);
+        Color borderColor = new(1f, 0f, 0f);
 
         gameObject.tag = "Danger";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
@@ -106,7 +102,7 @@ public class Level1 : MonoBehaviour
 
     void DisableDeadlyBorders()
     {
-        Color borderColor = new Color(1f, 1f, 1f);
+        Color borderColor = new(1f, 1f, 1f);
 
         gameObject.tag = "Untagged";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
@@ -172,8 +168,8 @@ public class Level1 : MonoBehaviour
 
     void PlayerAttraction(float angle, float force, float duration)
     {
-        angle = (float)Math.PI * angle / 180;
-        attractMovement = force * new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 1f);
+        angle = Mathf.PI * angle / 180;
+        attractMovement = force * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 1f);
         isAttracted = true;
         StartCoroutine(WaitAttractEnd(duration));
     }

@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMouseMovement : MonoBehaviour
 {
-    [SerializeField]
-    float speed;
+    [SerializeField] float speed;
     
     private Vector2 ratio;
 
@@ -28,10 +24,10 @@ public class PlayerMouseMovement : MonoBehaviour
 
         if (Vector2.Distance(mousePosition, playerPosition) > 0.1f)
         {
-            Vector3 movement = new Vector3(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, 0);
+            Vector3 movement = new(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, 0);
             movement.Normalize();
 
-            transform.position += movement * Time.deltaTime * speed;
+            transform.position += speed * Time.deltaTime * movement;
         }
     }
 }

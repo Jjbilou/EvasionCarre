@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Borders : MonoBehaviour
 {
-    [SerializeField]
-    float borderWidth;
+    [SerializeField] float borderWidth;
     
     GameObject borderLeft;
     GameObject borderRight;
@@ -24,16 +21,8 @@ public class Borders : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        float middleX = (borderLeft.transform.position.x + borderRight.transform.position.x) / 2f;
-        float middleY = (borderTop.transform.position.y + borderBottom.transform.position.y) / 2f;
-
-        borderLeft.transform.position = new Vector3(borderLeft.transform.position.x, middleY, 1f);
-        borderRight.transform.position = new Vector3(borderRight.transform.position.x, middleY, 1f);
-        borderTop.transform.position = new Vector3(middleX, borderTop.transform.position.y, 1f);
-        borderBottom.transform.position = new Vector3(middleX, borderBottom.transform.position.y, 1f);
-
-        float sizeX = borderRight.transform.position.x - borderLeft.transform.position.x + borderLeft.transform.localScale.x;
-        float sizeY = borderTop.transform.position.y - borderBottom.transform.position.y + borderTop.transform.localScale.y;
+        float sizeX = Vector2.Distance(borderTop.transform.position, borderBottom.transform.position) + borderWidth;
+        float sizeY =  Vector2.Distance(borderLeft.transform.position, borderRight.transform.position) + borderWidth;
 
         borderLeft.transform.localScale = new Vector3(borderWidth, sizeY, 1f);
         borderRight.transform.localScale = new Vector3(borderWidth, sizeY, 1f);

@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField]
-    ParticleSystem dieParticleSystem;
+    [SerializeField] ParticleSystem dieParticleSystem;
 
     GameObject borderLeft;
     GameObject borderRight;
@@ -84,20 +82,20 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Danger")
+        if (collision.CompareTag("Danger"))
         {
             GameLost();
         }
-        if (collision.tag == "HorizontalBorder")
+        if (collision.CompareTag("HorizontalBorder"))
         {
-            if (collision.transform.parent.tag == "Danger")
+            if (collision.transform.parent.CompareTag("Danger"))
             {
                 GameLost();
             }
         }
         if (collision.tag == "VerticalBorder")
         {
-            if (collision.transform.parent.tag == "Danger")
+            if (collision.transform.parent.CompareTag("Danger"))
             {
                 GameLost();
             }

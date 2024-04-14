@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -31,8 +27,8 @@ public class Bullet : MonoBehaviour
         level2Color = new Color(0.5f, 0.5f, 0.5f);
         level3Color = new Color(0.75f, 0.75f, 0.75f);
 
-        angle = (float)Math.PI * angle / 180;
-        movement = new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 0f);
+        angle = Mathf.PI * angle / 180;
+        movement = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
 
         switch (level)
         {
@@ -54,7 +50,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += movement * Time.deltaTime * speed;
+        transform.position += speed * Time.deltaTime * movement;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

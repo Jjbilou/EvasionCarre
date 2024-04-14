@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,41 +6,27 @@ using TMPro;
 
 public class LevelTuto : MonoBehaviour
 {
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject laser;
+    [SerializeField] TMP_Text Txt1;
+    [SerializeField] TMP_Text Txt2;
+    [SerializeField] TMP_Text Txt3;
+    [SerializeField] TMP_Text Txt4;
+    [SerializeField] TMP_Text Txt5;
+    [SerializeField] TMP_Text Txt6;
+    [SerializeField] TMP_Text Txt7;
+    [SerializeField] TMP_Text Txt8;
+    [SerializeField] TMP_Text Txt9;
+    [SerializeField] TMP_Text Txt10;
+    [SerializeField] TMP_Text Txt11;
+    [SerializeField] TMP_Text Txt12;
+    [SerializeField] TMP_Text Txt13;
+
     GameObject borderLeft;
     GameObject borderRight;
     GameObject borderTop;
     GameObject borderBottom;
     GameObject player;
-    [SerializeField]
-    GameObject bullet;
-    [SerializeField]
-    GameObject laser;
-    [SerializeField]
-    TMP_Text Txt1;
-    [SerializeField]
-    TMP_Text Txt2;
-    [SerializeField]
-    TMP_Text Txt3;
-    [SerializeField]
-    TMP_Text Txt4;
-    [SerializeField]
-    TMP_Text Txt5;
-    [SerializeField]
-    TMP_Text Txt6;
-    [SerializeField]
-    TMP_Text Txt7;
-    [SerializeField]
-    TMP_Text Txt8;
-    [SerializeField]
-    TMP_Text Txt9;
-    [SerializeField]
-    TMP_Text Txt10;
-    [SerializeField]
-    TMP_Text Txt11;
-    [SerializeField]
-    TMP_Text Txt12;
-    [SerializeField]
-    TMP_Text Txt13;
 
     bool isAttracted = false;
     public bool clear = false;
@@ -225,7 +209,7 @@ public class LevelTuto : MonoBehaviour
 
     void EnableDeadlyBorders()
     {
-        Color borderColor = new Color(1f, 0f, 0f);
+        Color borderColor = new(1f, 0f, 0f);
 
         gameObject.tag = "Danger";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
@@ -236,7 +220,7 @@ public class LevelTuto : MonoBehaviour
 
     void DisableDeadlyBorders()
     {
-        Color borderColor = new Color(1f, 1f, 1f);
+        Color borderColor = new(1f, 1f, 1f);
 
         gameObject.tag = "Untagged";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
@@ -303,8 +287,8 @@ public class LevelTuto : MonoBehaviour
 
     void PlayerAttraction(float angle, float force, float duration)
     {
-        angle = (float)Math.PI * angle / 180;
-        attractMovement = force * new Vector3((float)Math.Cos(angle), (float)Math.Sin(angle), 1f);
+        angle = Mathf.PI * angle / 180;
+        attractMovement = force * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 1f);
         isAttracted = true;
         StartCoroutine(WaitAttractEnd(duration));
     }
