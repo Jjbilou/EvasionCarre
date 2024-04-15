@@ -50,48 +50,48 @@ public class Level1 : MonoBehaviour
     {
         GameObject laserClone;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.0f);
 
-        PlayerAttraction(90f, 10f, 2f);
-        PlayerScale(1f, 1f);
+        PlayerAttraction(90.0f, 10.0f, 2.0f);
+        PlayerScale(1.0f, 1.0f);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.0f);
 
-        PlayerScale(-1f, 1f);
+        PlayerScale(-1.0f, 1.0f);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.0f);
 
         EnableDeadlyBorders();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.0f);
 
-        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3f, 5.3f, 0f);
-        RotateLaser(laserClone, 180f, 2f);
-        MoveLaser(laserClone, borderRight.transform.position.x, borderTop.transform.position.y, 2f);
+        laserClone = CreateLaser(borderLeft.transform.position.x, borderTop.transform.position.y, 3.0f, 5.3f, 0.0f);
+        RotateLaser(laserClone, 180.0f, 2.0f);
+        MoveLaser(laserClone, borderRight.transform.position.x, borderTop.transform.position.y, 2.0f);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.0f);
 
         Destroy(laserClone);
         DisableDeadlyBorders();
-        CreateBullet(7f, 0f, 1f, 135f, 15f, 3);
-        CreateBullet(7f, 0f, 1f, -135f, 15f, 2);
-        laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3f, 3f, 0f);
-        RotateLaser(laserClone, -900f, 5f);
+        CreateBullet(7.0f, 0.0f, 1.0f, 135.0f, 15.0f, 3);
+        CreateBullet(7.0f, 0.0f, 1.0f, -135.0f, 15.0f, 2);
+        laserClone = CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 3.0f, 3.0f, 0.0f);
+        RotateLaser(laserClone, -900.0f, 5.0f);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.0f);
 
-        BorderRightScale(-2f, 1f);
-        BorderTopScale(-2f, 1f);
-        MoveLaser(laserClone, laserClone.transform.position.x - 1f, laserClone.transform.position.y - 1f, 2f);
+        BorderRightScale(-2.0f, 1.0f);
+        BorderTopScale(-2.0f, 1.0f);
+        MoveLaser(laserClone, laserClone.transform.position.x - 1.0f, laserClone.transform.position.y - 1.0f, 2.0f);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.0f);
 
         GameWon();
     }
 
     void EnableDeadlyBorders()
     {
-        Color borderColor = new(1f, 0f, 0f);
+        Color borderColor = new(1.0f, 0.0f, 0.0f);
 
         gameObject.tag = "Danger";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
@@ -102,7 +102,7 @@ public class Level1 : MonoBehaviour
 
     void DisableDeadlyBorders()
     {
-        Color borderColor = new(1f, 1f, 1f);
+        Color borderColor = new(1.0f, 1.0f, 1.0f);
 
         gameObject.tag = "Untagged";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
@@ -113,10 +113,10 @@ public class Level1 : MonoBehaviour
 
     GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
-        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
+        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
         Laser cloneScript = laserClone.GetComponent<Laser>();
         
-        laserClone.transform.localScale = new Vector3(laserWidth, laserHeight, 1f);
+        laserClone.transform.localScale = new Vector3(laserWidth, laserHeight, 1.0f);
         cloneScript.enabled = true;
 
         return laserClone;
@@ -124,17 +124,17 @@ public class Level1 : MonoBehaviour
 
     void RotateLaser(GameObject laser, float angle, float duration)
     {
-        laser.transform.DORotate(new Vector3(0f, 0f, 90f - laser.transform.rotation.z + angle), duration);
+        laser.transform.DORotate(new Vector3(0.0f, 0.0f, 90.0f - laser.transform.rotation.z + angle), duration);
     }
 
     void MoveLaser(GameObject laser, float posX, float posY, float duration)
     {
-        laser.transform.DOMove(new Vector3(posX, posY, 1f), duration);
+        laser.transform.DOMove(new Vector3(posX, posY, 1.0f), duration);
     }
 
     GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
     {
-        GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, 90f - angle));
+        GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
         Bullet cloneScript = bulletClone.GetComponent<Bullet>();
         
         bulletClone.transform.localScale *= size;
@@ -168,8 +168,8 @@ public class Level1 : MonoBehaviour
 
     void PlayerAttraction(float angle, float force, float duration)
     {
-        angle = Mathf.PI * angle / 180;
-        attractMovement = force * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 1f);
+        angle = Mathf.PI * angle / 180.0f;
+        attractMovement = force * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 1.0f);
         isAttracted = true;
         StartCoroutine(WaitAttractEnd(duration));
     }
@@ -182,7 +182,7 @@ public class Level1 : MonoBehaviour
 
     void PlayerScale(float scaleValue, float animationTime)
     {
-        player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1f), animationTime);
+        player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1.0f), animationTime);
     }
 
     void UnloadAllScenesExcept(string sceneName)

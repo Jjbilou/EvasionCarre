@@ -10,7 +10,7 @@ public class PlayerMouseMovement : MonoBehaviour
     void Start()
     {
         Camera gameCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
-        float cameraHeight = 2f * gameCamera.orthographicSize;
+        float cameraHeight = 2.0f * gameCamera.orthographicSize;
         float cameraWidth = cameraHeight * gameCamera.aspect;
 
         ratio = new Vector2(cameraWidth / Screen.width, cameraHeight / Screen.height); //ratio between camera size and pixels number

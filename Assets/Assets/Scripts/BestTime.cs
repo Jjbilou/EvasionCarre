@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +7,9 @@ public class BestTime : MonoBehaviour
     void Start()
     {
         float time = PlayerPrefs.GetFloat("bestTime");
-        string display = (time / 60 < 10 ? '0' + Math.Floor(time / 60).ToString() : Math.Floor(time / 60).ToString()) + ':' + (time % 60 < 10 ? '0' + Math.Floor(time % 60).ToString() : Math.Floor(time % 60).ToString());
+        int minutes = (int)Mathf.Floor(time / 60.0f);
+        int seconds = (int)Mathf.Floor(time % 60.0f);
+        string display = (minutes < 10 ? '0' + minutes.ToString() : minutes.ToString()) + ':' + (seconds < 10 ? '0' + seconds.ToString() : seconds.ToString());
         GetComponent<TMP_Text>().SetText(display);
     }
 }

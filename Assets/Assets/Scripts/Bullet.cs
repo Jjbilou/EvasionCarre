@@ -27,8 +27,8 @@ public class Bullet : MonoBehaviour
         level2Color = new Color(0.5f, 0.5f, 0.5f);
         level3Color = new Color(0.75f, 0.75f, 0.75f);
 
-        angle = Mathf.PI * angle / 180;
-        movement = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
+        angle = Mathf.PI * angle / 180.0f;
+        movement = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0.0f);
 
         switch (level)
         {
@@ -59,14 +59,14 @@ public class Bullet : MonoBehaviour
         {
             BounceOrDestroy();
 
-            movement = new Vector3(movement.x, movement.y * -1f, 0f);
+            movement = new Vector3(movement.x, movement.y * -1.0f, 0.0f);
         }
 
         if (collision.tag == "VerticalBorder")
         {
             BounceOrDestroy();
 
-            movement = new Vector3(movement.x * -1f, movement.y, 0f);
+            movement = new Vector3(movement.x * -1.0f, movement.y, 0.0f);
         }
     }
 
