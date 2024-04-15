@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -63,74 +61,74 @@ public class Level3 : MonoBehaviour
         GameObject laser5;
         GameObject laser6;
 
-        laser = CreateLaser(-3, 9, 2.0f, 3f, 0.0f);
+        laser = CreateLaser(-3.0f, 9.0f, 2.0f, 3.0f, 0.0f);
         MoveLaser(laser,-3, -9, 1.0f);
         
 
         yield return new WaitForSeconds (0.5f);
 
-        laser2 = CreateLaser(-9, -3, 2.0f, 3f, 90.0f);
-        MoveLaser(laser2, 9, -3, 1.0f);
+        laser2 = CreateLaser(-9.0f, -3.0f, 2.0f, 3.0f, 90.0f);
+        MoveLaser(laser2, 9.0f, -3.0f, 1.0f);
 
         yield return new WaitForSeconds (0.5f);
 
-        laser3 = CreateLaser(3, -9, 2.0f, 3f, 0.0f);
-        MoveLaser(laser3, 3, 9, 2.0f);
-        MoveLaser(laser, 1, 0, 1.0f);   
-        MoveLaser(laser2, 0, -1, 1.0f);
+        laser3 = CreateLaser(3.0f, -9.0f, 2.0f, 3.0f, 0.0f);
+        MoveLaser(laser3, 3.0f, 9.0f, 2.0f);
+        MoveLaser(laser, 1.0f, 0.0f, 1.0f);   
+        MoveLaser(laser2, 0.0f, -1.0f, 1.0f);
 
         yield return new WaitForSeconds (2.0f);
 
-        laser4 = CreateLaser(0, -9, 2.0f, 3f, 0.0f);
-        MoveLaser(laser4, -12, 0, 1.0f);
-        MoveLaser(laser, 9, 0, 1.0f);
+        laser4 = CreateLaser(0.0f, -9.0f, 2.0f, 3.0f, 0.0f);
+        MoveLaser(laser4, -12.0f, 0.0f, 1.0f);
+        MoveLaser(laser, 9.0f, 0.0f, 1.0f);
     
         yield return new WaitForSeconds (0.8f);
 
-        MoveLaser(laser3, 0, 0, 1.0f);
+        MoveLaser(laser3, 0.0f, 0.0f, 1.0f);
 
         yield return new WaitForSeconds (1.0f);
 
-        MoveLaser(laser, 0, 0, 1.0f);
-        MoveLaser(laser2, 0, 0, 1.0f);
-        MoveLaser(laser4, 0, 0, 1.0f);
+        MoveLaser(laser, 0.0f, 0.0f, 1.0f);
+        MoveLaser(laser2, 0.0f, 0.0f, 1.0f);
+        MoveLaser(laser4, 0.0f, 0.0f, 1.0f);
 
         yield return new WaitForSeconds (1.0f);
 
-        ScaleLaser(laser3, 0, 1, 1.0f);
-        ScaleLaser(laser4, 0, 1, 1.0f);
-        RotateLaser(laser3, 720, 20.0f);
-        RotateLaser(laser4, 720, 20.0f);
+        ScaleLaser(laser3, 0.0f, 1.0f, 1.0f);
+        ScaleLaser(laser4, 0.0f, 1.0f, 1.0f);
+        RotateLaser(laser3, 720.0f, 20.0f);
+        RotateLaser(laser4, 720.0f, 20.0f);
 
         for (int i = 0; i < 2; i++)
         {
-            MoveLaser(laser2, 0, 3, 1.0f);
+            MoveLaser(laser2, 0.0f, 3.0f, 1.0f);
 
             yield return new WaitForSeconds (1.5f);
 
-            MoveLaser(laser, -3, 0, 1.0f);
+            MoveLaser(laser, -3.0f, 0.0f, 1.0f);
 
             yield return new WaitForSeconds (1.5f);
 
-            MoveLaser(laser2, 0, -3, 1.0f);
+            MoveLaser(laser2, 0.0f, -3.0f, 1.0f);
 
             yield return new WaitForSeconds (1.5f);
 
-            MoveLaser(laser, 3, 0, 1.0f);
+            MoveLaser(laser, 3.0f, 0.0f, 1.0f);
 
             yield return new WaitForSeconds (1.5f);
         }
 
-        yield return new WaitForSeconds (5f);
+        yield return new WaitForSeconds (5.0f);
 
-        /*laser5 = CreateLaser(-1, 8, 2.0f, 2.5f, 0.0f);
-        MoveLaser(laser5, 0, -9, 4);
-        laser6 = CreateLaser(-1, 8, 2.0f, 2.5f, 0.0f);
-        MoveLaser(laser6, 0, -9, 4);*/
+        /*laser5 = CreateLaser(-1.0f, 8.0f, 2.0f, 2.5f, 0.0f);
+        MoveLaser(laser5, 0.0f, -9.0f, 4.0f);
+        laser6 = CreateLaser(-1.0f, 8.0f, 2.0f, 2.5f, 0.0f);
+        MoveLaser(laser6, 0.0f, -9.0f, 4.0f);*/
 
 
 
-        yield return new WaitForSeconds (3f);
+        yield return new WaitForSeconds (3.0f);
 
 
         GameWon();
@@ -138,7 +136,7 @@ public class Level3 : MonoBehaviour
 
     void EnableDeadlyBorders()
     {
-        Color borderColor = new Color(1.0f, 0.0f, 0.0f);
+        Color borderColor = new(1.0f, 0.0f, 0.0f);
 
         borders.tag = "Danger";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
@@ -149,7 +147,7 @@ public class Level3 : MonoBehaviour
 
     void DisableDeadlyBorders()
     {
-        Color borderColor = new Color(1.0f, 1.0f, 1.0f);
+        Color borderColor = new(1.0f, 1.0f, 1.0f);
 
         borders.tag = "Untagged";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;

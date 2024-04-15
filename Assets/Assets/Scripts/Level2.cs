@@ -159,29 +159,29 @@ public class Level2 : MonoBehaviour
 
         // yield return new WaitForSeconds(2.0f);
 
-        // BorderLeftScale(-5.0f, 1);
-        // BorderRightScale(-5.0f, 1);
-        // BorderTopScale(-5.0f, 1);
-        // BorderBottomScale(-5.0f, 1);
+        // BorderLeftScale(-5.0f, 1.0f);
+        // BorderRightScale(-5.0f, 1.0f);
+        // BorderTopScale(-5.0f, 1.0f);
+        // BorderBottomScale(-5.0f, 1.0f);
 
         // yield return new WaitForSeconds(1.0f);
 
-        // BorderLeftScale(-5.0f, 2);
-        // BorderRightScale(5.0f, 2);
-        // BorderTopScale(5.0f, 2);
-        // BorderBottomScale(-5.0f, 2);
+        // BorderLeftScale(-5.0f, 2.0f);
+        // BorderRightScale(5.0f, 2.0f);
+        // BorderTopScale(5.0f, 2.0f);
+        // BorderBottomScale(-5.0f, 2.0f);
 
         // yield return new WaitForSeconds(2.0f);
 
-        // BorderLeftScale(10.0f, 2);
-        // BorderRightScale(-10.0f, 2);
-        // BorderTopScale(-10.0f, 2);
-        // BorderBottomScale(10.0f, 2);
+        // BorderLeftScale(10.0f, 2.0f);
+        // BorderRightScale(-10.0f, 2.0f);
+        // BorderTopScale(-10.0f, 2.0f);
+        // BorderBottomScale(10.0f, 2.0f);
 
         // yield return new WaitForSeconds(2.0f); //20.5'
 
-        // BorderRightScale(10.0f, 2);
-        // BorderTopScale(10.0f, 2);
+        // BorderRightScale(10.0f, 2.0f);
+        // BorderTopScale(10.0f, 2.0f);
 
         // yield return new WaitForSeconds(2.0f);
 
@@ -228,12 +228,12 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        // BorderLeftScale(10.0f, 2);
-        // BorderRightScale(-10.0f, 2);
-        // BorderTopScale(-10.0f, 2);
-        // BorderBottomScale(10.0f, 2);
+        // BorderLeftScale(10.0f, 2.0f);
+        // BorderRightScale(-10.0f, 2.0f);
+        // BorderTopScale(-10.0f, 2.0f);
+        // BorderBottomScale(10.0f, 2.0f);
 
-        yield return new WaitForSeconds(2.0f); //20.5'
+        yield return new WaitForSeconds(2.0f);
         
         GameWon();
     }
