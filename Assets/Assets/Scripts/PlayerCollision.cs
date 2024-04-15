@@ -16,6 +16,9 @@ public class PlayerCollision : MonoBehaviour
     PlayerKeyboardMovement keyboardScript;
     Timer timer;
 
+    public bool isAttracted = false;
+    public Vector3 attractMovement;
+
     public bool running = true;
 
     void Awake()
@@ -46,6 +49,21 @@ public class PlayerCollision : MonoBehaviour
         borderTop = GameObject.Find("Top");
         borderBottom = GameObject.Find("Bottom");
         deathSound = GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isAttracted)
+        {
+            transform.position += attractMovement * Time.deltaTime;
+        }
+
+        if (!running)
+        {
+            isAttracted = false;
+            StopAllCoroutines();
+        }
     }
 
     void LateUpdate()
@@ -99,7 +117,7 @@ public class PlayerCollision : MonoBehaviour
     void GameLost()
     {
         running = false;
-        DOTween.PauseAll();
+        DOTween.KillAll();
         if (SceneManager.GetActiveScene().name == "LevelEndless")
         {
             timer.active = false;
