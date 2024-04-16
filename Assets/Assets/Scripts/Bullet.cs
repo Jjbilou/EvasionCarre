@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
         GetComponent<Collider2D>().enabled = true;
         GetComponent<Animator>().enabled = true;
         bulletRenderer = GetComponent<SpriteRenderer>();
-        bulletRenderer.enabled = true;
 
         level1Color = new Color(0.25f, 0.25f, 0.25f);
         level2Color = new Color(0.5f, 0.5f, 0.5f);

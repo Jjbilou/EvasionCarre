@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class Level1 : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
         GameEvents.Init("Level1");
-        StartCoroutine(Launch());
+        GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }
 
     IEnumerator Launch()

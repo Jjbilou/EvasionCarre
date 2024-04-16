@@ -12,7 +12,8 @@ public class PlayerCollision : MonoBehaviour
     PlayerKeyboardMovement keyboardScript;
     Timer timer;
 
-    public bool isAttracted = false;
+    public Coroutine level;
+    public float attractingTime;
     public Vector3 attractMovement;
 
     // Start is called before the first frame update
@@ -47,9 +48,10 @@ public class PlayerCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAttracted)
+        if (attractingTime > 0.0f)
         {
             transform.position += attractMovement * Time.deltaTime;
+            attractingTime -= Time.deltaTime;
         }
     }
 
@@ -118,8 +120,8 @@ public class PlayerCollision : MonoBehaviour
 
     void GameLost()
     {
-        isAttracted = false;
-        StopAllCoroutines();
+        attractingTime = 0.0f;
+        StopCoroutine(level);
         DOTween.KillAll();
         if (SceneManager.GetActiveScene().name == "LevelEndless")
         {

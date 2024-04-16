@@ -1,7 +1,5 @@
 using System.Collections;
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class LevelTuto : MonoBehaviour
@@ -21,12 +19,6 @@ public class LevelTuto : MonoBehaviour
     [SerializeField] TMP_Text Txt11;
     [SerializeField] TMP_Text Txt12;
     [SerializeField] TMP_Text Txt13;
-
-    GameObject borderLeft;
-    GameObject borderRight;
-    GameObject borderTop;
-    GameObject borderBottom;
-    GameObject player;
 
     public bool clear = false;
 
@@ -48,7 +40,7 @@ public class LevelTuto : MonoBehaviour
         Txt11.enabled = false;
         Txt12.enabled = false;
         Txt13.enabled = false;
-        StartCoroutine(Launch());
+        GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }
 
     IEnumerator Launch()
@@ -87,7 +79,7 @@ public class LevelTuto : MonoBehaviour
 
         Txt4.enabled = false;
         Txt5.enabled = true;
-        laser = GameEvents.CreateLaser(borderTop.transform.position.x, borderLeft.transform.position.y, 2.0f, 2.0f, 0.0f);
+        laser = GameEvents.CreateLaser(GameEvents.GetMiddleX(), GameEvents.GetMiddleY(), 2.0f, 2.0f, 0.0f);
         GameEvents.MoveLaser(laser, 0, -5, 5);
 
         yield return new WaitForSeconds (7f);

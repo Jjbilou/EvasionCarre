@@ -102,6 +102,14 @@ public class GameEvents : MonoBehaviour
         borderBottom.transform.DOLocalMoveY(borderBottom.transform.localPosition.y - scaleValue, animationTime);
     }
 
+    public static void ResetBorders()
+    {
+        borderLeft.transform.DOMove(new Vector3(-9f, 0.0f, 1.0f), 1.0f);
+        borderRight.transform.DOMove(new Vector3(9f, 0.0f, 1.0f), 1.0f);
+        borderTop.transform.DOMove(new Vector3(0.0f, 9f, 1.0f), 1.0f);
+        borderBottom.transform.DOMove(new Vector3(0.0f, -9f, 1.0f), 1.0f);
+    }
+
     public static void RotateBorders(float angle, float animationTime)
     {
         borders.transform.DORotate(new Vector3(0.0f, 0.0f, angle), animationTime);
@@ -110,10 +118,8 @@ public class GameEvents : MonoBehaviour
     public static GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
         GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
-        Laser cloneScript = laserClone.GetComponent<Laser>();
 
         laserClone.transform.localScale = new Vector3(laserWidth, laserHeight, 1.0f);
-        cloneScript.enabled = true;
 
         return laserClone;
     }
@@ -128,7 +134,7 @@ public class GameEvents : MonoBehaviour
         laser.transform.DOMove(new Vector3(posX, posY, 1.0f), duration);
     }
 
-   public static void ScaleLaser(GameObject laser, float width, float height, float duration)
+    public static void ScaleLaser(GameObject laser, float width, float height, float duration)
     {
         laser.transform.DOScale(new Vector3(laser.transform.localScale.x + width, laser.transform.localScale.y + height, 1.0f), duration);
     }
@@ -136,10 +142,9 @@ public class GameEvents : MonoBehaviour
     public static GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
     {
         GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
-        Bullet cloneScript = bulletClone.GetComponent<Bullet>();
-
         bulletClone.transform.localScale *= size;
-        cloneScript.enabled = true;
+
+        Bullet cloneScript = bulletClone.GetComponent<Bullet>();
         cloneScript.angle = angle;
         cloneScript.speed = speed;
         cloneScript.level = level;
@@ -151,9 +156,7 @@ public class GameEvents : MonoBehaviour
     {
         angle = Mathf.PI * angle / 180.0f;
         playerCollision.attractMovement = force * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 1.0f);
-        playerCollision.isAttracted = true;
-        Thread.Sleep((int)duration * 1000);
-        playerCollision.isAttracted = false;
+        playerCollision.attractingTime = duration;
     }
 
     public static void PlayerScale(float scaleValue, float animationTime)

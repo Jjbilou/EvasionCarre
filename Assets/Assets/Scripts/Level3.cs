@@ -1,27 +1,13 @@
 using System.Collections;
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Level3 : MonoBehaviour
 {
-    [SerializeField]
-    GameObject bullet;
-    [SerializeField]
-    GameObject laser;
-
-    GameObject borders;
-    GameObject borderLeft;
-    GameObject borderRight;
-    GameObject borderTop;
-    GameObject borderBottom;
-    GameObject player;
-
     // Start is called before the first frame update
     void Start()
     {
         GameEvents.Init("Level3");
-        StartCoroutine(Launch());
+        GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }
 
     IEnumerator Launch()
