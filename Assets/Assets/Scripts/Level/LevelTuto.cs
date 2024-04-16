@@ -6,20 +6,7 @@ public class LevelTuto : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject laser;
-    [SerializeField] TMP_Text Txt1;
-    [SerializeField] TMP_Text Txt2;
-    [SerializeField] TMP_Text Txt3;
-    [SerializeField] TMP_Text Txt4;
-    [SerializeField] TMP_Text Txt5;
-    [SerializeField] TMP_Text Txt6;
-    [SerializeField] TMP_Text Txt7;
-    [SerializeField] TMP_Text Txt8;
-    [SerializeField] TMP_Text Txt9;
-    [SerializeField] TMP_Text Txt10;
-    [SerializeField] TMP_Text Txt11;
-    [SerializeField] TMP_Text Txt12;
-    [SerializeField] TMP_Text Txt13;
-
+    [SerializeField] TMP_Text text;
     public bool clear = false;
 
 
@@ -27,19 +14,6 @@ public class LevelTuto : MonoBehaviour
     void Start()
     {
         GameEvents.Init("LevelTuto");
-        Txt1.enabled = false;
-        Txt2.enabled = false;
-        Txt3.enabled = false;
-        Txt4.enabled = false;
-        Txt5.enabled = false;
-        Txt6.enabled = false;
-        Txt7.enabled = false;
-        Txt8.enabled = false;
-        Txt9.enabled = false;
-        Txt10.enabled = false;
-        Txt11.enabled = false;
-        Txt12.enabled = false;
-        Txt13.enabled = false;
         GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }
 
@@ -52,24 +26,21 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (1.0f);
 
-        Txt1.enabled = true;
+        text.text = "Welcome to your new playground... Hell!";
 
         yield return new WaitForSeconds (5f);
 
-        Txt1.enabled = false;
-        Txt2.enabled = true;
+        text.text = "You don't seem very skilled. I'm going to teach you how to play";
 
         yield return new WaitForSeconds (5f);
 
-        Txt2.enabled = false;
-        Txt3.enabled = true;
+        text.text = "First, the balls, they kill you instantly so avoid touching them";
         bullet = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 180.0f, 10.0f, 4);
 
         yield return new WaitForSeconds (7f);
 
         Destroy(bullet);
-        Txt3.enabled = false;
-        Txt4.enabled = true;
+        text.text = "Some disappear after 1, 2 or 3 bounces";
 
         yield return new WaitForSeconds (2.0f);
 
@@ -77,15 +48,13 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (7f);
 
-        Txt4.enabled = false;
-        Txt5.enabled = true;
+        text.text = "There are also lasers, same deal, if you touch them ou die so don't be stupid and step back";
         laser = GameEvents.CreateLaser(GameEvents.GetMiddleX(), GameEvents.GetMiddleY(), 2.0f, 2.0f, 0.0f);
         GameEvents.MoveLaser(laser, 0, -5, 5);
 
         yield return new WaitForSeconds (7f);
 
-        Txt5.enabled = false;
-        Txt6.enabled = true;
+        text.text = "they can move in all directions and even rotate so be careful";
         GameEvents.MoveLaser(laser, 0, 2, 5);
 
         yield return new WaitForSeconds (5f);
@@ -95,8 +64,7 @@ public class LevelTuto : MonoBehaviour
         yield return new WaitForSeconds (7f);
 
         Destroy(laser);
-        Txt6.enabled = false;
-        Txt7.enabled = true;
+        text.text = "Move away from the edges, when they turn red you can't touch them anymore";
 
         yield return new WaitForSeconds (3f);
 
@@ -104,8 +72,7 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (3f);
 
-        Txt7.enabled = false;
-        Txt8.enabled = true;
+        text.text = "Come to the middle of the square, the edges can also shrink";
 
         yield return new WaitForSeconds (2.0f);
         
@@ -117,8 +84,7 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (6f);
 
-        Txt8.enabled = false;
-        Txt9.enabled = true;
+        text.text = "And expand";
         GameEvents.BorderScaleLeft(8f, 3);
         GameEvents.BorderScaleRight(8f, 3);
         GameEvents.BorderScaleTop(8f, 3);
@@ -126,8 +92,7 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (6f);
 
-        Txt9.enabled = false;
-        Txt10.enabled = true;
+        text.text = "You can also be pulled towards one side. Mode or less strongly";
         GameEvents.PlayerAttraction(0.0f, 10.0f, 5f);
         
         yield return new WaitForSeconds (5f);
@@ -136,8 +101,7 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (5f);
 
-        Txt10.enabled = false;
-        Txt11.enabled = true;
+        text.text = "Your size can also change";
         GameEvents.PlayerScale(4f, 2.0f);
 
         yield return new WaitForSeconds (3f);
@@ -146,17 +110,15 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (3f);
 
-        Txt11.enabled = false;
-        Txt12.enabled = true;
+        text.text = "In short, all this to say that you're not likely to survive here... Shall we do a little test ?";
 
         yield return new WaitForSeconds (5f);
 
-        Txt12.enabled = false;
-        Txt13.enabled = true;
+        text.text = "Good luck";
 
         yield return new WaitForSeconds (2.0f);
 
-        Txt13.enabled = false;
+        text.enabled = false;
         clear = true;
         laser2 = GameEvents.CreateLaser(0, 0, 2.0f, 3f, 0.0f);
         laser3 = GameEvents.CreateLaser(0, 0, 2.0f, 3f, 90.0f);
