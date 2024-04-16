@@ -110,19 +110,19 @@ public class LevelTuto : MonoBehaviour
         yield return new WaitForSeconds (2.0f);
         
         GameEvents.DisableDeadlyBorders();
-        GameEvents.BorderLeftScale(-8f, 3);
-        GameEvents.BorderRightScale(-8f, 3);
-        GameEvents.BorderTopScale(-8f, 3);
-        GameEvents.BorderBottomScale(-8f, 3);
+        GameEvents.BorderScaleLeft(-8f, 3);
+        GameEvents.BorderScaleRight(-8f, 3);
+        GameEvents.BorderScaleTop(-8f, 3);
+        GameEvents.BorderScaleBottom(-8f, 3);
 
         yield return new WaitForSeconds (6f);
 
         Txt8.enabled = false;
         Txt9.enabled = true;
-        GameEvents.BorderLeftScale(8f, 3);
-        GameEvents.BorderRightScale(8f, 3);
-        GameEvents.BorderTopScale(8f, 3);
-        GameEvents.BorderBottomScale(8f, 3);
+        GameEvents.BorderScaleLeft(8f, 3);
+        GameEvents.BorderScaleRight(8f, 3);
+        GameEvents.BorderScaleTop(8f, 3);
+        GameEvents.BorderScaleBottom(8f, 3);
 
         yield return new WaitForSeconds (6f);
 

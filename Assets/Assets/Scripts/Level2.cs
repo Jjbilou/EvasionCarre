@@ -48,9 +48,9 @@ public class Level2 : MonoBehaviour
 
         // yield return new WaitForSeconds(1.0f);
 
-        // BorderTopScale(-5, 1.0f);
-        // BorderLeftScale(-2.0f, 0.5f);
-        // BorderBottomScale(-2.0f, 0.5f);
+        // BorderScaleTop(-5, 1.0f);
+        // BorderScaleLeft(-2.0f, 0.5f);
+        // BorderScaleBottom(-2.0f, 0.5f);
 
         // yield return new WaitForSeconds(0.5f);
 
@@ -72,9 +72,9 @@ public class Level2 : MonoBehaviour
         // Destroy(bullet2);
         // Destroy(bullet3);
         // Destroy(bullet4);
-        // BorderTopScale(5, 0.5f);
-        // BorderLeftScale(2.0f, 0.5f);
-        // BorderBottomScale(2.0f, 0.5f);
+        // BorderScaleTop(5, 0.5f);
+        // BorderScaleLeft(2.0f, 0.5f);
+        // BorderScaleBottom(2.0f, 0.5f);
 
         // yield return new WaitForSeconds(1.0f); //10.5'
 
@@ -121,29 +121,29 @@ public class Level2 : MonoBehaviour
 
         // yield return new WaitForSeconds(2.0f);
 
-        // BorderLeftScale(-5.0f, 1.0f);
-        // BorderRightScale(-5.0f, 1.0f);
-        // BorderTopScale(-5.0f, 1.0f);
-        // BorderBottomScale(-5.0f, 1.0f);
+        // BorderScaleLeft(-5.0f, 1.0f);
+        // BorderScaleRight(-5.0f, 1.0f);
+        // BorderScaleTop(-5.0f, 1.0f);
+        // BorderScaleBottom(-5.0f, 1.0f);
 
         // yield return new WaitForSeconds(1.0f);
 
-        // BorderLeftScale(-5.0f, 2.0f);
-        // BorderRightScale(5.0f, 2.0f);
-        // BorderTopScale(5.0f, 2.0f);
-        // BorderBottomScale(-5.0f, 2.0f);
+        // BorderScaleLeft(-5.0f, 2.0f);
+        // BorderScaleRight(5.0f, 2.0f);
+        // BorderScaleTop(5.0f, 2.0f);
+        // BorderScaleBottom(-5.0f, 2.0f);
 
         // yield return new WaitForSeconds(2.0f);
 
-        // BorderLeftScale(10.0f, 2.0f);
-        // BorderRightScale(-10.0f, 2.0f);
-        // BorderTopScale(-10.0f, 2.0f);
-        // BorderBottomScale(10.0f, 2.0f);
+        // BorderScaleLeft(10.0f, 2.0f);
+        // BorderScaleRight(-10.0f, 2.0f);
+        // BorderScaleTop(-10.0f, 2.0f);
+        // BorderScaleBottom(10.0f, 2.0f);
 
         // yield return new WaitForSeconds(2.0f); //20.5'
 
-        // BorderRightScale(10.0f, 2.0f);
-        // BorderTopScale(10.0f, 2.0f);
+        // BorderScaleRight(10.0f, 2.0f);
+        // BorderScaleTop(10.0f, 2.0f);
 
         // yield return new WaitForSeconds(2.0f);
 
@@ -190,10 +190,10 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        GameEvents.BorderLeftScale(2.0f, 2.0f);
-        GameEvents.BorderRightScale(-2.0f, 2.0f);
-        GameEvents.BorderTopScale(-2.0f, 2.0f);
-        GameEvents.BorderBottomScale(2.0f, 2.0f);
+        GameEvents.BorderScaleLeft(2.0f, 2.0f);
+        GameEvents.BorderScaleRight(-2.0f, 2.0f);
+        GameEvents.BorderScaleTop(-2.0f, 2.0f);
+        GameEvents.BorderScaleBottom(2.0f, 2.0f);
 
         yield return new WaitForSeconds(2.0f);
 

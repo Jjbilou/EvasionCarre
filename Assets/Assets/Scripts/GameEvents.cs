@@ -82,22 +82,22 @@ public class GameEvents : MonoBehaviour
         borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
     }
 
-    public static void BorderLeftScale(float scaleValue, float animationTime)
+    public static void BorderScaleLeft(float scaleValue, float animationTime)
     {
         borderLeft.transform.DOLocalMoveX(borderLeft.transform.localPosition.x - scaleValue, animationTime);
     }
 
-    public static void BorderRightScale(float scaleValue, float animationTime)
+    public static void BorderScaleRight(float scaleValue, float animationTime)
     {
         borderRight.transform.DOLocalMoveX(borderRight.transform.localPosition.x + scaleValue, animationTime);
     }
 
-    public static void BorderTopScale(float scaleValue, float animationTime)
+    public static void BorderScaleTop(float scaleValue, float animationTime)
     {
         borderTop.transform.DOLocalMoveY(borderTop.transform.localPosition.y + scaleValue, animationTime);
     }
 
-    public static void BorderBottomScale(float scaleValue, float animationTime)
+    public static void BorderScaleBottom(float scaleValue, float animationTime)
     {
         borderBottom.transform.DOLocalMoveY(borderBottom.transform.localPosition.y - scaleValue, animationTime);
     }
