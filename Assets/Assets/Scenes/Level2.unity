@@ -392,6 +392,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 639497059121158775, guid: b7a7e5b93aa7fcf4ab8d71794f4d5429, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1695349529297850829, guid: b7a7e5b93aa7fcf4ab8d71794f4d5429, type: 3}
       propertyPath: borderTop
       value: 
@@ -466,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 1571750068}
     - target: {fileID: 8824821096300570544, guid: b7a7e5b93aa7fcf4ab8d71794f4d5429, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824821096300570544, guid: b7a7e5b93aa7fcf4ab8d71794f4d5429, type: 3}
       propertyPath: m_IsTrigger

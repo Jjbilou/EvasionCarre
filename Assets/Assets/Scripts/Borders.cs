@@ -29,8 +29,8 @@ public class Borders : MonoBehaviour
         borderTop.localPosition = new Vector3(middleX, borderTop.localPosition.y, 0.0f);
         borderBottom.localPosition = new Vector3(middleX, borderBottom.localPosition.y, 0.0f);
 
-        float sizeX = Vector2.Distance(borderTop.position, borderBottom.position) + borderWidth;
-        float sizeY = Vector2.Distance(borderLeft.position, borderRight.position) + borderWidth;
+        float sizeX = Vector2.Distance(borderLeft.position, borderRight.position) + borderWidth;
+        float sizeY = Vector2.Distance(borderTop.position, borderBottom.position) + borderWidth;
 
         borderLeft.localScale = new Vector3(borderWidth, sizeY, 1.0f);
         borderRight.localScale = new Vector3(borderWidth, sizeY, 1.0f);
