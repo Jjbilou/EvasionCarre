@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,9 +9,9 @@ public class AudioController : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Music").Length > 1)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -34,7 +31,7 @@ public class AudioController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName.Contains("Level") && sceneName != "LevelChoose")
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

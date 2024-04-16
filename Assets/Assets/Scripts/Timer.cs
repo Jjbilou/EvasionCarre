@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +6,7 @@ public class Timer : MonoBehaviour
     public bool active;
 
     TMP_Text text;
-    float time = 0f;
+    float time = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +21,9 @@ public class Timer : MonoBehaviour
         if (active)
         {
             time += Time.deltaTime;
-            string display = (time / 60 < 10 ? '0' + Math.Floor(time / 60).ToString() : Math.Floor(time / 60).ToString()) + ':' + (time % 60 < 10 ? '0' + Math.Floor(time % 60).ToString() : Math.Floor(time % 60).ToString());
+            int minutes = (int)Mathf.Floor(time / 60.0f);
+            int seconds = (int)Mathf.Floor(time % 60.0f);
+            string display = (minutes < 10 ? '0' + minutes.ToString() : minutes.ToString()) + ':' + (seconds < 10 ? '0' + seconds.ToString() : seconds.ToString());
             text.SetText(display);
         }
         else

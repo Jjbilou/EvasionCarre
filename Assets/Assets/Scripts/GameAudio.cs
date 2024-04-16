@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameAudio : MonoBehaviour
@@ -10,6 +8,11 @@ public class GameAudio : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (!PlayerPrefs.HasKey("volume"))
+        {
+            PlayerPrefs.SetFloat("volume", 1.0f);
+        }
     }
 
     // Update is called once per frame

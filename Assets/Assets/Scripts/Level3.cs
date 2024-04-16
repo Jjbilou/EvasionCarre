@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Level3 : MonoBehaviour
 {
+<<<<<<< HEAD
     [SerializeField]
     GameObject bullet;
     [SerializeField]
@@ -53,77 +50,92 @@ public class Level3 : MonoBehaviour
             isAttracted = false;
             StopAllCoroutines();
         }
+=======
+    // Start is called before the first frame update
+    void Start()
+    {
+        GameEvents.Init("Level3");
+        GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
+>>>>>>> d1fccf2791d79c2dbb647e12db673fbe89f8c380
     }
 
     IEnumerator Launch()
     {
-        yield return new WaitForSeconds (2f);
+        yield return new WaitForSeconds (2.0f);
 
         GameObject laser;
         GameObject laser2;
         GameObject laser3;
         GameObject laser4;
-        GameObject laser5;
-        GameObject laser6;
+        // GameObject laser5;
+        // GameObject laser6;
 
-        laser = CreateLaser(-3, 9, 2f, 3f, 0f);
-        MoveLaser(laser,-3, -9, 1f);
+        laser = GameEvents.CreateLaser(-3.0f, 9.0f, 2.0f, 3.0f, 0.0f);
+        GameEvents.MoveLaser(laser,-3, -9, 1.0f);
         
 
         yield return new WaitForSeconds (0.5f);
 
-        laser2 = CreateLaser(-9, -3, 2f, 3f, 90f);
-        MoveLaser(laser2, 9, -3, 1f);
+        laser2 = GameEvents.CreateLaser(-9.0f, -3.0f, 2.0f, 3.0f, 90.0f);
+        GameEvents.MoveLaser(laser2, 9.0f, -3.0f, 1.0f);
 
         yield return new WaitForSeconds (0.5f);
 
-        laser3 = CreateLaser(3, -9, 2f, 3f, 0f);
-        MoveLaser(laser3, 3, 9, 2f);
-        MoveLaser(laser, 1, 0, 1f);   
-        MoveLaser(laser2, 0, -1, 1f);
+        laser3 = GameEvents.CreateLaser(3.0f, -9.0f, 2.0f, 3.0f, 0.0f);
+        GameEvents.MoveLaser(laser3, 3.0f, 9.0f, 2.0f);
+        GameEvents.MoveLaser(laser, 1.0f, 0.0f, 1.0f);   
+        GameEvents.MoveLaser(laser2, 0.0f, -1.0f, 1.0f);
 
-        yield return new WaitForSeconds (2f);
+        yield return new WaitForSeconds (2.0f);
 
-        laser4 = CreateLaser(0, -9, 2f, 3f, 0f);
-        MoveLaser(laser4, -12, 0, 1f);
-        MoveLaser(laser, 9, 0, 1f);
+        laser4 = GameEvents.CreateLaser(0.0f, -9.0f, 2.0f, 3.0f, 0.0f);
+        GameEvents.MoveLaser(laser4, -12.0f, 0.0f, 1.0f);
+        GameEvents.MoveLaser(laser, 9.0f, 0.0f, 1.0f);
     
         yield return new WaitForSeconds (0.8f);
 
-        MoveLaser(laser3, 0, 0, 1f);
+        GameEvents.MoveLaser(laser3, 0.0f, 0.0f, 1.0f);
 
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (1.0f);
 
-        MoveLaser(laser, 0, 0, 1f);
-        MoveLaser(laser2, 0, 0, 1f);
-        MoveLaser(laser4, 0, 0, 1f);
+        GameEvents.MoveLaser(laser, 0.0f, 0.0f, 1.0f);
+        GameEvents.MoveLaser(laser2, 0.0f, 0.0f, 1.0f);
+        GameEvents.MoveLaser(laser4, 0.0f, 0.0f, 1.0f);
 
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (1.0f);
 
+<<<<<<< HEAD
         ScaleLaser(laser3, 0, 1, 1f);
         ScaleLaser(laser4, 0, 1, 1f);
         RotateLaser(laser3, 720, 10f);
         RotateLaser(laser4, 720, 10f);
+=======
+        GameEvents.ScaleLaser(laser3, 0.0f, 1.0f, 1.0f);
+        GameEvents.ScaleLaser(laser4, 0.0f, 1.0f, 1.0f);
+        GameEvents.RotateLaser(laser3, 720.0f, 20.0f);
+        GameEvents.RotateLaser(laser4, 720.0f, 20.0f);
+>>>>>>> d1fccf2791d79c2dbb647e12db673fbe89f8c380
 
         for (int i = 0; i < 2; i++)
         {
-            MoveLaser(laser2, 0, 3, 1f);
+            GameEvents.MoveLaser(laser2, 0.0f, 3.0f, 1.0f);
 
             yield return new WaitForSeconds (1f);
 
-            MoveLaser(laser, -3, 0, 1f);
+            GameEvents.MoveLaser(laser, -3.0f, 0.0f, 1.0f);
 
             yield return new WaitForSeconds (1f);
 
-            MoveLaser(laser2, 0, -3, 1f);
+            GameEvents.MoveLaser(laser2, 0.0f, -3.0f, 1.0f);
 
             yield return new WaitForSeconds (1.5f);
 
-            MoveLaser(laser, 3, 0, 1f);
+            GameEvents.MoveLaser(laser, 3.0f, 0.0f, 1.0f);
 
             yield return new WaitForSeconds (1.5f);
         }
 
+<<<<<<< HEAD
         ScaleLaser(laser3, 0, -1, 1f);
         ScaleLaser(laser4, 0, -1, 1f);
         yield return new WaitForSeconds (1f);
@@ -131,6 +143,14 @@ public class Level3 : MonoBehaviour
         MoveLaser(laser, 0, 0, 1f);
         MoveLaser(laser, 0, 0, 1f);
         RotateLaser(laser4, 90, 1f);
+=======
+        yield return new WaitForSeconds (5.0f);
+
+        /*laser5 = CreateLaser(-1.0f, 8.0f, 2.0f, 2.5f, 0.0f);
+        MoveLaser(laser5, 0.0f, -9.0f, 4.0f);
+        laser6 = CreateLaser(-1.0f, 8.0f, 2.0f, 2.5f, 0.0f);
+        MoveLaser(laser6, 0.0f, -9.0f, 4.0f);*/
+>>>>>>> d1fccf2791d79c2dbb647e12db673fbe89f8c380
 
         yield return new WaitForSeconds (1f);
     
@@ -143,12 +163,16 @@ public class Level3 : MonoBehaviour
 
         yield return new WaitForSeconds (2f);
 
+<<<<<<< HEAD
         GameObject red1 = CreateRedLine(-18, -6, 0);
         GameObject red2 = CreateRedLine(-6, -18, 90);
         GameObject red3 = CreateRedLine(-18, -0, 0);
         GameObject red4 = CreateRedLine(0, -18, 90);
         GameObject red5 = CreateRedLine(-18, 6, 0);
         GameObject red6 = CreateRedLine(6, -18, 90);
+=======
+        yield return new WaitForSeconds (3.0f);
+>>>>>>> d1fccf2791d79c2dbb647e12db673fbe89f8c380
 
         yield return new WaitForSeconds (0.2f);
 
@@ -217,6 +241,7 @@ public class Level3 : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
 
+<<<<<<< HEAD
         GameWon();
     }
 
@@ -350,6 +375,9 @@ public class Level3 : MonoBehaviour
         StopAllCoroutines();
         DOTween.PauseAll();
         SceneManager.LoadScene("WinMenu");
+=======
+        GameEvents.GameWon();
+>>>>>>> d1fccf2791d79c2dbb647e12db673fbe89f8c380
     }
 }
 
