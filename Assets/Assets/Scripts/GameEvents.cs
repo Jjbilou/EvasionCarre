@@ -94,6 +94,12 @@ public class GameEvents : MonoBehaviour
         borderRight.transform.DOLocalMoveX(borderRight.transform.localPosition.x + scaleValue, animationTime);
     }
 
+    public static void BorderScaleX(float scaleValue, float animationTime)
+    {
+        BorderScaleLeft(scaleValue, animationTime);
+        BorderScaleRight(scaleValue, animationTime);
+    }
+
     public static void BorderScaleTop(float scaleValue, float animationTime)
     {
         borderTop.transform.DOLocalMoveY(borderTop.transform.localPosition.y + scaleValue, animationTime);
@@ -102,6 +108,18 @@ public class GameEvents : MonoBehaviour
     public static void BorderScaleBottom(float scaleValue, float animationTime)
     {
         borderBottom.transform.DOLocalMoveY(borderBottom.transform.localPosition.y - scaleValue, animationTime);
+    }
+
+    public static void BorderScaleY(float scaleValue, float animationTime)
+    {
+        BorderScaleTop(scaleValue, animationTime);
+        BorderScaleBottom(scaleValue, animationTime);
+    }
+
+    public static void BorderScaleAll(float scaleValue, float animationTime)
+    {
+        BorderScaleX(scaleValue, animationTime);
+        BorderScaleY(scaleValue, animationTime);
     }
 
     public static void ResetBorders()
