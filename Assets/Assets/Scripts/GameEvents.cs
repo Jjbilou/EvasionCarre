@@ -82,6 +82,31 @@ public class GameEvents : MonoBehaviour
         borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
     }
 
+    public static void BorderLeftScale(float scaleValue, float animationTime)
+    {
+        borderLeft.transform.DOLocalMoveX(borderLeft.transform.localPosition.x - scaleValue, animationTime);
+    }
+
+    public static void BorderRightScale(float scaleValue, float animationTime)
+    {
+        borderRight.transform.DOLocalMoveX(borderRight.transform.localPosition.x + scaleValue, animationTime);
+    }
+
+    public static void BorderTopScale(float scaleValue, float animationTime)
+    {
+        borderTop.transform.DOLocalMoveY(borderTop.transform.localPosition.y + scaleValue, animationTime);
+    }
+
+    public static void BorderBottomScale(float scaleValue, float animationTime)
+    {
+        borderBottom.transform.DOLocalMoveY(borderBottom.transform.localPosition.y - scaleValue, animationTime);
+    }
+
+    public static void RotateBorders(float angle, float animationTime)
+    {
+        borders.transform.DORotate(new Vector3(0.0f, 0.0f, angle), animationTime);
+    }
+
     public static GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
         GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
@@ -103,6 +128,11 @@ public class GameEvents : MonoBehaviour
         laser.transform.DOMove(new Vector3(posX, posY, 1.0f), duration);
     }
 
+   public static void ScaleLaser(GameObject laser, float width, float height, float duration)
+    {
+        laser.transform.DOScale(new Vector3(laser.transform.localScale.x + width, laser.transform.localScale.y + height, 1.0f), duration);
+    }
+
     public static GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
     {
         GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
@@ -115,26 +145,6 @@ public class GameEvents : MonoBehaviour
         cloneScript.level = level;
 
         return bulletClone;
-    }
-
-    public static void BorderLeftScale(float scaleValue, float animationTime)
-    {
-        borderLeft.transform.DOMoveX(borderLeft.transform.position.x - scaleValue, animationTime);
-    }
-
-    public static void BorderRightScale(float scaleValue, float animationTime)
-    {
-        borderRight.transform.DOMoveX(borderRight.transform.position.x + scaleValue, animationTime);
-    }
-
-    public static void BorderTopScale(float scaleValue, float animationTime)
-    {
-        borderTop.transform.DOMoveY(borderTop.transform.position.y + scaleValue, animationTime);
-    }
-
-    public static void BorderBottomScale(float scaleValue, float animationTime)
-    {
-        borderBottom.transform.DOMoveY(borderBottom.transform.position.y - scaleValue, animationTime);
     }
 
     public static void PlayerAttraction(float angle, float force, float duration)

@@ -55,14 +55,14 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "HorizontalBorder")
+        if (collision.CompareTag("HorizontalBorder"))
         {
             BounceOrDestroy();
 
             movement = new Vector3(movement.x, movement.y * -1.0f, 0.0f);
         }
 
-        if (collision.tag == "VerticalBorder")
+        if (collision.CompareTag("VerticalBorder"))
         {
             BounceOrDestroy();
 

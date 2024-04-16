@@ -35,21 +35,6 @@ public class LevelEndless : MonoBehaviour
         StartCoroutine(Launch());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isAttracted)
-        {
-            player.transform.position += attractMovement * Time.deltaTime;
-        }
-
-        if (!playerCollision.running)
-        {
-            isAttracted = false;
-            StopAllCoroutines();
-        }
-    }
-
     IEnumerator Launch()
     {
         yield return new WaitForSeconds(2.0f);
@@ -88,10 +73,10 @@ public class LevelEndless : MonoBehaviour
                     EnableDeadlyBorders();
                     float boxReduction = UnityEngine.Random.Range(-6f, -1.0f);
 
-                    BorderLeftScale(boxReduction, 1);
-                    BorderRightScale(boxReduction, 1);
-                    BorderTopScale(boxReduction, 1);
-                    BorderBottomScale(boxReduction, 1);
+                    BorderLeftMove(boxReduction, 1);
+                    BorderRightMove(boxReduction, 1);
+                    BorderTopMove(boxReduction, 1);
+                    BorderBottomMove(boxReduction, 1);
 
                     yield return new WaitForSeconds(1.0f);
 
@@ -101,10 +86,10 @@ public class LevelEndless : MonoBehaviour
                         float movementX = UnityEngine.Random.Range(3f, 5f) * (UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1);
                         float movementY = UnityEngine.Random.Range(3f, 5f) * (UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1);
 
-                        BorderLeftScale(-movementX, 1);
-                        BorderRightScale(movementX, 1);
-                        BorderTopScale(movementY, 1);
-                        BorderBottomScale(-movementY, 1);
+                        BorderLeftMove(-movementX, 1);
+                        BorderRightMove(movementX, 1);
+                        BorderTopMove(movementY, 1);
+                        BorderBottomMove(-movementY, 1);
 
                         yield return new WaitForSeconds(1.0f);
                     }
@@ -231,22 +216,22 @@ public class LevelEndless : MonoBehaviour
         }
     }
 
-    void BorderLeftScale(float scaleValue, float animationTime)
+    void BorderLeftMove(float scaleValue, float animationTime)
     {
         borderLeft.transform.DOMoveX(borderLeft.transform.position.x - scaleValue, animationTime);
     }
 
-    void BorderRightScale(float scaleValue, float animationTime)
+    void BorderRightMove(float scaleValue, float animationTime)
     {
         borderRight.transform.DOMoveX(borderRight.transform.position.x + scaleValue, animationTime);
     }
 
-    void BorderTopScale(float scaleValue, float animationTime)
+    void BorderTopMove(float scaleValue, float animationTime)
     {
         borderTop.transform.DOMoveY(borderTop.transform.position.y + scaleValue, animationTime);
     }
 
-    void BorderBottomScale(float scaleValue, float animationTime)
+    void BorderBottomMove(float scaleValue, float animationTime)
     {
         borderBottom.transform.DOMoveY(borderBottom.transform.position.y - scaleValue, animationTime);
     }

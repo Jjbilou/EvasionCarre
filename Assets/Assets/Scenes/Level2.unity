@@ -466,7 +466,11 @@ PrefabInstance:
       objectReference: {fileID: 1571750068}
     - target: {fileID: 8824821096300570544, guid: b7a7e5b93aa7fcf4ab8d71794f4d5429, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824821096300570544, guid: b7a7e5b93aa7fcf4ab8d71794f4d5429, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -493,8 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a75260161f539f04ba74ec3e8c3e7f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2999465936438248413, guid: 7df443d0d65534b468c2d38541196243, type: 3}
-  laser: {fileID: 4952034522435725100, guid: 525f144bb1342804d9db935bce23d75e, type: 3}
 --- !u!1001 &1372761773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,6 +520,10 @@ PrefabInstance:
     - target: {fileID: 3498516414374159679, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
       propertyPath: m_Name
       value: Borders
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498516414374159679, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6643232223676039021, guid: f67e97dad82fff84bb7ef9805bf0f2c0, type: 3}
       propertyPath: m_LocalScale.x

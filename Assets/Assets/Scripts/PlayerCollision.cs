@@ -19,8 +19,6 @@ public class PlayerCollision : MonoBehaviour
     public bool isAttracted = false;
     public Vector3 attractMovement;
 
-    public bool running = true;
-
     void Awake()
     {
         mouseScript = GetComponent<PlayerMouseMovement>();
@@ -58,39 +56,33 @@ public class PlayerCollision : MonoBehaviour
         {
             transform.position += attractMovement * Time.deltaTime;
         }
-
-        if (!running)
-        {
-            isAttracted = false;
-            StopAllCoroutines();
-        }
     }
 
-    void LateUpdate()
-    {
-        Vector3 playerPosition = transform.position;
-        float maxX = borderRight.transform.transform.position.x - borderRight.transform.localScale.x / 2.0f - transform.localScale.x / 2.0f + 0.05f;
-        float minX = borderLeft.transform.transform.position.x + borderLeft.transform.localScale.x / 2.0f + transform.localScale.x / 2.0f - 0.05f;
-        float maxY = borderTop.transform.transform.position.y - borderTop.transform.localScale.y / 2.0f - transform.localScale.y / 2.0f + 0.05f;
-        float minyY = borderBottom.transform.transform.position.y + borderBottom.transform.localScale.y / 2.0f + transform.localScale.y / 2.0f - 0.05f;
+    // void LateUpdate()
+    // {
+    //     Vector3 playerPosition = transform.position;
+    //     float maxX = borderRight.transform.transform.position.x - borderRight.transform.localScale.x / 2.0f - transform.localScale.x / 2.0f + 0.05f;
+    //     float minX = borderLeft.transform.transform.position.x + borderLeft.transform.localScale.x / 2.0f + transform.localScale.x / 2.0f - 0.05f;
+    //     float maxY = borderTop.transform.transform.position.y - borderTop.transform.localScale.y / 2.0f - transform.localScale.y / 2.0f + 0.05f;
+    //     float minyY = borderBottom.transform.transform.position.y + borderBottom.transform.localScale.y / 2.0f + transform.localScale.y / 2.0f - 0.05f;
 
-        if (playerPosition.x > maxX)
-        {
-            transform.position = new Vector3(maxX, transform.transform.position.y, 1.0f);
-        }
-        if (playerPosition.x < minX)
-        {
-            transform.position = new Vector3(minX, transform.transform.position.y, 1.0f);
-        }
-        if (playerPosition.y > maxY)
-        {
-            transform.position = new Vector3(transform.transform.position.x, maxY, 1.0f);
-        }
-        if (playerPosition.y < minyY)
-        {
-            transform.position = new Vector3(transform.transform.position.x, minyY, 1.0f);
-        }
-    }
+    //     if (playerPosition.x > maxX)
+    //     {
+    //         transform.position = new Vector3(maxX, transform.transform.position.y, 1.0f);
+    //     }
+    //     if (playerPosition.x < minX)
+    //     {
+    //         transform.position = new Vector3(minX, transform.transform.position.y, 1.0f);
+    //     }
+    //     if (playerPosition.y > maxY)
+    //     {
+    //         transform.position = new Vector3(transform.transform.position.x, maxY, 1.0f);
+    //     }
+    //     if (playerPosition.y < minyY)
+    //     {
+    //         transform.position = new Vector3(transform.transform.position.x, minyY, 1.0f);
+    //     }
+    // }
 
     void OnTriggerStay2D(Collider2D collision)
     {
@@ -98,25 +90,41 @@ public class PlayerCollision : MonoBehaviour
         {
             GameLost();
         }
-        if (collision.CompareTag("HorizontalBorder"))
+
+        if (collision.CompareTag("HorizontalBorder") || collision.CompareTag("VerticalBorder"))
         {
             if (collision.transform.parent.CompareTag("Danger"))
             {
                 GameLost();
             }
-        }
-        if (collision.CompareTag("VerticalBorder"))
-        {
-            if (collision.transform.parent.CompareTag("Danger"))
+            else
             {
-                GameLost();
+                float angle = collision.transform.eulerAngles.z * Mathf.PI / 180.0f;
+                float force = 0.3f;
+
+                switch (collision.name)
+                {
+                    case "Left":
+                        transform.position += new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0.0f) * force;
+                        break;
+                    case "Right":
+                        transform.position -= new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0.0f) * force;
+                        break;
+                    case "Top":
+                        transform.position -= new Vector3(-Mathf.Sin(angle), Mathf.Cos(angle), 0.0f) * force;
+                        break;
+                    case "Bottom":
+                        transform.position += new Vector3(-Mathf.Sin(angle), Mathf.Cos(angle), 0.0f) * force;
+                        break;
+                }
             }
         }
     }
 
     void GameLost()
     {
-        running = false;
+        isAttracted = false;
+        StopAllCoroutines();
         DOTween.KillAll();
         if (SceneManager.GetActiveScene().name == "LevelEndless")
         {
