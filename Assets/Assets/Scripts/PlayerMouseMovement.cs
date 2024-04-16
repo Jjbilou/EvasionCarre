@@ -13,7 +13,7 @@ public class PlayerMouseMovement : MonoBehaviour
         float cameraHeight = 2.0f * gameCamera.orthographicSize;
         float cameraWidth = cameraHeight * gameCamera.aspect;
 
-        ratio = new Vector2(cameraWidth / Screen.width, cameraHeight / Screen.height); //ratio between camera size and pixels number
+        ratio = new Vector2(cameraWidth / Screen.width, cameraHeight / Screen.height); //ratio between camera size and pixel number
     }
 
     // Update is called once per frame

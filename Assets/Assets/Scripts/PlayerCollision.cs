@@ -7,10 +7,6 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] ParticleSystem dieParticleSystem;
 
-    GameObject borderLeft;
-    GameObject borderRight;
-    GameObject borderTop;
-    GameObject borderBottom;
     AudioSource deathSound;
     PlayerMouseMovement mouseScript;
     PlayerKeyboardMovement keyboardScript;
@@ -19,10 +15,18 @@ public class PlayerCollision : MonoBehaviour
     public bool isAttracted = false;
     public Vector3 attractMovement;
 
-    void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
+        deathSound = GetComponent<AudioSource>();
         mouseScript = GetComponent<PlayerMouseMovement>();
         keyboardScript = GetComponent<PlayerKeyboardMovement>();
+        
+        if (!PlayerPrefs.HasKey("movement"))
+        {
+            PlayerPrefs.SetString("movement", "mouse");
+        }
+
         if (PlayerPrefs.GetString("movement") == "mouse")
         {
             mouseScript.enabled = true;
@@ -33,20 +37,11 @@ public class PlayerCollision : MonoBehaviour
             mouseScript.enabled = false;
             keyboardScript.enabled = true;
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         if (SceneManager.GetActiveScene().name == "LevelEndless")
         {
             timer = GameObject.Find("TimerValue").GetComponent<Timer>();
         }
-        borderLeft = GameObject.Find("Left");
-        borderRight = GameObject.Find("Right");
-        borderTop = GameObject.Find("Top");
-        borderBottom = GameObject.Find("Bottom");
-        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
