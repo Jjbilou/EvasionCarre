@@ -1,4 +1,3 @@
-using System.Threading;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +6,7 @@ public class GameEvents : MonoBehaviour
 {
     static GameObject bullet;
     static GameObject laser;
+    static GameObject redLine;
     static GameObject borders;
     static GameObject borderLeft;
     static GameObject borderRight;
@@ -19,6 +19,7 @@ public class GameEvents : MonoBehaviour
     {
         bullet = (GameObject)Resources.Load("Bullet");
         laser = (GameObject)Resources.Load("Laser");
+        redLine = (GameObject)Resources.Load("RedLine");
         borders = GameObject.Find("Borders");
         borderLeft = GameObject.Find("Left");
         borderRight = GameObject.Find("Right");
@@ -151,6 +152,17 @@ public class GameEvents : MonoBehaviour
         cloneScript.level = level;
 
         return bulletClone;
+    }
+
+    public static GameObject CreateRedLine(float posX, float posY, float angle)
+    {
+        GameObject redLineClone = Instantiate(redLine, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));        
+        return redLineClone;
+    }
+
+    public static void MoveRedLine(GameObject redLine, float posX, float posY, float duration)
+    {
+        redLine.transform.DOMove(new Vector3(posX, posY, 1f), duration);
     }
 
     public static void PlayerAttraction(float angle, float force, float duration)
