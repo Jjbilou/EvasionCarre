@@ -17,6 +17,9 @@ public class PlayerCollision : MonoBehaviour
     public float attractingTime;
     public Vector2 attractMovement;
 
+    bool isColliding;
+    GameObject collidingObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +50,6 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         if (attractingTime > 0.0f)
@@ -55,22 +57,33 @@ public class PlayerCollision : MonoBehaviour
             player.velocity += attractMovement * Time.deltaTime;
             attractingTime -= Time.deltaTime;
         }
-    }
 
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Danger"))
+        if (isColliding)
+        {
+            if (collidingObject.CompareTag("Danger"))
         {
             GameLost();
         }
 
-        if (collision.gameObject.CompareTag("HorizontalBorder") || collision.gameObject.CompareTag("VerticalBorder"))
+        if (collidingObject.CompareTag("HorizontalBorder") || collidingObject.CompareTag("VerticalBorder"))
         {
-            if (collision.transform.parent.CompareTag("Danger"))
+            if (collidingObject.transform.parent.CompareTag("Danger"))
             {
                 GameLost();
             }
         }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        isColliding = true;
+        collidingObject = collision.gameObject;
+    }
+
+    void OnCollisionExit2D()
+    {
+        isColliding = false;
     }
 
     void GameLost()

@@ -5,18 +5,15 @@ public class AudioController : MonoBehaviour
 {
     AudioSource audioSource;
 
-    void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
         if (GameObject.FindGameObjectsWithTag("Music").Length > 1)
         {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         if (!PlayerPrefs.HasKey("volume"))
         {
             PlayerPrefs.SetFloat("volume", 0.6f);

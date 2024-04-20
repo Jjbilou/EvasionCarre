@@ -27,7 +27,7 @@ public class GameEvents : MonoBehaviour
         borderBottom = GameObject.Find("Bottom");
         player = GameObject.Find("Player");
         playerCollision = player.GetComponent<PlayerCollision>();
-        UnloadAllScenesExcept(level);
+        Destroy(GameObject.Find("MenuBGM"));
         DOTween.defaultEaseType = Ease.Linear;
     }
 
@@ -192,19 +192,6 @@ public class GameEvents : MonoBehaviour
     public static void PlayerScale(float scaleValue, float animationTime)
     {
         player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1.0f), animationTime);
-    }
-
-    public static void UnloadAllScenesExcept(string sceneName)
-    {
-        int sceneNumber = SceneManager.sceneCount;
-        for (int i = 0; i < sceneNumber; i++)
-        {
-            Scene scene = SceneManager.GetSceneAt(i);
-            if (scene.name != sceneName)
-            {
-                SceneManager.UnloadSceneAsync(scene);
-            }
-        }
     }
 
     public static void GameWon()

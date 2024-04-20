@@ -16,7 +16,7 @@ public class Level1 : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        GameEvents.PlayerAttraction(90.0f, 10.0f, 2.0f);
+        GameEvents.PlayerAttraction(90.0f, 500.0f, 2.0f);
         GameEvents.PlayerScale(1.0f, 1.0f);
 
         yield return new WaitForSeconds(2.0f);
