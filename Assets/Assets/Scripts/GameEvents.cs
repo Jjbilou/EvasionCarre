@@ -28,7 +28,6 @@ public class GameEvents : MonoBehaviour
         player = GameObject.Find("Player");
         playerCollision = player.GetComponent<PlayerCollision>();
         UnloadAllScenesExcept(level);
-        PlayerPrefs.SetString("level", level);
         DOTween.defaultEaseType = Ease.Linear;
     }
 

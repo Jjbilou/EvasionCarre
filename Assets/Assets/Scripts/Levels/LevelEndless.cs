@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class LevelEndless : MonoBehaviour
 {
+    [SerializeField] GameObject canvas;
 
     // Start is called before the first frame update
     void Start()
     {
         GameEvents.Init("LevelEndless");
+        canvas.SetActive(true);
         GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }
 

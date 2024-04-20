@@ -57,7 +57,7 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Danger"))
         {
@@ -98,9 +98,9 @@ public class PlayerCollision : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        if (SceneManager.GetActiveScene().name == "LevelTuto")
+        if (PlayerPrefs.GetString("level") == "LevelTuto")
         {
-            if (GameObject.Find("Borders").GetComponent<LevelTuto>().clear)
+            if (GameObject.Find("Level").GetComponent<LevelTuto>().clear)
             {
                 SceneManager.LoadScene("TutoWin");
             }

@@ -4,16 +4,18 @@ using TMPro;
 
 public class LevelTuto : MonoBehaviour
 {
-    [SerializeField] GameObject bullet;
-    [SerializeField] GameObject laser;
-    [SerializeField] TMP_Text text;
-    public bool clear = false;
+    [SerializeField] GameObject canvas;
 
+    TMP_Text text;
+
+    public bool clear = false;
 
     // Start is called before the first frame update
     void Start()
     {
         GameEvents.Init("LevelTuto");
+        canvas.SetActive(true);
+        text = canvas.GetComponentInChildren<TMP_Text>();
         GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }
 
@@ -48,13 +50,13 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (7.0f);
 
-        text.text = "There are also lasers, same deal, if you touch them ou die so don't be stupid and step back";
+        text.text = "There are also lasers, same deal, if you touch them you die so don't be stupid and step back";
         laser = GameEvents.CreateLaser(GameEvents.GetMiddleX(), GameEvents.GetMiddleY(), 2.0f, 2.0f, 0.0f);
         GameEvents.MoveLaser(laser, 0.0f, -5.0f, 5.0f);
 
         yield return new WaitForSeconds (7.0f);
 
-        text.text = "they can move in all directions and even rotate so be careful";
+        text.text = "They can move in all directions and even rotate so be careful";
         GameEvents.MoveLaser(laser, 0.0f, 2.0f, 5.0f);
 
         yield return new WaitForSeconds (5.0f);
@@ -92,7 +94,7 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (6.0f);
 
-        text.text = "You can also be pulled towards one side. Mode or less strongly";
+        text.text = "You can also be pulled towards one side. More or less strongly";
         GameEvents.PlayerAttraction(0.0f, 10.0f, 5.0f);
         
         yield return new WaitForSeconds (5.0f);
@@ -110,7 +112,7 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (3.0f);
 
-        text.text = "In short, all this to say that you're not likely to survive here... Shall we do a little test ?";
+        text.text = "In short, all this to say that you're not likely to survive here... Shall we do a little test?";
 
         yield return new WaitForSeconds (5.0f);
 
