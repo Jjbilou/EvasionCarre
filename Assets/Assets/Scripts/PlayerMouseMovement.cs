@@ -4,11 +4,13 @@ public class PlayerMouseMovement : MonoBehaviour
 {
     [SerializeField] float speed;
     
-    private Vector2 ratio;
+    Rigidbody2D player;
+    Vector2 ratio;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GetComponent<Rigidbody2D>();
         Camera gameCamera = GameObject.Find("MainCamera").GetComponent<Camera>();
         float cameraHeight = 2.0f * gameCamera.orthographicSize;
         float cameraWidth = cameraHeight * gameCamera.aspect;
@@ -24,10 +26,10 @@ public class PlayerMouseMovement : MonoBehaviour
 
         if (Vector2.Distance(mousePosition, playerPosition) > 0.1f)
         {
-            Vector3 movement = new(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y, 0);
+            Vector2 movement = new(mousePosition.x - playerPosition.x, mousePosition.y - playerPosition.y);
             movement.Normalize();
 
-            transform.position += speed * Time.deltaTime * movement;
+            player.velocity = speed * Time.deltaTime * movement;
         }
     }
 }

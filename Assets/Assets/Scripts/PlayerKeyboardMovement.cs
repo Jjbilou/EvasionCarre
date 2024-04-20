@@ -4,12 +4,19 @@ public class PlayerKeyboardMovement : MonoBehaviour
 {
     [SerializeField] float speed;
 
+    Rigidbody2D player;
+
+    void Start()
+    {
+        player = GetComponent<Rigidbody2D>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f);
+        Vector2 movement = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement.Normalize();
 
-        transform.position += speed * Time.deltaTime * movement;
+        player.velocity = speed * Time.deltaTime * movement;
     }
 }

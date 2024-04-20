@@ -186,7 +186,7 @@ public class GameEvents : MonoBehaviour
     public static void PlayerAttraction(float angle, float force, float duration)
     {
         angle = Mathf.PI * angle / 180.0f;
-        playerCollision.attractMovement = force * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 1.0f);
+        playerCollision.attractMovement = force * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         playerCollision.attractingTime = duration;
     }
 

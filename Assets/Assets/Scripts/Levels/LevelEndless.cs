@@ -32,7 +32,7 @@ public class LevelEndless : MonoBehaviour
                         {
                             if (i != hole && i != hole + 1)
                             {
-                                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 7.0f, 1);
+                                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 350.0f, 1);
                             }
                         }
 
@@ -80,7 +80,7 @@ public class LevelEndless : MonoBehaviour
 
                     for (int i = 0; i < 20; i++)
                     {
-                        GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 90.0f - i * 18f, 7f, 3);
+                        GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 90.0f - i * 18.0f, 350f, 3);
                         yield return new WaitForSeconds(0.25f);
                     }
 
@@ -88,22 +88,22 @@ public class LevelEndless : MonoBehaviour
                     switch (Random.Range(0, 3))
                     {
                         default:
-                            GameEvents.CreateBullet(-8f, 8f, 1.0f, -30.0f, Random.Range(10.0f, 15f), 3);
+                            GameEvents.CreateBullet(-8.0f, 8.0f, 1.0f, -30.0f, Random.Range(500.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(GameEvents.GetRightX(), 0.0f, 3f, 4f, 90.0f);
                             break;
 
                         case 0:
-                            GameEvents.CreateBullet(8f, 8f, 1.0f, -150.0f, Random.Range(10.0f, 15f), 3);
+                            GameEvents.CreateBullet(8.0f, 8.0f, 1.0f, -150.0f, Random.Range(10.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(0.0f, GameEvents.GetTopY(), 3f, 4f, 0.0f);
                             break;
 
                         case 1:
-                            GameEvents.CreateBullet(8f, -8f, 1.0f, 150.0f, Random.Range(10.0f, 15f), 3);
+                            GameEvents.CreateBullet(8.0f, -8.0f, 1.0f, 150.0f, Random.Range(10.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(GameEvents.GetLeftX(), 0.0f, 3f, 4f, 90.0f);
                             break;
 
                         case 2:
-                            GameEvents.CreateBullet(-8f, -8f, 1.0f, 30.0f, Random.Range(10.0f, 15f), 3);
+                            GameEvents.CreateBullet(-8.0f, -8.0f, 1.0f, 30.0f, Random.Range(10.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(0.0f, GameEvents.GetBottomY(), 3f, 4f, 0.0f);
                             break;
                     }

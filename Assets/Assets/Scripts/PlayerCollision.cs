@@ -7,6 +7,7 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] ParticleSystem dieParticleSystem;
 
+    Rigidbody2D player;
     AudioSource deathSound;
     PlayerMouseMovement mouseScript;
     PlayerKeyboardMovement keyboardScript;
@@ -14,11 +15,12 @@ public class PlayerCollision : MonoBehaviour
 
     public Coroutine level;
     public float attractingTime;
-    public Vector3 attractMovement;
+    public Vector2 attractMovement;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GetComponent<Rigidbody2D>();
         deathSound = GetComponent<AudioSource>();
         mouseScript = GetComponent<PlayerMouseMovement>();
         keyboardScript = GetComponent<PlayerKeyboardMovement>();
@@ -46,74 +48,27 @@ public class PlayerCollision : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (attractingTime > 0.0f)
         {
-            transform.position += attractMovement * Time.deltaTime;
+            player.velocity += attractMovement * Time.deltaTime;
             attractingTime -= Time.deltaTime;
         }
     }
 
-    // void LateUpdate()
-    // {
-    //     Vector3 playerPosition = transform.position;
-    //     float maxX = borderRight.transform.transform.position.x - borderRight.transform.localScale.x / 2.0f - transform.localScale.x / 2.0f + 0.05f;
-    //     float minX = borderLeft.transform.transform.position.x + borderLeft.transform.localScale.x / 2.0f + transform.localScale.x / 2.0f - 0.05f;
-    //     float maxY = borderTop.transform.transform.position.y - borderTop.transform.localScale.y / 2.0f - transform.localScale.y / 2.0f + 0.05f;
-    //     float minyY = borderBottom.transform.transform.position.y + borderBottom.transform.localScale.y / 2.0f + transform.localScale.y / 2.0f - 0.05f;
-
-    //     if (playerPosition.x > maxX)
-    //     {
-    //         transform.position = new Vector3(maxX, transform.transform.position.y, 1.0f);
-    //     }
-    //     if (playerPosition.x < minX)
-    //     {
-    //         transform.position = new Vector3(minX, transform.transform.position.y, 1.0f);
-    //     }
-    //     if (playerPosition.y > maxY)
-    //     {
-    //         transform.position = new Vector3(transform.transform.position.x, maxY, 1.0f);
-    //     }
-    //     if (playerPosition.y < minyY)
-    //     {
-    //         transform.position = new Vector3(transform.transform.position.x, minyY, 1.0f);
-    //     }
-    // }
-
-    void OnTriggerStay2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Danger"))
+        if (collision.gameObject.CompareTag("Danger"))
         {
             GameLost();
         }
 
-        if (collision.CompareTag("HorizontalBorder") || collision.CompareTag("VerticalBorder"))
+        if (collision.gameObject.CompareTag("HorizontalBorder") || collision.gameObject.CompareTag("VerticalBorder"))
         {
             if (collision.transform.parent.CompareTag("Danger"))
             {
                 GameLost();
-            }
-            else
-            {
-                float angle = collision.transform.eulerAngles.z * Mathf.PI / 180.0f;
-                float force = 0.3f;
-
-                switch (collision.name)
-                {
-                    case "Left":
-                        transform.position += new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0.0f) * force;
-                        break;
-                    case "Right":
-                        transform.position -= new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0.0f) * force;
-                        break;
-                    case "Top":
-                        transform.position -= new Vector3(-Mathf.Sin(angle), Mathf.Cos(angle), 0.0f) * force;
-                        break;
-                    case "Bottom":
-                        transform.position += new Vector3(-Mathf.Sin(angle), Mathf.Cos(angle), 0.0f) * force;
-                        break;
-                }
             }
         }
     }
@@ -121,6 +76,8 @@ public class PlayerCollision : MonoBehaviour
     void GameLost()
     {
         attractingTime = 0.0f;
+        player.velocity = Vector2.zero;
+        player.angularVelocity = 0.0f;
         StopCoroutine(level);
         DOTween.KillAll();
         if (SceneManager.GetActiveScene().name == "LevelEndless")

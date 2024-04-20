@@ -6,9 +6,8 @@ public class Bullet : MonoBehaviour
     public float speed;
     public int level;
 
-
+    Rigidbody2D bullet;
     SpriteRenderer bulletRenderer;
-
     Vector3 movement;
 
     Color level1Color;
@@ -20,6 +19,7 @@ public class Bullet : MonoBehaviour
     {
         GetComponent<Collider2D>().enabled = true;
         GetComponent<Animator>().enabled = true;
+        bullet = GetComponent<Rigidbody2D>();
         bulletRenderer = GetComponent<SpriteRenderer>();
 
         level1Color = new Color(0.25f, 0.25f, 0.25f);
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         level3Color = new Color(0.75f, 0.75f, 0.75f);
 
         angle = Mathf.PI * angle / 180.0f;
-        movement = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0.0f);
+        movement = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
         switch (level)
         {
@@ -49,23 +49,23 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += speed * Time.deltaTime * movement;
+        bullet.velocity = speed * Time.deltaTime * movement;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("HorizontalBorder"))
+        if (collision.gameObject.CompareTag("HorizontalBorder"))
         {
             BounceOrDestroy();
 
-            movement = new Vector3(movement.x, movement.y * -1.0f, 0.0f);
+            movement = new Vector2(movement.x, -movement.y);
         }
 
-        if (collision.CompareTag("VerticalBorder"))
+        if (collision.gameObject.CompareTag("VerticalBorder"))
         {
             BounceOrDestroy();
 
-            movement = new Vector3(movement.x * -1.0f, movement.y, 0.0f);
+            movement = new Vector2(-movement.x, movement.y);
         }
     }
 

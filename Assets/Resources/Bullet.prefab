@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8335479406802665806}
   - component: {fileID: 6590422606983271785}
   - component: {fileID: 1716277618335192611}
+  - component: {fileID: 7591347779851414534}
   - component: {fileID: 7223923483592000414}
   - component: {fileID: 8672969961322018460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Danger
   m_Icon: {fileID: 0}
@@ -108,6 +109,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!50 &7591347779851414534
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999465936438248413}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &7223923483592000414
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +165,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.03, y: 0.08}

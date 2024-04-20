@@ -30,21 +30,21 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        GameEvents.PlayerAttraction(90.0f, 10.0f, 0.15f);
+        GameEvents.PlayerAttraction(90.0f, 500.0f, 0.15f);
 
         yield return new WaitForSeconds(0.15f);
 
-        GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, -90.0f, 10.0f, 1);
+        GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, -90.0f, 500.0f, 1);
 
         yield return new WaitForSeconds(0.25f);
 
         Destroy(laserClone);
         Destroy(laserClone2);
 
-        bullet = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 45.0f, 10.0f, 4);
-        bullet2 = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, -45.0f, 10.0f, 4);
-        bullet3 = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 135.0f, 10.0f, 4);
-        bullet4 = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, -135.0f, 10.0f, 4);
+        bullet = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 45.0f, 500.0f, 4);
+        bullet2 = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, -45.0f, 500.0f, 4);
+        bullet3 = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 135.0f, 500.0f, 4);
+        bullet4 = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, -135.0f, 500.0f, 4);
 
         yield return new WaitForSeconds(1.0f);
 
@@ -79,13 +79,13 @@ public class Level2 : MonoBehaviour
         yield return new WaitForSeconds(1.0f); //10.5'
 
         GameEvents.EnableDeadlyBorders();
-        GameEvents.PlayerAttraction(0.0f, 6.0f, 10.0f);
+        GameEvents.PlayerAttraction(0.0f, 300.0f, 5.0f);
 
         for (int i = -8; i < 9; i++)
         {
             if (i != 6 && i != 7)
             {
-                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 7.0f, 1);
+                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 350.0f, 1);
             }
         }
 
@@ -95,7 +95,7 @@ public class Level2 : MonoBehaviour
         {
             if (i != 1 && i != 2)
             {
-                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 7.0f, 1);
+                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 350.0f, 1);
             }
         }
 
@@ -105,7 +105,7 @@ public class Level2 : MonoBehaviour
         {
             if (i != -4 && i != -3)
             {
-                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 7.0f, 1);
+                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 350.0f, 1);
             }
         }
 
@@ -115,7 +115,7 @@ public class Level2 : MonoBehaviour
         {
             if (i != 7 && i != 8)
             {
-                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 7.0f, 1);
+                GameEvents.CreateBullet(GameEvents.GetLeftX() + 1.0f, i, 1.0f, 0.0f, 350.0f, 1);
             }
         }
 
@@ -150,11 +150,11 @@ public class Level2 : MonoBehaviour
         GameEvents.DisableDeadlyBorders();
         for (int i = 0; i < 20; i++)
         {
-            GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 90.0f - i * 18.0f, 7.0f, 3);
+            GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 90.0f - i * 18.0f, 350.0f, 3);
             yield return new WaitForSeconds(0.25f);
         }
 
-        GameEvents.CreateBullet(-8.0f, 8.0f, 1.0f, -30.0f, 11.0f, 3);
+        GameEvents.CreateBullet(-8.0f, 8.0f, 1.0f, -30.0f, 550.0f, 3);
         laserClone = GameEvents.CreateLaser(GameEvents.GetRightX(), 0.0f, 3.0f, 4.0f, 90.0f);
         GameEvents.MoveLaser(laserClone, 0.0f, 0.0f, 3.0f);
 

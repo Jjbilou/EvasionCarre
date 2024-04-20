@@ -37,8 +37,8 @@ public class Level1 : MonoBehaviour
 
         Destroy(laserClone);
         GameEvents.DisableDeadlyBorders();
-        GameEvents.CreateBullet(7.0f, 0.0f, 1.0f, 135.0f, 15.0f, 3);
-        GameEvents.CreateBullet(7.0f, 0.0f, 1.0f, -135.0f, 15.0f, 2);
+        GameEvents.CreateBullet(7.0f, 0.0f, 1.0f, 135.0f, 750.0f, 3);
+        GameEvents.CreateBullet(7.0f, 0.0f, 1.0f, -135.0f, 750.0f, 2);
         laserClone = GameEvents.CreateLaser(GameEvents.GetMiddleX(), GameEvents.GetMiddleY(), 3.0f, 3.0f, 0.0f);
         GameEvents.RotateLaser(laserClone, -900.0f, 5.0f);
 
