@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -83,55 +84,68 @@ public class GameEvents : MonoBehaviour
         borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
     }
 
-    public static void BorderScaleLeft(float scaleValue, float animationTime)
+    public static void BorderScaleLeft(float scaleValue, float duration)
     {
-        borderLeft.transform.DOLocalMoveX(borderLeft.transform.localPosition.x - scaleValue, animationTime);
+        borderLeft.transform.DOLocalMoveX(borderLeft.transform.localPosition.x - scaleValue, duration);
     }
 
-    public static void BorderScaleRight(float scaleValue, float animationTime)
+    public static void BorderScaleRight(float scaleValue, float duration)
     {
-        borderRight.transform.DOLocalMoveX(borderRight.transform.localPosition.x + scaleValue, animationTime);
+        borderRight.transform.DOLocalMoveX(borderRight.transform.localPosition.x + scaleValue, duration);
     }
 
-    public static void BorderScaleX(float scaleValue, float animationTime)
+    public static void BorderScaleX(float scaleValue, float duration)
     {
-        BorderScaleLeft(scaleValue, animationTime);
-        BorderScaleRight(scaleValue, animationTime);
+        BorderScaleLeft(scaleValue, duration);
+        BorderScaleRight(scaleValue, duration);
     }
 
-    public static void BorderScaleTop(float scaleValue, float animationTime)
+    public static void BorderScaleTop(float scaleValue, float duration)
     {
-        borderTop.transform.DOLocalMoveY(borderTop.transform.localPosition.y + scaleValue, animationTime);
+        borderTop.transform.DOLocalMoveY(borderTop.transform.localPosition.y + scaleValue, duration);
     }
 
-    public static void BorderScaleBottom(float scaleValue, float animationTime)
+    public static void BorderScaleBottom(float scaleValue, float duration)
     {
-        borderBottom.transform.DOLocalMoveY(borderBottom.transform.localPosition.y - scaleValue, animationTime);
+        borderBottom.transform.DOLocalMoveY(borderBottom.transform.localPosition.y - scaleValue, duration);
     }
 
-    public static void BorderScaleY(float scaleValue, float animationTime)
+    public static void BorderScaleY(float scaleValue, float duration)
     {
-        BorderScaleTop(scaleValue, animationTime);
-        BorderScaleBottom(scaleValue, animationTime);
+        BorderScaleTop(scaleValue, duration);
+        BorderScaleBottom(scaleValue, duration);
     }
 
-    public static void BorderScaleAll(float scaleValue, float animationTime)
+    public static void BorderScaleAll(float scaleValue, float duration)
     {
-        BorderScaleX(scaleValue, animationTime);
-        BorderScaleY(scaleValue, animationTime);
+        BorderScaleX(scaleValue, duration);
+        BorderScaleY(scaleValue, duration);
     }
 
-    public static void ResetBorders()
+    public static void MoveBorders(float posX, float posY, float duration)
     {
-        borderLeft.transform.DOMove(new Vector3(-9f, 0.0f, 1.0f), 1.0f);
-        borderRight.transform.DOMove(new Vector3(9f, 0.0f, 1.0f), 1.0f);
-        borderTop.transform.DOMove(new Vector3(0.0f, 9f, 1.0f), 1.0f);
-        borderBottom.transform.DOMove(new Vector3(0.0f, -9f, 1.0f), 1.0f);
+        borders.transform.DOMove(new Vector3(posX, posY, 1.0f), duration);
     }
 
-    public static void RotateBorders(float angle, float animationTime)
+    public static void ResetBordersPosition(float duration)
     {
-        borders.transform.DORotate(new Vector3(0.0f, 0.0f, angle), animationTime);
+        borders.transform.DOMove(Vector3.zero, duration);
+    }
+
+    public static void RotateBorders(float angle, float duration)
+    {
+        borders.transform.DORotate(new Vector3(0.0f, 0.0f, borders.transform.eulerAngles.z + angle), duration);
+    }
+
+    public static void ResetBordersRotation(float duration)
+    {
+        borders.transform.DORotate(Vector3.zero, duration);
+    }
+
+    public static void ResetBorders(float duration)
+    {
+        ResetBordersPosition(duration);
+        ResetBordersRotation(duration);
     }
 
     public static GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
@@ -189,9 +203,9 @@ public class GameEvents : MonoBehaviour
         playerCollision.attractingTime = duration;
     }
 
-    public static void PlayerScale(float scaleValue, float animationTime)
+    public static void PlayerScale(float scaleValue, float duration)
     {
-        player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1.0f), animationTime);
+        player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1.0f), duration);
     }
 
     public static void GameWon()

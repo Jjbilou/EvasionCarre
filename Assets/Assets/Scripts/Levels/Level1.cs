@@ -14,6 +14,18 @@ public class Level1 : MonoBehaviour
     {
         GameObject laserClone;
 
+        GameEvents.MoveBorders(3.0f, 0.0f, 2.0f);
+        GameEvents.RotateBorders(45.0f, 2.0f);
+
+        yield return new WaitForSeconds(2.0f);
+
+        GameEvents.MoveBorders(0.0f, 3.0f, 2.0f);
+        GameEvents.RotateBorders(45.0f, 2.0f);
+
+        yield return new WaitForSeconds(2.0f);
+
+        GameEvents.ResetBorders(1.0f);
+
         yield return new WaitForSeconds(2.0f);
 
         GameEvents.PlayerAttraction(90.0f, 500.0f, 2.0f);

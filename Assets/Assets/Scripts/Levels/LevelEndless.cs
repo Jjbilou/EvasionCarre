@@ -73,7 +73,7 @@ public class LevelEndless : MonoBehaviour
                     }
 
                     GameEvents.DisableDeadlyBorders();
-                    GameEvents.ResetBorders();
+                    GameEvents.ResetBorders(1.0f);
 
                     yield return new WaitForSeconds(2.0f);
 
