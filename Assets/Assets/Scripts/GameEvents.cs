@@ -32,6 +32,7 @@ public class GameEvents : MonoBehaviour
         player = GameObject.Find("Player").transform;
         playerCollision = player.GetComponent<PlayerCollision>();
 
+        DOTween.Init();
         DOTween.defaultEaseType = Ease.Linear;
     }
 
@@ -87,42 +88,50 @@ public class GameEvents : MonoBehaviour
         borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
     }
 
-    public static void BorderScaleLeft(float scaleValue, float duration)
+    public static void CloseBorderLeft(float scaleValue, float duration)
     {
-        borderLeft.DOLocalMoveX(borderLeft.localPosition.x - scaleValue, duration);
+        borderLeft.DOLocalMoveX(scaleValue, duration).SetRelative();
     }
 
-    public static void BorderScaleRight(float scaleValue, float duration)
+    public static void CloseBorderRight(float scaleValue, float duration)
     {
-        borderRight.DOLocalMoveX(borderRight.localPosition.x + scaleValue, duration);
+        borderRight.DOLocalMoveX(-scaleValue, duration).SetRelative();
     }
 
-    public static void BorderScaleX(float scaleValue, float duration)
+    public static void CloseBorderX(float scaleValue, float duration)
     {
-        BorderScaleLeft(scaleValue, duration);
-        BorderScaleRight(scaleValue, duration);
+        CloseBorderLeft(scaleValue, duration);
+        CloseBorderRight(scaleValue, duration);
     }
 
-    public static void BorderScaleTop(float scaleValue, float duration)
+    public static void CloseBorderTop(float scaleValue, float duration)
     {
-        borderTop.DOLocalMoveY(borderTop.localPosition.y + scaleValue, duration);
+        borderTop.DOLocalMoveY(-scaleValue, duration).SetRelative();
     }
 
-    public static void BorderScaleBottom(float scaleValue, float duration)
+    public static void CloseBorderBottom(float scaleValue, float duration)
     {
-        borderBottom.DOLocalMoveY(borderBottom.localPosition.y - scaleValue, duration);
+        borderBottom.DOLocalMoveY(scaleValue, duration).SetRelative();
     }
 
-    public static void BorderScaleY(float scaleValue, float duration)
+    public static void CloseBorderY(float scaleValue, float duration)
     {
-        BorderScaleTop(scaleValue, duration);
-        BorderScaleBottom(scaleValue, duration);
+        CloseBorderTop(scaleValue, duration);
+        CloseBorderBottom(scaleValue, duration);
     }
 
-    public static void BorderScaleAll(float scaleValue, float duration)
+    public static void CloseBorderAll(float scaleValue, float duration)
     {
-        BorderScaleX(scaleValue, duration);
-        BorderScaleY(scaleValue, duration);
+        CloseBorderX(scaleValue, duration);
+        CloseBorderY(scaleValue, duration);
+    }
+
+    public static void ResetBordersCloseness(float duration)
+    {
+        borderLeft.DOLocalMoveX(-9.0f, duration);
+        borderRight.DOLocalMoveX(9.0f, duration);
+        borderTop.DOLocalMoveY(9.0f, duration);
+        borderBottom.DOLocalMoveY(-9.0f, duration);
     }
 
     public static void MoveBorders(float posX, float posY, float duration)
@@ -137,7 +146,7 @@ public class GameEvents : MonoBehaviour
 
     public static void RotateBorders(float angle, float duration)
     {
-        borders.DORotate(new Vector3(0.0f, 0.0f, borders.eulerAngles.z + angle), duration);
+        borders.DORotate(new Vector3(0.0f, 0.0f, angle), duration, RotateMode.FastBeyond360).SetRelative();
     }
 
     public static void ResetBordersRotation(float duration)
@@ -149,6 +158,7 @@ public class GameEvents : MonoBehaviour
     {
         ResetBordersPosition(duration);
         ResetBordersRotation(duration);
+        ResetBordersCloseness(duration);
     }
 
     public static GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
@@ -162,7 +172,7 @@ public class GameEvents : MonoBehaviour
 
     public static void RotateLaser(GameObject laser, float angle, float duration)
     {
-        laser.transform.DORotate(new Vector3(0.0f, 0.0f, 90.0f - laser.transform.rotation.z + angle), duration);
+        laser.transform.DORotate(new Vector3(0.0f, 0.0f, angle), duration, RotateMode.FastBeyond360).SetRelative();
     }
 
     public static void MoveLaser(GameObject laser, float posX, float posY, float duration)
@@ -208,7 +218,7 @@ public class GameEvents : MonoBehaviour
 
     public static void PlayerScale(float scaleValue, float duration)
     {
-        player.DOScale(new Vector3(player.localScale.x + scaleValue, player.localScale.y + scaleValue, 1.0f), duration);
+        player.DOScale(new Vector3(scaleValue, scaleValue, 0.0f), duration).SetRelative();
     }
 
     public static void GameWon()
