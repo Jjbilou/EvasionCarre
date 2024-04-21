@@ -126,6 +126,26 @@ public class GameEvents : MonoBehaviour
         CloseBorderY(scaleValue, duration);
     }
 
+    public static void ScaleBorderLeft(float scaleValue, float duration)
+    {
+        borderLeft.DOScaleY(scaleValue, duration).SetRelative();
+    }
+
+    public static void ScaleBorderRight(float scaleValue, float duration)
+    {
+        borderRight.DOScaleY(scaleValue, duration).SetRelative();
+    }
+
+    public static void ScaleBorderTop(float scaleValue, float duration)
+    {
+        borderTop.DOScaleX(scaleValue, duration).SetRelative();
+    }
+
+    public static void ScaleBorderBottom(float scaleValue, float duration)
+    {
+        borderBottom.DOScaleX(scaleValue, duration).SetRelative();
+    }
+
     public static void ResetBordersCloseness(float duration)
     {
         borderLeft.DOLocalMoveX(-9.0f, duration);
@@ -136,7 +156,7 @@ public class GameEvents : MonoBehaviour
 
     public static void MoveBorders(float posX, float posY, float duration)
     {
-        borders.DOMove(new Vector3(posX, posY, 1.0f), duration);
+        borders.DOMove(new Vector3(posX, posY), duration);
     }
 
     public static void ResetBordersPosition(float duration)
@@ -163,9 +183,9 @@ public class GameEvents : MonoBehaviour
 
     public static GameObject CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
-        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
+        GameObject laserClone = Instantiate(laser, new Vector3(posX, posY), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
 
-        laserClone.transform.localScale = new Vector3(laserWidth, laserHeight, 1.0f);
+        laserClone.transform.localScale = new Vector3(laserWidth, laserHeight);
 
         return laserClone;
     }
@@ -177,17 +197,17 @@ public class GameEvents : MonoBehaviour
 
     public static void MoveLaser(GameObject laser, float posX, float posY, float duration)
     {
-        laser.transform.DOMove(new Vector3(posX, posY, 1.0f), duration);
+        laser.transform.DOMove(new Vector3(posX, posY), duration);
     }
 
     public static void ScaleLaser(GameObject laser, float width, float height, float duration)
     {
-        laser.transform.DOScale(new Vector3(laser.transform.localScale.x + width, laser.transform.localScale.y + height, 1.0f), duration);
+        laser.transform.DOScale(new Vector3(laser.transform.localScale.x + width, laser.transform.localScale.y + height), duration);
     }
 
     public static GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
     {
-        GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 1.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
+        GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
         bulletClone.transform.localScale *= size;
 
         Bullet cloneScript = bulletClone.GetComponent<Bullet>();
@@ -200,13 +220,13 @@ public class GameEvents : MonoBehaviour
 
     public static GameObject CreateRedLine(float posX, float posY, float angle)
     {
-        GameObject redLineClone = Instantiate(redLine, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));
+        GameObject redLineClone = Instantiate(redLine, new Vector3(posX, posY), Quaternion.Euler(0f, 0f, angle - 90f));
         return redLineClone;
     }
 
     public static void MoveRedLine(GameObject redLine, float posX, float posY, float duration)
     {
-        redLine.transform.DOMove(new Vector3(posX, posY, 1f), duration);
+        redLine.transform.DOMove(new Vector3(posX, posY), duration);
     }
 
     public static void PlayerAttraction(float angle, float force, float duration)
@@ -218,7 +238,7 @@ public class GameEvents : MonoBehaviour
 
     public static void PlayerScale(float scaleValue, float duration)
     {
-        player.DOScale(new Vector3(scaleValue, scaleValue, 0.0f), duration).SetRelative();
+        player.DOScale(new Vector3(scaleValue, scaleValue), duration).SetRelative();
     }
 
     public static void GameWon()
