@@ -6,7 +6,7 @@ public class Level1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameEvents.Init("Level1");
+        GameEvents.Init();
         GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }
 

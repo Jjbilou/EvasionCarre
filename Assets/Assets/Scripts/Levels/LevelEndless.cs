@@ -8,7 +8,7 @@ public class LevelEndless : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameEvents.Init("LevelEndless");
+        GameEvents.Init();
         canvas.SetActive(true);
         GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());
     }

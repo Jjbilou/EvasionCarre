@@ -13,7 +13,7 @@ public class LevelTuto : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameEvents.Init("LevelTuto");
+        GameEvents.Init();
         canvas.SetActive(true);
         text = canvas.GetComponentInChildren<TMP_Text>();
         GameObject.Find("Player").GetComponent<PlayerCollision>().level = StartCoroutine(Launch());

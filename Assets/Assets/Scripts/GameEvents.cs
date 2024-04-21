@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,58 +7,62 @@ public class GameEvents : MonoBehaviour
     static GameObject bullet;
     static GameObject laser;
     static GameObject redLine;
-    static GameObject borders;
-    static GameObject borderLeft;
-    static GameObject borderRight;
-    static GameObject borderTop;
-    static GameObject borderBottom;
-    static GameObject player;
+    static Transform borders;
+    static Transform borderLeft;
+    static Transform borderRight;
+    static Transform borderTop;
+    static Transform borderBottom;
+    static Transform player;
     static PlayerCollision playerCollision;
 
-    public static void Init(string level)
+    public static void Init()
     {
+        Destroy(GameObject.Find("MenuBGM"));
+
         bullet = (GameObject)Resources.Load("Bullet");
         laser = (GameObject)Resources.Load("Laser");
         redLine = (GameObject)Resources.Load("RedLine");
-        borders = GameObject.Find("Borders");
-        borderLeft = GameObject.Find("Left");
-        borderRight = GameObject.Find("Right");
-        borderTop = GameObject.Find("Top");
-        borderBottom = GameObject.Find("Bottom");
-        player = GameObject.Find("Player");
+
+        borders = GameObject.Find("Borders").transform;
+        borderLeft = borders.Find("Left");
+        borderRight = borders.Find("Right");
+        borderTop = borders.Find("Top");
+        borderBottom = borders.Find("Bottom");
+
+        player = GameObject.Find("Player").transform;
         playerCollision = player.GetComponent<PlayerCollision>();
-        Destroy(GameObject.Find("MenuBGM"));
+
         DOTween.defaultEaseType = Ease.Linear;
     }
 
     public static float GetLeftX()
     {
-        return borderLeft.transform.position.x;
+        return borderLeft.position.x;
     }
 
     public static float GetMiddleX()
     {
-        return borderTop.transform.position.x;
+        return borderTop.position.x;
     }
 
     public static float GetRightX()
     {
-        return borderRight.transform.position.x;
+        return borderRight.position.x;
     }
 
     public static float GetTopY()
     {
-        return borderTop.transform.position.y;
+        return borderTop.position.y;
     }
 
     public static float GetMiddleY()
     {
-        return borderLeft.transform.position.y;
+        return borderLeft.position.y;
     }
 
     public static float GetBottomY()
     {
-        return borderBottom.transform.position.y;
+        return borderBottom.position.y;
     }
 
     public static void EnableDeadlyBorders()
@@ -86,12 +89,12 @@ public class GameEvents : MonoBehaviour
 
     public static void BorderScaleLeft(float scaleValue, float duration)
     {
-        borderLeft.transform.DOLocalMoveX(borderLeft.transform.localPosition.x - scaleValue, duration);
+        borderLeft.DOLocalMoveX(borderLeft.localPosition.x - scaleValue, duration);
     }
 
     public static void BorderScaleRight(float scaleValue, float duration)
     {
-        borderRight.transform.DOLocalMoveX(borderRight.transform.localPosition.x + scaleValue, duration);
+        borderRight.DOLocalMoveX(borderRight.localPosition.x + scaleValue, duration);
     }
 
     public static void BorderScaleX(float scaleValue, float duration)
@@ -102,12 +105,12 @@ public class GameEvents : MonoBehaviour
 
     public static void BorderScaleTop(float scaleValue, float duration)
     {
-        borderTop.transform.DOLocalMoveY(borderTop.transform.localPosition.y + scaleValue, duration);
+        borderTop.DOLocalMoveY(borderTop.localPosition.y + scaleValue, duration);
     }
 
     public static void BorderScaleBottom(float scaleValue, float duration)
     {
-        borderBottom.transform.DOLocalMoveY(borderBottom.transform.localPosition.y - scaleValue, duration);
+        borderBottom.DOLocalMoveY(borderBottom.localPosition.y - scaleValue, duration);
     }
 
     public static void BorderScaleY(float scaleValue, float duration)
@@ -124,22 +127,22 @@ public class GameEvents : MonoBehaviour
 
     public static void MoveBorders(float posX, float posY, float duration)
     {
-        borders.transform.DOMove(new Vector3(posX, posY, 1.0f), duration);
+        borders.DOMove(new Vector3(posX, posY, 1.0f), duration);
     }
 
     public static void ResetBordersPosition(float duration)
     {
-        borders.transform.DOMove(Vector3.zero, duration);
+        borders.DOMove(Vector3.zero, duration);
     }
 
     public static void RotateBorders(float angle, float duration)
     {
-        borders.transform.DORotate(new Vector3(0.0f, 0.0f, borders.transform.eulerAngles.z + angle), duration);
+        borders.DORotate(new Vector3(0.0f, 0.0f, borders.eulerAngles.z + angle), duration);
     }
 
     public static void ResetBordersRotation(float duration)
     {
-        borders.transform.DORotate(Vector3.zero, duration);
+        borders.DORotate(Vector3.zero, duration);
     }
 
     public static void ResetBorders(float duration)
@@ -187,7 +190,7 @@ public class GameEvents : MonoBehaviour
 
     public static GameObject CreateRedLine(float posX, float posY, float angle)
     {
-        GameObject redLineClone = Instantiate(redLine, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));        
+        GameObject redLineClone = Instantiate(redLine, new Vector3(posX, posY, 1f), Quaternion.Euler(0f, 0f, angle - 90f));
         return redLineClone;
     }
 
@@ -205,7 +208,7 @@ public class GameEvents : MonoBehaviour
 
     public static void PlayerScale(float scaleValue, float duration)
     {
-        player.transform.DOScale(new Vector3(player.transform.localScale.x + scaleValue, player.transform.localScale.y + scaleValue, 1.0f), duration);
+        player.DOScale(new Vector3(player.localScale.x + scaleValue, player.localScale.y + scaleValue, 1.0f), duration);
     }
 
     public static void GameWon()
