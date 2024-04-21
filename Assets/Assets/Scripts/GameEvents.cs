@@ -7,11 +7,14 @@ public class GameEvents : MonoBehaviour
     static GameObject bullet;
     static GameObject laser;
     static GameObject redLine;
+
     static Transform borders;
+    static Borders bordersScript;
     static Transform borderLeft;
     static Transform borderRight;
     static Transform borderTop;
     static Transform borderBottom;
+
     static Transform player;
     static PlayerCollision playerCollision;
 
@@ -24,6 +27,7 @@ public class GameEvents : MonoBehaviour
         redLine = (GameObject)Resources.Load("RedLine");
 
         borders = GameObject.Find("Borders").transform;
+        bordersScript = borders.GetComponent<Borders>();
         borderLeft = borders.Find("Left");
         borderRight = borders.Find("Right");
         borderTop = borders.Find("Top");
@@ -129,21 +133,25 @@ public class GameEvents : MonoBehaviour
     public static void ScaleBorderLeft(float scaleValue, float duration)
     {
         borderLeft.DOScaleY(scaleValue, duration).SetRelative();
+        bordersScript.scalingLeftTime = duration;
     }
 
     public static void ScaleBorderRight(float scaleValue, float duration)
     {
         borderRight.DOScaleY(scaleValue, duration).SetRelative();
+        bordersScript.scalingRightTime = duration;
     }
 
     public static void ScaleBorderTop(float scaleValue, float duration)
     {
         borderTop.DOScaleX(scaleValue, duration).SetRelative();
+        bordersScript.scalingTopTime = duration;
     }
 
     public static void ScaleBorderBottom(float scaleValue, float duration)
     {
         borderBottom.DOScaleX(scaleValue, duration).SetRelative();
+        bordersScript.scalingBottomTime = duration;
     }
 
     public static void ResetBordersCloseness(float duration)
