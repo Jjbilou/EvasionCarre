@@ -48,9 +48,9 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        GameEvents.BorderScaleTop(-5, 1.0f);
-        GameEvents.BorderScaleLeft(-2.0f, 0.5f);
-        GameEvents.BorderScaleBottom(-2.0f, 0.5f);
+        GameEvents.CloseBorderTop(5.0f, 1.0f);
+        GameEvents.CloseBorderLeft(2.0f, 0.5f);
+        GameEvents.CloseBorderBottom(2.0f, 0.5f);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -72,9 +72,9 @@ public class Level2 : MonoBehaviour
         Destroy(bullet2);
         Destroy(bullet3);
         Destroy(bullet4);
-        GameEvents.BorderScaleTop(5, 0.5f);
-        GameEvents.BorderScaleLeft(2.0f, 0.5f);
-        GameEvents.BorderScaleBottom(2.0f, 0.5f);
+        GameEvents.CloseBorderTop(-5.0f, 0.5f);
+        GameEvents.CloseBorderLeft(-2.0f, 0.5f);
+        GameEvents.CloseBorderBottom(-2.0f, 0.5f);
 
         yield return new WaitForSeconds(1.0f); //10.5'
 
@@ -121,29 +121,19 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        GameEvents.BorderScaleLeft(-5.0f, 1.0f);
-        GameEvents.BorderScaleRight(-5.0f, 1.0f);
-        GameEvents.BorderScaleTop(-5.0f, 1.0f);
-        GameEvents.BorderScaleBottom(-5.0f, 1.0f);
+        GameEvents.CloseBorderAll(5.0f, 1.0f);
 
         yield return new WaitForSeconds(1.0f);
 
-        GameEvents.BorderScaleLeft(-5.0f, 2.0f);
-        GameEvents.BorderScaleRight(5.0f, 2.0f);
-        GameEvents.BorderScaleTop(5.0f, 2.0f);
-        GameEvents.BorderScaleBottom(-5.0f, 2.0f);
+        GameEvents.MoveBorders(5.0f, 5.0f, 2.0f);
 
         yield return new WaitForSeconds(2.0f);
 
-        GameEvents.BorderScaleLeft(10.0f, 2.0f);
-        GameEvents.BorderScaleRight(-10.0f, 2.0f);
-        GameEvents.BorderScaleTop(-10.0f, 2.0f);
-        GameEvents.BorderScaleBottom(10.0f, 2.0f);
+        GameEvents.MoveBorders(-5.0f, -5.0f, 2.0f);
 
         yield return new WaitForSeconds(2.0f); //20.5'
 
-        GameEvents.BorderScaleRight(10.0f, 2.0f);
-        GameEvents.BorderScaleTop(10.0f, 2.0f);
+        GameEvents.ResetBorders(2.0f);
 
         yield return new WaitForSeconds(2.0f);
 
@@ -165,23 +155,23 @@ public class Level2 : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
 
         lasers = new GameObject[12];
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 6; i++)
         {
-            lasers[i] = GameEvents.CreateLaser(0.0f, 0.0f, 3.0f, 4.0f, 180.0f - i * 36);
+            lasers[i] = GameEvents.CreateLaser(0.0f, 0.0f, 3.0f, 4.0f, 180.0f - i * 30);
             GameEvents.ScaleLaser(lasers[i], 0.0f, -8.0f, 2.5f);
             GameEvents.RotateLaser(lasers[i], 180.0f, 5.0f);
         }
 
         yield return new WaitForSeconds(2.5f);
 
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 6; i++)
         {
             GameEvents.ScaleLaser(lasers[i], 0.0f, 8.0f, 2.5f);
         }
 
         yield return new WaitForSeconds(3.0f);
 
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 6; i++)
         {
             Destroy(lasers[i]);
         }

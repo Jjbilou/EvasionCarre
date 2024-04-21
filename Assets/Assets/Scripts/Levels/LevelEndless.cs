@@ -49,12 +49,9 @@ public class LevelEndless : MonoBehaviour
                 case 1:
 
                     GameEvents.EnableDeadlyBorders();
-                    float boxReduction = Random.Range(-6.0f, -1.0f);
+                    float boxReduction = Random.Range(1.0f, 6.0f);
 
-                    GameEvents.BorderScaleLeft(boxReduction, 1.0f);
-                    GameEvents.BorderScaleRight(boxReduction, 1.0f);
-                    GameEvents.BorderScaleTop(boxReduction, 1.0f);
-                    GameEvents.BorderScaleBottom(boxReduction, 1.0f);
+                    GameEvents.CloseBorderAll(boxReduction, 1.0f);
 
                     yield return new WaitForSeconds(1.0f);
 
@@ -64,10 +61,10 @@ public class LevelEndless : MonoBehaviour
                         float movementX = Random.Range(3.0f, 5.0f) * (Random.value < 0.5 ? -1 : 1);
                         float movementY = Random.Range(3.0f, 5.0f) * (Random.value < 0.5 ? -1 : 1);
 
-                        GameEvents.BorderScaleLeft(-movementX, 1.0f);
-                        GameEvents.BorderScaleRight(movementX, 1.0f);
-                        GameEvents.BorderScaleTop(movementY, 1.0f);
-                        GameEvents.BorderScaleBottom(-movementY, 1.0f);
+                        GameEvents.CloseBorderLeft(movementX, 1.0f);
+                        GameEvents.CloseBorderRight(-movementX, 1.0f);
+                        GameEvents.CloseBorderTop(-movementY, 1.0f);
+                        GameEvents.CloseBorderBottom(movementY, 1.0f);
 
                         yield return new WaitForSeconds(1.0f);
                     }
