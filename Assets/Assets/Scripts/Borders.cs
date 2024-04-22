@@ -48,11 +48,6 @@ public class Borders : MonoBehaviour
         Vector3 bottomLeft = borderBottom.position - bottomHalfLength;
         Vector3 bottomRight = borderBottom.position + bottomHalfLength;
 
-        borderLeft.position = Vector3.Lerp(topLeft, bottomLeft, 0.5f);
-        borderRight.position = Vector3.Lerp(topRight, bottomRight, 0.5f);
-        borderTop.position = Vector3.Lerp(leftTop, rightTop, 0.5f);
-        borderBottom.position = Vector3.Lerp(leftBottom, rightBottom, 0.5f);
-
         float leftAngle = Mathf.Atan2(topLeft.y - bottomLeft.y, topLeft.x - bottomLeft.x) * 180.0f / Mathf.PI - 90.0f;
         float rightAngle = Mathf.Atan2(topRight.y - bottomRight.y, topRight.x - bottomRight.x) * 180.0f / Mathf.PI - 90.0f;
         float topAngle = Mathf.Atan2(rightTop.y - leftTop.y, rightTop.x - leftTop.x) * 180.0f / Mathf.PI;
@@ -95,5 +90,10 @@ public class Borders : MonoBehaviour
         {
             scalingBottomTime -= Time.deltaTime;
         }
+
+        borderLeft.position = Vector3.Lerp(topLeft, bottomLeft, 0.5f);
+        borderRight.position = Vector3.Lerp(topRight, bottomRight, 0.5f);
+        borderTop.position = Vector3.Lerp(leftTop, rightTop, 0.5f);
+        borderBottom.position = Vector3.Lerp(leftBottom, rightBottom, 0.5f);
     }
 }
