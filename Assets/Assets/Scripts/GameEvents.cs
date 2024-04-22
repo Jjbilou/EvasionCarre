@@ -162,31 +162,31 @@ public class GameEvents : MonoBehaviour
 
     public static void MoveBorderLeft(float posX, float posY, float duration)
     {
-        borderLeft.DOLocalMove(new Vector3(posX, posY), duration).SetRelative();
+        borderLeft.DOLocalMove(new Vector3(posX, posY, 0.0f), duration).SetRelative();
         bordersScript.movingLeftTime = duration;
     }
 
     public static void MoveBorderRight(float posX, float posY, float duration)
     {
-        borderRight.DOLocalMove(new Vector3(posX, posY), duration).SetRelative();
+        borderRight.DOLocalMove(new Vector3(posX, posY, 0.0f), duration).SetRelative();
         bordersScript.movingRightTime = duration;
     }
 
     public static void MoveBorderTop(float posX, float posY, float duration)
     {
-        borderTop.DOLocalMove(new Vector3(posX, posY), duration).SetRelative();
+        borderTop.DOLocalMove(new Vector3(posX, posY, 0.0f), duration).SetRelative();
         bordersScript.movingTopTime = duration;
     }
 
     public static void MoveBorderBottom(float posX, float posY, float duration)
     {
-        borderBottom.DOLocalMove(new Vector3(posX, posY), duration).SetRelative();
+        borderBottom.DOLocalMove(new Vector3(posX, posY, 0.0f), duration).SetRelative();
         bordersScript.movingBottomTime = duration;
     }
 
     public static void MoveBorders(float posX, float posY, float duration)
     {
-        borders.DOMove(new Vector3(posX, posY), duration).SetRelative();
+        borders.DOMove(new Vector3(posX, posY, 0.0f), duration).SetRelative();
     }
 
     public static void ResetBordersPosition(float duration)
@@ -217,7 +217,7 @@ public class GameEvents : MonoBehaviour
 
     public static Transform CreateLaser(float posX, float posY, float laserWidth, float laserHeight, float angle)
     {
-        Transform laserClone = Instantiate(laser, new Vector3(posX, posY), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle)).transform;
+        Transform laserClone = Instantiate(laser, new Vector3(posX, posY, 0.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle)).transform;
 
         laserClone.localScale = new Vector3(laserWidth, laserHeight);
 
@@ -231,12 +231,12 @@ public class GameEvents : MonoBehaviour
 
     public static void MoveLaser(Transform laser, float posX, float posY, float duration)
     {
-        laser.DOMove(new Vector3(posX, posY), duration).SetRelative();
+        laser.DOMove(new Vector3(posX, posY, 0.0f), duration).SetRelative();
     }
 
     public static void ScaleLaser(Transform laser, float width, float height, float duration)
     {
-        laser.DOScale(new Vector3(width, height), duration).SetRelative();
+        laser.DOScale(new Vector3(width, height, 0.0f), duration).SetRelative();
     }
 
     public static void ScaleLaser(Transform laser, float multiplier, float duration)
@@ -246,7 +246,7 @@ public class GameEvents : MonoBehaviour
 
     public static GameObject CreateBullet(float posX, float posY, float size, float angle, float speed, int level)
     {
-        GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
+        GameObject bulletClone = Instantiate(bullet, new Vector3(posX, posY, 0.0f), Quaternion.Euler(0.0f, 0.0f, 90.0f - angle));
         bulletClone.transform.localScale *= size;
 
         Bullet cloneScript = bulletClone.GetComponent<Bullet>();
@@ -259,12 +259,12 @@ public class GameEvents : MonoBehaviour
 
     public static Transform CreateRedLine(float posX, float posY, float angle)
     {
-        return Instantiate(redLine, new Vector3(posX, posY), Quaternion.Euler(0f, 0f, angle - 90f)).transform;
+        return Instantiate(redLine, new Vector3(posX, posY, 0.0f), Quaternion.Euler(0f, 0f, angle - 90f)).transform;
     }
 
     public static void MoveRedLine(Transform redLine, float posX, float posY, float duration)
     {
-        redLine.DOMove(new Vector3(posX, posY), duration).SetRelative();
+        redLine.DOMove(new Vector3(posX, posY, 0.0f), duration).SetRelative();
     }
 
     public static void PlayerAttraction(float angle, float force, float duration)
@@ -274,9 +274,9 @@ public class GameEvents : MonoBehaviour
         playerCollision.attractingTime = duration;
     }
 
-    public static void PlayerScale(float scaleX, float scaleY, float duration)
+    public static void PlayerScale(float width, float height, float duration)
     {
-        player.DOScale(new Vector3(scaleX, scaleY), duration).SetRelative();
+        player.DOScale(new Vector3(width, height, 0.0f), duration).SetRelative();
     }
 
     public static void PlayerScale(float multiplier, float duration)
