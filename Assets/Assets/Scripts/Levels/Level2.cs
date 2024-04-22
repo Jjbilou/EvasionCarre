@@ -12,9 +12,9 @@ public class Level2 : MonoBehaviour
 
     IEnumerator Launch()
     {
-        GameObject[] lasers;
-        GameObject laserClone;
-        GameObject laserClone2;
+        Transform[] lasers;
+        Transform laserClone;
+        Transform laserClone2;
 
         GameObject bullet;
         GameObject bullet2;
@@ -38,8 +38,8 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(0.25f);
 
-        Destroy(laserClone);
-        Destroy(laserClone2);
+        Destroy(laserClone.gameObject);
+        Destroy(laserClone2.gameObject);
 
         bullet = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 45.0f, 500.0f, 4);
         bullet2 = GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, -45.0f, 500.0f, 4);
@@ -54,7 +54,7 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        GameEvents.PlayerScale(1.0f, 0.5f);
+        GameEvents.PlayerScale(2.0f, 0.5f);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -63,11 +63,11 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        GameEvents.PlayerScale(-1.0f, 1.0f);
+        GameEvents.PlayerScale(0.5f, 1.0f);
 
         yield return new WaitForSeconds(3.0f);
 
-        Destroy(laserClone);
+        Destroy(laserClone.gameObject);
         Destroy(bullet);
         Destroy(bullet2);
         Destroy(bullet3);
@@ -119,7 +119,7 @@ public class Level2 : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
 
         GameEvents.CloseBorderAll(5.0f, 1.0f);
 
@@ -129,9 +129,9 @@ public class Level2 : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        GameEvents.MoveBorders(-5.0f, -5.0f, 2.0f);
+        GameEvents.MoveBorders(-10.0f, -10.0f, 2.0f);
 
-        yield return new WaitForSeconds(2.0f); //20.5'
+        yield return new WaitForSeconds(2.0f); //21.5'
 
         GameEvents.ResetBorders(2.0f);
 
@@ -145,16 +145,16 @@ public class Level2 : MonoBehaviour
         }
 
         GameEvents.CreateBullet(-8.0f, 8.0f, 1.0f, -30.0f, 550.0f, 3);
-        laserClone = GameEvents.CreateLaser(GameEvents.GetRightX(), 0.0f, 3.0f, 4.0f, 90.0f);
-        GameEvents.MoveLaser(laserClone, 0.0f, 0.0f, 3.0f);
+        laserClone = GameEvents.CreateLaser(9.0f, 0.0f, 3.0f, 4.0f, 90.0f);
+        GameEvents.MoveLaser(laserClone, -9.0f, 0.0f, 3.0f);
 
-        yield return new WaitForSeconds(4.0f); //31.5'
+        yield return new WaitForSeconds(4.0f); //32.5'
 
-        Destroy(laserClone);
+        Destroy(laserClone.gameObject);
 
         yield return new WaitForSeconds(3.0f);
 
-        lasers = new GameObject[12];
+        lasers = new Transform[12];
         for (int i = 0; i < 6; i++)
         {
             lasers[i] = GameEvents.CreateLaser(0.0f, 0.0f, 3.0f, 4.0f, 180.0f - i * 30);
@@ -169,11 +169,11 @@ public class Level2 : MonoBehaviour
             GameEvents.ScaleLaser(lasers[i], 0.0f, 8.0f, 2.5f);
         }
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(3.0f); // 41'
 
         for (int i = 0; i < 6; i++)
         {
-            Destroy(lasers[i]);
+            Destroy(lasers[i].gameObject);
         }
 
         yield return new WaitForSeconds(2.0f);

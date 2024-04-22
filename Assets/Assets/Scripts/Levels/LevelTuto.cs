@@ -22,9 +22,8 @@ public class LevelTuto : MonoBehaviour
     IEnumerator Launch()
     {
         GameObject bullet;
-        GameObject laser;
-        GameObject laser2;
-        GameObject laser3;
+        Transform laser;
+        Transform laser2;
 
         yield return new WaitForSeconds (1.0f);
 
@@ -57,7 +56,7 @@ public class LevelTuto : MonoBehaviour
         yield return new WaitForSeconds (7.0f);
 
         text.text = "They can move in all directions and even rotate so be careful";
-        GameEvents.MoveLaser(laser, 0.0f, 2.0f, 5.0f);
+        GameEvents.MoveLaser(laser, 0.0f, 7.0f, 5.0f);
 
         yield return new WaitForSeconds (5.0f);
 
@@ -65,7 +64,7 @@ public class LevelTuto : MonoBehaviour
 
         yield return new WaitForSeconds (7.0f);
 
-        Destroy(laser);
+        Destroy(laser.gameObject);
         text.text = "Move away from the edges, when they turn red you can't touch them anymore";
 
         yield return new WaitForSeconds (3.0f);
@@ -98,11 +97,11 @@ public class LevelTuto : MonoBehaviour
         yield return new WaitForSeconds (5.0f);
 
         text.text = "Your size can also change";
-        GameEvents.PlayerScale(4.0f, 2.0f);
+        GameEvents.PlayerScale(5.0f, 2.0f);
 
         yield return new WaitForSeconds (3.0f);
 
-        GameEvents.PlayerScale(-4.0f, 2.0f);
+        GameEvents.PlayerScale(0.2f, 2.0f);
 
         yield return new WaitForSeconds (3.0f);
 
@@ -116,10 +115,10 @@ public class LevelTuto : MonoBehaviour
 
         text.enabled = false;
         clear = true;
-        laser2 = GameEvents.CreateLaser(0.0f, 0.0f, 2.0f, 3.0f, 0.0f);
-        laser3 = GameEvents.CreateLaser(0.0f, 0.0f, 2.0f, 3.0f, 90.0f);
+        laser = GameEvents.CreateLaser(0.0f, 0.0f, 2.0f, 3.0f, 0.0f);
+        laser2 = GameEvents.CreateLaser(0.0f, 0.0f, 2.0f, 3.0f, 90.0f);
+        GameEvents.RotateLaser(laser, 360.0f, 10.0f);
         GameEvents.RotateLaser(laser2, 360.0f, 10.0f);
-        GameEvents.RotateLaser(laser3, 360.0f, 10.0f);
         for (int i = 0; i < 20; i++)
             {
                 GameEvents.CreateBullet(0.0f, 0.0f, 1.0f, 90.0f - i * 18.0f, 350.0f, 4);

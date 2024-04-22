@@ -28,14 +28,13 @@ public class Borders : MonoBehaviour
         borderBottom = transform.Find("Bottom");
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         // Getting rotations in randians that the borders currently have
-        float leftRotation = Mathf.PI * (borderLeft.eulerAngles.z / 180.0f + 0.5f);
-        float rightRotation = Mathf.PI * (borderRight.eulerAngles.z / 180.0f + 0.5f);
-        float topRotation = borderTop.eulerAngles.z * Mathf.PI / 180.0f;
-        float bottomRotation = borderBottom.eulerAngles.z * Mathf.PI / 180.0f;
+        float leftRotation = Mathf.PI * (borderLeft.localEulerAngles.z / 180.0f + 0.5f);
+        float rightRotation = Mathf.PI * (borderRight.localEulerAngles.z / 180.0f + 0.5f);
+        float topRotation = borderTop.localEulerAngles.z * Mathf.PI / 180.0f;
+        float bottomRotation = borderBottom.localEulerAngles.z * Mathf.PI / 180.0f;
 
         // Getting the half of all borders' length
         Vector3 leftHalfLength = (borderLeft.localScale.y - borderWidth) / 2.0f * new Vector3(Mathf.Cos(leftRotation), Mathf.Sin(leftRotation));
@@ -44,18 +43,18 @@ public class Borders : MonoBehaviour
         Vector3 bottomHalfLength = (borderBottom.localScale.x - borderWidth) / 2.0f * new Vector3(Mathf.Cos(bottomRotation), Mathf.Sin(bottomRotation));
 
 
-        // Getting positions of all borders' ends
-        Vector3 leftTop = borderLeft.position + leftHalfLength;
-        Vector3 leftBottom = borderLeft.position - leftHalfLength;
+        // Getting localPositions of all borders' ends
+        Vector3 leftTop = borderLeft.localPosition + leftHalfLength;
+        Vector3 leftBottom = borderLeft.localPosition - leftHalfLength;
 
-        Vector3 rightTop = borderRight.position + rightHalfLength;
-        Vector3 rightBottom = borderRight.position - rightHalfLength;
+        Vector3 rightTop = borderRight.localPosition + rightHalfLength;
+        Vector3 rightBottom = borderRight.localPosition - rightHalfLength;
 
-        Vector3 topLeft = borderTop.position - topHalfLength;
-        Vector3 topRight = borderTop.position + topHalfLength;
+        Vector3 topLeft = borderTop.localPosition - topHalfLength;
+        Vector3 topRight = borderTop.localPosition + topHalfLength;
 
-        Vector3 bottomLeft = borderBottom.position - bottomHalfLength;
-        Vector3 bottomRight = borderBottom.position + bottomHalfLength;
+        Vector3 bottomLeft = borderBottom.localPosition - bottomHalfLength;
+        Vector3 bottomRight = borderBottom.localPosition + bottomHalfLength;
 
         // Getting rotations in degrees that the borders should have
         float leftAngle = Mathf.Atan2(topLeft.y - bottomLeft.y, topLeft.x - bottomLeft.x) * 180.0f / Mathf.PI - 90.0f;
@@ -105,7 +104,7 @@ public class Borders : MonoBehaviour
         // Move the borders if they are not getting moved by a GameEvent
         if (movingLeftTime <= 0.0f)
         {
-            borderLeft.position = Vector3.Lerp(topLeft, bottomLeft, 0.5f);
+            borderLeft.localPosition = Vector3.Lerp(topLeft, bottomLeft, 0.5f);
         }
         else
         {
@@ -113,7 +112,7 @@ public class Borders : MonoBehaviour
         }
         if (movingRightTime <= 0.0f)
         {
-            borderRight.position = Vector3.Lerp(topRight, bottomRight, 0.5f);
+            borderRight.localPosition = Vector3.Lerp(topRight, bottomRight, 0.5f);
         }
         else
         {
@@ -121,7 +120,7 @@ public class Borders : MonoBehaviour
         }
         if (movingTopTime <= 0.0f)
         {
-            borderTop.position = Vector3.Lerp(leftTop, rightTop, 0.5f);
+            borderTop.localPosition = Vector3.Lerp(leftTop, rightTop, 0.5f);
         }
         else
         {
@@ -129,7 +128,7 @@ public class Borders : MonoBehaviour
         }
         if (movingBottomTime <= 0.0f)
         {
-            borderBottom.position = Vector3.Lerp(leftBottom, rightBottom, 0.5f);
+            borderBottom.localPosition = Vector3.Lerp(leftBottom, rightBottom, 0.5f);
         }
         else
         {
