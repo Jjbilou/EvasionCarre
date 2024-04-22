@@ -83,35 +83,35 @@ public class LevelEndless : MonoBehaviour
                         yield return new WaitForSeconds(0.25f);
                     }
 
-                    GameObject laserClone;
-                    switch (Random.Range(0, 3))
+                    Transform laserClone;
+                    switch (Random.Range(0, 4))
                     {
                         default:
                             GameEvents.CreateBullet(-8.0f, 8.0f, 1.0f, -30.0f, Random.Range(500.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(GameEvents.GetRightX(), 0.0f, 3f, 4f, 90.0f);
                             break;
 
-                        case 0:
+                        case 1:
                             GameEvents.CreateBullet(8.0f, 8.0f, 1.0f, -150.0f, Random.Range(10.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(0.0f, GameEvents.GetTopY(), 3f, 4f, 0.0f);
                             break;
 
-                        case 1:
+                        case 2:
                             GameEvents.CreateBullet(8.0f, -8.0f, 1.0f, 150.0f, Random.Range(10.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(GameEvents.GetLeftX(), 0.0f, 3f, 4f, 90.0f);
                             break;
 
-                        case 2:
+                        case 3:
                             GameEvents.CreateBullet(-8.0f, -8.0f, 1.0f, 30.0f, Random.Range(10.0f, 750.0f), 3);
                             laserClone = GameEvents.CreateLaser(0.0f, GameEvents.GetBottomY(), 3f, 4f, 0.0f);
                             break;
                     }
 
-                    GameEvents.MoveLaser(laserClone, 0.0f, 0.0f, 3.0f);
+                    GameEvents.MoveLaser(laserClone, -laserClone.position.x, -laserClone.position.y, 3.0f);
 
                     yield return new WaitForSeconds(4.0f);
 
-                    Destroy(laserClone);
+                    Destroy(laserClone.gameObject);
 
                     break;
             }
