@@ -33,28 +33,28 @@ public class Borders : MonoBehaviour
         // Getting rotations in randians that the borders currently have
         float leftRotation = Mathf.PI * (borderLeft.localEulerAngles.z / 180.0f + 0.5f);
         float rightRotation = Mathf.PI * (borderRight.localEulerAngles.z / 180.0f + 0.5f);
-        float topRotation = borderTop.localEulerAngles.z * Mathf.PI / 180.0f;
-        float bottomRotation = borderBottom.localEulerAngles.z * Mathf.PI / 180.0f;
+        float topRotation = Mathf.PI * borderTop.localEulerAngles.z / 180.0f;
+        float bottomRotation = Mathf.PI * borderBottom.localEulerAngles.z / 180.0f;
 
         // Getting the half of all borders' length
-        Vector3 leftHalfLength = (borderLeft.localScale.y - borderWidth) / 2.0f * new Vector3(Mathf.Cos(leftRotation), Mathf.Sin(leftRotation));
-        Vector3 rightHalfLength = (borderRight.localScale.y - borderWidth) / 2.0f * new Vector3(Mathf.Cos(rightRotation), Mathf.Sin(rightRotation));
-        Vector3 topHalfLength = (borderTop.localScale.x - borderWidth) / 2.0f * new Vector3(Mathf.Cos(topRotation), Mathf.Sin(topRotation));
-        Vector3 bottomHalfLength = (borderBottom.localScale.x - borderWidth) / 2.0f * new Vector3(Mathf.Cos(bottomRotation), Mathf.Sin(bottomRotation));
+        Vector3 leftHalfVector = (borderLeft.localScale.y - borderWidth) / 2.0f * new Vector3(Mathf.Cos(leftRotation), Mathf.Sin(leftRotation));
+        Vector3 rightHalfVector = (borderRight.localScale.y - borderWidth) / 2.0f * new Vector3(Mathf.Cos(rightRotation), Mathf.Sin(rightRotation));
+        Vector3 topHalfVector = (borderTop.localScale.x - borderWidth) / 2.0f * new Vector3(Mathf.Cos(topRotation), Mathf.Sin(topRotation));
+        Vector3 bottomHalfVector = (borderBottom.localScale.x - borderWidth) / 2.0f * new Vector3(Mathf.Cos(bottomRotation), Mathf.Sin(bottomRotation));
 
 
         // Getting localPositions of all borders' ends
-        Vector3 leftTop = borderLeft.localPosition + leftHalfLength;
-        Vector3 leftBottom = borderLeft.localPosition - leftHalfLength;
+        Vector3 leftTop = borderLeft.localPosition + leftHalfVector;
+        Vector3 leftBottom = borderLeft.localPosition - leftHalfVector;
 
-        Vector3 rightTop = borderRight.localPosition + rightHalfLength;
-        Vector3 rightBottom = borderRight.localPosition - rightHalfLength;
+        Vector3 rightTop = borderRight.localPosition + rightHalfVector;
+        Vector3 rightBottom = borderRight.localPosition - rightHalfVector;
 
-        Vector3 topLeft = borderTop.localPosition - topHalfLength;
-        Vector3 topRight = borderTop.localPosition + topHalfLength;
+        Vector3 topLeft = borderTop.localPosition - topHalfVector;
+        Vector3 topRight = borderTop.localPosition + topHalfVector;
 
-        Vector3 bottomLeft = borderBottom.localPosition - bottomHalfLength;
-        Vector3 bottomRight = borderBottom.localPosition + bottomHalfLength;
+        Vector3 bottomLeft = borderBottom.localPosition - bottomHalfVector;
+        Vector3 bottomRight = borderBottom.localPosition + bottomHalfVector;
 
         // Getting rotations in degrees that the borders should have
         float leftAngle = Mathf.Atan2(topLeft.y - bottomLeft.y, topLeft.x - bottomLeft.x) * 180.0f / Mathf.PI - 90.0f;

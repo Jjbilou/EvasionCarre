@@ -31,5 +31,9 @@ public class PlayerMouseMovement : MonoBehaviour
 
             player.velocity = speed * Time.deltaTime * movement;
         }
+        else
+        {
+            player.velocity = Vector2.zero;
+        }
     }
 }
