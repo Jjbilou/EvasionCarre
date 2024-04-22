@@ -9,15 +9,17 @@ public class Borders : MonoBehaviour
     Transform borderTop;
     Transform borderBottom;
 
-    public float movingLeftTime = 0.0f;
-    public float movingRightTime = 0.0f;
-    public float movingTopTime = 0.0f;
-    public float movingBottomTime = 0.0f;
-
+    // Floats to know for how long a border still has to scale 
     public float scalingLeftTime = 0.0f;
     public float scalingRightTime = 0.0f;
     public float scalingTopTime = 0.0f;
     public float scalingBottomTime = 0.0f;
+
+    // Floats to know for how long a border still has to move 
+    public float movingLeftTime = 0.0f;
+    public float movingRightTime = 0.0f;
+    public float movingTopTime = 0.0f;
+    public float movingBottomTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,11 @@ public class Borders : MonoBehaviour
 
     void LateUpdate()
     {
+        /*
+        Making the updates of horizontal borders and vertical borders separated to avoid an updating loop.
+        For example, top border updates because of left and right borders, but on the same frame, left
+        and right update because of top and bottom borders and then next frame, every borders have to reupdate 
+        */
         if (Time.frameCount % 2 == 0) // Update left and right borders
         {
             // Getting rotations in randians the borders currently have
