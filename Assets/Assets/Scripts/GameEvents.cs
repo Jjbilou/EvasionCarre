@@ -70,26 +70,24 @@ public class GameEvents : MonoBehaviour
         return borderBottom.position.y;
     }
 
-    public static void EnableDeadlyBorders()
+    static void ChangeBordersColor(Color borderColor)
     {
-        Color borderColor = new(1.0f, 0.0f, 0.0f);
-
-        borders.tag = "Danger";
         borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
         borderRight.GetComponent<SpriteRenderer>().color = borderColor;
         borderTop.GetComponent<SpriteRenderer>().color = borderColor;
         borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
     }
 
+    public static void EnableDeadlyBorders()
+    {
+        borders.tag = "Danger";
+        ChangeBordersColor(new Color(1.0f, 0.0f, 0.0f));
+    }
+
     public static void DisableDeadlyBorders()
     {
-        Color borderColor = new(1.0f, 1.0f, 1.0f);
-
         borders.tag = "Untagged";
-        borderLeft.GetComponent<SpriteRenderer>().color = borderColor;
-        borderRight.GetComponent<SpriteRenderer>().color = borderColor;
-        borderTop.GetComponent<SpriteRenderer>().color = borderColor;
-        borderBottom.GetComponent<SpriteRenderer>().color = borderColor;
+        ChangeBordersColor(new Color(1.0f, 1.0f, 1.0f));
     }
 
     public static void CloseBorderLeft(float scaleValue, float duration)
@@ -162,6 +160,30 @@ public class GameEvents : MonoBehaviour
         borderBottom.DOLocalMoveY(-9.0f, duration);
     }
 
+    public static void MoveBorderLeft(float posX, float posY, float duration)
+    {
+        borderLeft.DOMove(new Vector3(posX, posY), duration);
+        bordersScript.movingLeftTime = duration;
+    }
+
+    public static void MoveBorderRight(float posX, float posY, float duration)
+    {
+        borderRight.DOMove(new Vector3(posX, posY), duration);
+        bordersScript.movingRightTime = duration;
+    }
+
+    public static void MoveBorderTop(float posX, float posY, float duration)
+    {
+        borderTop.DOMove(new Vector3(posX, posY), duration);
+        bordersScript.movingTopTime = duration;
+    }
+
+    public static void MoveBorderBottom(float posX, float posY, float duration)
+    {
+        borderBottom.DOMove(new Vector3(posX, posY), duration);
+        bordersScript.movingBottomTime = duration;
+    }
+
     public static void MoveBorders(float posX, float posY, float duration)
     {
         borders.DOMove(new Vector3(posX, posY), duration);
@@ -170,6 +192,10 @@ public class GameEvents : MonoBehaviour
     public static void ResetBordersPosition(float duration)
     {
         borders.DOMove(Vector3.zero, duration);
+        MoveBorderLeft(-9.0f, 0.0f, duration);
+        MoveBorderRight(9.0f, 0.0f, duration);
+        MoveBorderTop(0.0f, 9.0f, duration);
+        MoveBorderBottom(0.0f, -9.0f, duration);
     }
 
     public static void RotateBorders(float angle, float duration)
