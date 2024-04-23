@@ -15,6 +15,19 @@ public class LevelMenuChange : MonoBehaviour
         currentPosition = levels.transform.position.x;
     }
 
+    void Update()
+    {
+        if (levels.transform.position == new Vector3(960f, 440f, 0f))
+        {
+            leftArrow.SetActive(false);
+        }
+        if (levels.transform.position == new Vector3(-840f, 440f, 0f))
+        {
+            rightArrow.SetActive(false);
+        }
+        print(levels.transform.position);
+    }
+
     public void Right()
     {
         levels.transform.DOMoveX(currentPosition - 1800f, 1f);
