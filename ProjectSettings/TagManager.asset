@@ -8,6 +8,7 @@ TagManager:
   - HorizontalBorder
   - VerticalBorder
   - Music
+  - LevelsButtons
   layers:
   - Default
   - TransparentFX

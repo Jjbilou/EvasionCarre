@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class LevelMenuChange : MonoBehaviour
 {
@@ -9,10 +10,18 @@ public class LevelMenuChange : MonoBehaviour
     [SerializeField] GameObject rightArrow;
     [SerializeField] GameObject leftArrow;
     float currentPosition;
+    List<Button> buttons = new List<Button>(); 
 
     void Start()
     {
         currentPosition = levels.transform.position.x;
+        GameObject[] levelsButtons = GameObject.FindGameObjectsWithTag("LevelsButtons");
+
+        foreach (GameObject buttonObject in levelsButtons)
+        {
+            Button btn = buttonObject.GetComponent<Button>();
+            buttons.Add(btn); 
+        }
     }
 
     void Update()
@@ -21,11 +30,10 @@ public class LevelMenuChange : MonoBehaviour
         {
             leftArrow.SetActive(false);
         }
-        if (levels.transform.position == new Vector3(-840f, 440f, 0f))
+        if (levels.transform.position == new Vector3(-2640f, 440f, 0f))
         {
             rightArrow.SetActive(false);
         }
-        print(levels.transform.position);
     }
 
     public void Right()
@@ -50,9 +58,19 @@ public class LevelMenuChange : MonoBehaviour
         rightArrow.SetActive(false);
         leftArrow.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
+        foreach (Button btn in buttons)
+        {
+            btn.interactable = false;
+        }
+
+        yield return new WaitForSeconds(1.1f);
 
         rightArrow.SetActive(true);
         leftArrow.SetActive(true);
+
+        foreach (Button btn in buttons)
+        {
+            btn.interactable = true;
+        }
     }
 }
