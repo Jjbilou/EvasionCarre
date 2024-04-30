@@ -6,15 +6,13 @@ using UnityEngine.UI;
 
 public class LevelMenuChange : MonoBehaviour
 {
-    [SerializeField] GameObject levels;
-    [SerializeField] GameObject rightArrow;
+    [SerializeField] Transform levels;
     [SerializeField] GameObject leftArrow;
-    float currentPosition;
-    List<Button> buttons = new List<Button>(); 
+    [SerializeField] GameObject rightArrow;
+    readonly List<Button> buttons = new(); 
 
     void Start()
     {
-        currentPosition = levels.transform.position.x;
         GameObject[] levelsButtons = GameObject.FindGameObjectsWithTag("LevelsButtons");
 
         foreach (GameObject buttonObject in levelsButtons)
@@ -24,13 +22,14 @@ public class LevelMenuChange : MonoBehaviour
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (levels.transform.position == new Vector3(960f, 440f, 0f))
+        if (levels.localPosition.x > -1.0f)
         {
             leftArrow.SetActive(false);
         }
-        if (levels.transform.position == new Vector3(-2640f, 440f, 0f))
+
+        if (levels.localPosition.x < -2559.0f)
         {
             rightArrow.SetActive(false);
         }
@@ -38,14 +37,12 @@ public class LevelMenuChange : MonoBehaviour
 
     public void Right()
     {
-        levels.transform.DOMoveX(currentPosition - 1800f, 1f);
-        currentPosition -= 1800f; 
+        levels.DOMoveX(-1800f / 1920.0f * Screen.width, 1f).SetRelative();
     }
 
     public void Left()
     {
-        levels.transform.DOMoveX(currentPosition + 1800f, 1f);
-        currentPosition += 1800f;
+        levels.DOMoveX(1800f / 1920.0f * Screen.width, 1f).SetRelative();
     }
 
     public void Hide()
@@ -55,8 +52,8 @@ public class LevelMenuChange : MonoBehaviour
 
     public IEnumerator HideCoroutine()
     {
-        rightArrow.SetActive(false);
         leftArrow.SetActive(false);
+        rightArrow.SetActive(false);
 
         foreach (Button btn in buttons)
         {
@@ -65,8 +62,8 @@ public class LevelMenuChange : MonoBehaviour
 
         yield return new WaitForSeconds(1.1f);
 
-        rightArrow.SetActive(true);
         leftArrow.SetActive(true);
+        rightArrow.SetActive(true);
 
         foreach (Button btn in buttons)
         {
